@@ -25,15 +25,29 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { ServiceHandler } from './handlers/service.handler';
 import { AlertHandler } from './handlers/alert.handler';
+import { FormInputComponent } from './components/form-input/form-input.component';
+import { TableComponent } from './components/table/table.component';
+import { UserPage } from './pages/user/user.page';
+import { LogHandler } from './handlers/log.handler';
+import { BlockHandler } from './handlers/block.handler';
+import { I18n } from './i18n';
+import { FilterComponent } from './components/filter/filter.component';
+import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FormInputComponent,
+    TableComponent,
+    FilterComponent,
+    
     HomePage,
     LoginPage,
-    LayoutPage
+    LayoutPage,
+    UserPage
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,7 +59,9 @@ import { AlertHandler } from './handlers/alert.handler';
     ToastrModule.forRoot(),  
     FontAwesomeModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    TableModule,
+	  PaginatorModule,
   ],
   providers: [
     ConfirmationService,
@@ -53,8 +69,11 @@ import { AlertHandler } from './handlers/alert.handler';
     AuthService,
     UserService,
 
+    I18n,
     ServiceHandler,
-    AlertHandler
+    AlertHandler,
+    LogHandler,
+    BlockHandler
   ],
   bootstrap: [AppComponent]
 })

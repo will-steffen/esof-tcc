@@ -2,15 +2,15 @@ import { Injectable } from "@angular/core";
 import { User } from "../models/user";
 import { BaseStorageService } from "./base-storage.service";
 import { ServiceHandler } from "../handlers/service.handler";
-import { Table } from "../enums/table";
 import { ApiRoute } from "../enums/api-route";
+import { StorageTable } from "../enums/storage-table";
 
 @Injectable()
 export class UserService extends BaseStorageService<User>{
 
     constructor(
         private service: ServiceHandler, 
-    ) { super(Table.USER, User) }
+    ) { super(StorageTable.USER, User) }
     
     saveToken(token: string) {
         let user = new User();

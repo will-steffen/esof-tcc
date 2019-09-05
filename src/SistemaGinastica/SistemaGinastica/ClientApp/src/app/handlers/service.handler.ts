@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { StorageHandler } from './storage.handler';
-import { Table } from '../enums/table';
+import { StorageTable } from '../enums/storage-table';
 
 @Injectable()
 export class ServiceHandler {
@@ -46,7 +46,7 @@ export class ServiceHandler {
     }
 
     private GetAuthToken() {
-        let userList: Array<User> = StorageHandler.List(Table.USER)
+        let userList: Array<User> = StorageHandler.List(StorageTable.USER)
         if(userList.length) return userList.First().token; 
     }
 

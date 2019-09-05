@@ -1,4 +1,5 @@
 export const RouteConfig = {
     login: 'login',
-    app: ''
+    app: '',
+    user: 'user'
 }

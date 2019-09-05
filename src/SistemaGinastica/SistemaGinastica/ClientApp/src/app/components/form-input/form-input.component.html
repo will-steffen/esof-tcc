@@ -1,0 +1,25 @@
+<div class="input-group" *ngIf="input">
+    <label>{{ getLabel() }}</label>
+
+    <!-- TEXT, PASSWORD -->
+    <input *ngIf="input.type == FormInputType.TEXT || input.type == FormInputType.PASSWORD" [(ngModel)]="input.value"
+        type="{{ input.type == FormInputType.PASSWORD ? 'password' : '' }}" id="{{ input.guid }}">
+
+    <!-- NUMBER -->
+    <input *ngIf="input.type == FormInputType.NUMBER" [(ngModel)]="input.value" type="number" id="{{ input.guid }}">
+
+    <!-- SELECT -->
+    <select *ngIf="input.type == FormInputType.SELECT" [(ngModel)]="input.value" id="{{ input.guid }}">
+        <option value="" *ngIf="input.firstOptionEmpty"> {{ getPlaceholder() }} </option>
+        <option *ngFor="let opt of input.options" value="{{ opt.value }}">
+            {{ opt.label }}
+        </option>
+    </select>
+
+    <!-- TEXTAREA -->
+    <textarea *ngIf="input.type == FormInputType.TEXTAREA" [rows]="5" [(ngModel)]="input.value" id="{{ input.guid }}"></textarea>
+
+    <!-- CHECKBOX -->
+    <input *ngIf="input.type == FormInputType.CHECKBOX" [(ngModel)]="input.value" type="checkbox" id="{{ input.guid }}">
+
+</div>

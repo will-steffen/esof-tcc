@@ -1,0 +1,52 @@
+.filters {
+  background-color: #f9f4ed;
+  border-bottom: 2px solid #fce8c6;
+  padding: 0 20px 15px 20px;
+  transition: 0.3s;
+}
+.filters .title {
+  font-size: 12px;
+}
+.filters app-filter-field {
+  display: contents;
+}
+.filters .buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.filters .buttons .button-base {
+  margin-left: 20px;
+}
+.filters .buttons .button-base button {
+  width: 100%;
+}
+.filters.closed {
+  height: 0;
+  font-size: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  border-width: 0;
+}
+.filters.closed .form {
+  display: none;
+}
+.filters.disabled {
+  opacity: 0.2;
+}
+:host ::ng-deep .as-modal .input-grp {
+  height: auto;
+}
+.form .input-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #525252;
+}
+.form input,
+.form textarea,
+.form select {
+  border-bottom: 1px solid #a9a9a9;
+  padding: 2px;
+  width: 100%;
+  font-size: 14px;
+}

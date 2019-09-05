@@ -1,12 +1,12 @@
 
 import { BaseModel } from "../models/base-model";
-import { Table } from "../enums/table";
 import { StorageHandler } from "../handlers/storage.handler";
+import { StorageTable } from "../enums/storage-table";
 
 
 export class BaseStorageService<TModel extends BaseModel> {
     constructor(
-        public table: Table,
+        public table: StorageTable,
         public baseModelType: any
     ) { }
 

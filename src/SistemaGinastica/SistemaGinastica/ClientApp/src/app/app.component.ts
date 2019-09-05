@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Icon } from './enums/icon';
+import { I18n } from './i18n';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,7 @@ import { Icon } from './enums/icon';
 })
 export class AppComponent {
   icon = Icon;
+  constructor(public i18n: I18n){
+    I18n.current = i18n;
+  }
 }
