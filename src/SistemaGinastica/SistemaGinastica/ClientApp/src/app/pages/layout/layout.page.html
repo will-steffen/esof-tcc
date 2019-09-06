@@ -1,5 +1,10 @@
 <body>
-    LAYOUT
+    <div>
+        <div style="cursor: pointer"
+        *ngFor="let page of pageRouteService.pageList" 
+        (click)="pageRouteService.open(page)">{{ page.title }}</div>
+    </div>
+    <br><br>
     <div class="container">
         <router-outlet></router-outlet>
     </div>

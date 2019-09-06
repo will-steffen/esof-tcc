@@ -1,6 +1,6 @@
 export interface LocaleType {
     code: string,
-    dateFormat: string,   
+    dateFormat: string,
     enum: {        
     }
 }

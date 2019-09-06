@@ -34,6 +34,11 @@ import { I18n } from './i18n';
 import { FilterComponent } from './components/filter/filter.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
+import { InstructorPage } from './pages/instructor/instructor.page';
+import { CustomerPage } from './pages/customer/customer.page';
+import { GroupClassPage } from './pages/group-class/group-class.page';
+import { PageRouteService } from './services/page-route.service';
+import { BasePageDeps } from './pages/base-page-deps';
 
 
 
@@ -47,7 +52,10 @@ import { TableModule } from 'primeng/table';
     HomePage,
     LoginPage,
     LayoutPage,
-    UserPage
+    UserPage,
+    CustomerPage,
+    InstructorPage,
+    GroupClassPage
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -65,9 +73,11 @@ import { TableModule } from 'primeng/table';
   ],
   providers: [
     ConfirmationService,
+    BasePageDeps,
     
     AuthService,
     UserService,
+    PageRouteService,
 
     I18n,
     ServiceHandler,

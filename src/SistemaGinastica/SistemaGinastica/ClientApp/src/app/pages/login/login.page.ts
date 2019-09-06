@@ -8,24 +8,23 @@ import { RouteConfig } from "src/app/enums/route-config";
 import { AlertHandler } from "src/app/handlers/alert.handler";
 import { AuthService } from "src/app/services/auth.service";
 import { LoginRequestDTO } from "src/app/dto/login-request.dto";
+import { BasePage } from "../base-page";
+import { BasePageDeps } from "../base-page-deps";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.less']
 })
-export class LoginPage {
+export class LoginPage extends BasePage {
     showValidation = true;
     username: string;
     password: string;
-    @BlockUI() block: NgBlockUI;
 
     constructor(
         private authService: AuthService,
-        private userService: UserService,
-        private router: Router,
-        private alert: AlertHandler
-    ){}  
+        deps: BasePageDeps
+    ){ super(deps) }  
 
     login(){
         if(this.validUsername() && this.validPassword()){
