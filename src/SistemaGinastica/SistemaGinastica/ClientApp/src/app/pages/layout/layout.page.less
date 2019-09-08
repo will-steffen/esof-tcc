@@ -1,0 +1,31 @@
+@import '../../styles/vars.less';
+
+@nav-height: 40px;
+
+nav{
+    background-color: darken(@color-1, 30);
+    color: @color-light;
+    height: @nav-height;
+    .logo{
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        img{
+            height: 60%;
+        }
+    }
+}
+
+.body{
+    min-height: ~'calc(100vh - ' @nav-height ~')';
+    display: flex;
+    .menu{
+        width: 250px;
+        background-color: @color-dark-2;
+    }
+    .container{
+        flex: 1;
+    }
+}

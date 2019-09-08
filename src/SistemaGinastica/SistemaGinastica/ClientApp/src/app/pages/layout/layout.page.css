@@ -1,0 +1,26 @@
+nav {
+  background-color: #0a0230;
+  color: #eee;
+  height: 40px;
+}
+nav .logo {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+nav .logo img {
+  height: 60%;
+}
+.body {
+  min-height: calc(100vh -  40px );
+  display: flex;
+}
+.body .menu {
+  width: 250px;
+  background-color: #2c2a38;
+}
+.body .container {
+  flex: 1;
+}
