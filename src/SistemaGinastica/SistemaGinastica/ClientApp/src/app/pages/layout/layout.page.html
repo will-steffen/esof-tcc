@@ -1,23 +1,24 @@
-
 <nav>
     <div class="logo">
-        <img src="/assets/img/logo_white.svg">
+        <img src="/assets/img/logo_white.svg" (click)="pageRouteService.goToHome()">
+    </div>
+    <div class="container">
+        <div class="right-icons">
+            <button (click)="logout()">
+                <fa-icon [icon]="icon.logout"></fa-icon>
+            </button>
+        </div>
     </div>
 </nav>
 <div class="body">
     <div class="menu">
-        <div>
-            <div style="cursor: pointer"
-            *ngFor="let page of pageRouteService.pageList" 
-            (click)="pageRouteService.open(page)">{{ page.title }}</div>
+        <div class="page-list">
+            <div *ngFor="let page of pageRouteService.pageList" (click)="pageRouteService.open(page)" class="page-item">
+                <fa-icon [icon]="page.icon"></fa-icon>{{ page.title }}
+            </div>
         </div>
     </div>
     <div class="container">
         <router-outlet></router-outlet>
     </div>
 </div>
-
-
-
-    
-   

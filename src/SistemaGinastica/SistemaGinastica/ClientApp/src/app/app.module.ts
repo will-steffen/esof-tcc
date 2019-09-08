@@ -39,6 +39,7 @@ import { CustomerPage } from './pages/customer/customer.page';
 import { GroupClassPage } from './pages/group-class/group-class.page';
 import { PageRouteService } from './services/page-route.service';
 import { BasePageDeps } from './pages/base-page-deps';
+import { PageTitleComponent } from './components/page-title/page-title.component';
 
 
 
@@ -48,6 +49,7 @@ import { BasePageDeps } from './pages/base-page-deps';
     FormInputComponent,
     TableComponent,
     FilterComponent,
+    PageTitleComponent,
     
     HomePage,
     LoginPage,

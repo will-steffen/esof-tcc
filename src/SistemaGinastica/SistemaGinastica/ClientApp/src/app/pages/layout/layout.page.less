@@ -1,19 +1,46 @@
 @import '../../styles/vars.less';
 
 @nav-height: 40px;
+@border-def: 1px solid fade(@color-light, 15);
 
 nav{
-    background-color: darken(@color-1, 30);
+    background-color: darken(@color-1, 20);
     color: @color-light;
     height: @nav-height;
+    display: flex;
     .logo{
         width: 250px;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
+        border-right: @border-def;
         img{
             height: 60%;
+            cursor: pointer;
+            &:hover{ background-color: fade(@color-light, 15); }
+            &:active{ background-color: fade(@color-light, 50);}
+        }
+    }
+    .container{
+        flex: 1;
+        display: flex;
+        .right-icons{
+            flex: 1;
+            justify-content: flex-end;
+            display: flex;
+            button{
+                border: none;
+                background: none;
+                border-left: @border-def;
+                height: 100%;
+                width: 50px;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                &:hover{ background-color: fade(@color-light, 15); }
+                &:active{ background-color: fade(@color-light, 50);}
+            }
         }
     }
 }
@@ -24,6 +51,19 @@ nav{
     .menu{
         width: 250px;
         background-color: @color-dark-2;
+        color: @color-light;
+        .page-list{
+            .page-item{
+                padding: 10px;
+                cursor: pointer;
+                border-bottom: @border-def;
+                fa-icon {
+                    margin-right: 15px;
+                }
+                &:hover{ background-color: fade(@color-1, 15); }
+                &:active{ background-color: fade(@color-1, 50);}
+            }
+        }
     }
     .container{
         flex: 1;

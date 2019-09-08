@@ -6,6 +6,7 @@ import { UserType } from "../enums/user-type";
 import { User } from "../models/user";
 import { RouteConfig } from "../enums/route-config";
 import { Router } from "@angular/router";
+import { Icon } from "../enums/icon";
 
 @Injectable()
 export class PageRouteService {
@@ -24,22 +25,30 @@ export class PageRouteService {
         this.router.navigate([page.route]);
     }
 
+    goToHome() {
+        this.router.navigate([RouteConfig.app]);
+    }
+
+    goToLogin() {
+        this.router.navigate([RouteConfig.login]);
+    }
+
     setPages() {
         this.pageList = [];
         let user = this.userService.getUser();
         if(!user) return;
 
         this.appendPage(user, [], 
-            new PageRoute('Clientes', RouteConfig.customer));
+            new PageRoute('Clientes', RouteConfig.customer, Icon.users));
 
         this.appendPage(user, [UserType.ADMIN, UserType.RECEPCIONIST], 
-            new PageRoute('Aulas em Grupo', RouteConfig.groupClass));
+            new PageRoute('Aulas em Grupo', RouteConfig.groupClass, Icon.peopleCarry));
 
         this.appendPage(user, [UserType.ADMIN, UserType.RECEPCIONIST], 
-            new PageRoute('Instrutores', RouteConfig.instructor));
+            new PageRoute('Instrutores', RouteConfig.instructor, Icon.teacher));
 
         this.appendPage(user, [UserType.ADMIN], 
-            new PageRoute('Usuários', RouteConfig.user));
+            new PageRoute('Usuários', RouteConfig.user, Icon.userLock));
     }
 
     appendPage(user: User, typeList: UserType[], page: PageRoute) {

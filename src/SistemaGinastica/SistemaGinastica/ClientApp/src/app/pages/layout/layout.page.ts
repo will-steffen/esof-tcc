@@ -13,4 +13,9 @@ export class LayoutPage extends BasePage {
         public pageRouteService: PageRouteService, 
         deps: BasePageDeps
     ) { super(deps); }
+
+    logout() {
+        this.userService.logout();
+        this.pageRouteService.goToLogin();
+    }
 }
