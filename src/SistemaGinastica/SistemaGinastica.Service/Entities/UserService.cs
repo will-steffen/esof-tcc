@@ -1,6 +1,7 @@
 ﻿using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Authorization;
 using SistemaGinastica.DomainModel.Entities;
+using SistemaGinastica.DomainModel.Enums;
 using SistemaGinastica.DomainModel.Exceptions;
 
 namespace SistemaGinastica.Service.Entities
@@ -45,7 +46,7 @@ namespace SistemaGinastica.Service.Entities
             }
         }
 
-        public long Include(string name, string cpf, string rg, string username, string password)
+        public long Include(string name, string cpf, string rg, string username, string password, UserType type)
         {
             User user = new User
             {
@@ -53,6 +54,7 @@ namespace SistemaGinastica.Service.Entities
                 Cpf = cpf,
                 Rg = rg,
                 Username = username,
+                Type = type,
                 Salt = AuthorizationProvider.GenerateSalt()
             };
 

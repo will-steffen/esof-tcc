@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaGinastica.DomainModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,7 +16,7 @@ namespace SistemaGinastica.Service.Entities
 
         public void Mock()
         {
-            userService.Include("Admin", "00000000000", "000000003", "admin", "admin");
+            userService.Include("Admin", "00000000000", "000000003", "admin", "admin", UserType.ADMIN);
         }
     }
 }

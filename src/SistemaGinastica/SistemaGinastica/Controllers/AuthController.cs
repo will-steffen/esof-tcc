@@ -21,7 +21,7 @@ namespace SistemaGinastica.Controllers
         }
 
         [HttpGet("ok")]
-        public ActionResult<string> Ok()
+        public ActionResult<string> OkString()
         {
             return Ok("Ok");
         }

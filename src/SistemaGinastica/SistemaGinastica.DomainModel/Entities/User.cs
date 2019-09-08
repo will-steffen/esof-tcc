@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaGinastica.DomainModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,5 +24,8 @@ namespace SistemaGinastica.DomainModel.Entities
         [Column("txt_salt")]
         [StringLength(250)]
         public string Salt { get; set; }
+
+        [Column("cd_type")]
+        public UserType Type { get; set; }
     }
 }
