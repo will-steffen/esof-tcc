@@ -12,22 +12,15 @@ using System.Threading.Tasks;
 
 namespace SistemaGinastica.Controllers
 {
-    public class UserController : BaseController
+    public class InstructorController : BaseController
     {
-        private UserService userService;
+        private InstructorService instructorService;
 
-        public UserController(UserService userService)
+        public InstructorController(InstructorService instructorService)
         {
-            this.userService = userService;
+            this.instructorService = instructorService;
         }
-
-        [HttpGet]
-        [Authorize]
-        public ActionResult<UserDto> Info()
-        {
-            User user = userService.GetById(ApplicationEnv.GetUserIdentification().Id);
-            return Ok(new UserDto(user));
-        }
+  
 
         [HttpPost("filter")]
         [Authorize]
@@ -35,14 +28,13 @@ namespace SistemaGinastica.Controllers
         {
             var fieldMap = new Dictionary<string, string>
             {
-                {"Username", "Username"}
             };
 
-            var filter = filterDTO.GetDataFilterBase<User>(fieldMap);
+            var filter = filterDTO.GetDataFilterBase<Instructor>(fieldMap);
             filter.SetOrderBy(filterDTO.orderByField, fieldMap);
 
-            filter = userService.ListByFilter(filter);
-            filterDTO.data = filter.Data.Select(x => new UserDto(x)).ToList();
+            filter = instructorService.ListByFilter(filter);
+            filterDTO.data = filter.Data.Select(x => new InstructorDto(x)).ToList();
             filterDTO.totalResults = filter.TotalCount;
 
             return Ok(filterDTO);

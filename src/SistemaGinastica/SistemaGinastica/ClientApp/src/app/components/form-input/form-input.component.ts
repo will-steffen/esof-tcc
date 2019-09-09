@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormInput } from "src/app/models/forms/base/form-input";
 import { FormInputType } from "src/app/models/forms/base/form-input-type";
+import { I18n } from "src/app/i18n";
 
 
 
 @Component({
-    selector: 'lb-form-input',
+    selector: 'g-form-input',
     templateUrl: './form-input.component.html',
     styleUrls: ['./form-input.component.less']
 })
@@ -13,6 +14,8 @@ export class FormInputComponent {
     FormInputType = FormInputType;
     @Input() input: FormInput<any>;  
     @Output('enterKey') enterKey = new EventEmitter();
+
+    constructor(public i18n: I18n){ }
 
 
     onEnterKey() {
@@ -24,6 +27,6 @@ export class FormInputComponent {
     }
 
     getPlaceholder() {
-        return 'Selecione';
+        return this.i18n.t.label.select;
     }
 }

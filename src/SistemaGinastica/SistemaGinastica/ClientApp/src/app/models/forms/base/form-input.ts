@@ -1,6 +1,7 @@
 import { FormInputType } from "./form-input-type";
 import { FormInputOptions } from "./form-input-options";
 import { StorageHandler } from "src/app/handlers/storage.handler";
+import { I18n } from "src/app/i18n";
 
 class FormInputValidation {
     constructor(
@@ -22,7 +23,7 @@ export class FormInput<TValue> {
     
     validationList: FormInputValidation[] = [];
 
-    requiredErrorMessage = 'Campo Obgrigatório';
+    requiredErrorMessage = I18n.current.t.label.requiredField;
 
     constructor(
         public label: string = '',

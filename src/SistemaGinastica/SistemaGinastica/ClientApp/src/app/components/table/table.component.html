@@ -12,15 +12,14 @@
                 </th>
 
                 <th class="action" *ngIf="table.actionList.length" width="{{ getActionsWidth() }}">
-                    <!-- {{ i18n.t.core.label.actions }} -->
-                    Ações
+                    {{ i18n.t.label.actions }}
                 </th>
             </tr>
 
 
             <tr *ngIf="!table.data.length">
                 <span class="no-result-message">
-                    Sem resultados
+                    {{ i18n.t.label.noResults }}
                 </span>
             </tr>
 
@@ -52,13 +51,11 @@
         </p-paginator>
 
         <div class="page-size" *ngIf="filter.hasData()">
-            <!-- {{ i18n.t.core.label.pageSizeBeforeSelect }} -->
-            Mostrar
+            {{ i18n.t.label.show }}            
             <select [(ngModel)]="filter.pageSize" (change)="onChangePageSize()">
                 <option *ngFor="let s of filter.pageSizeOptions" value="{{ s }}">{{ s }}</option>
             </select>
-            <!-- {{ i18n.t.core.label.pageSizeAfterSelect }} -->
-            Por Página
+            {{ i18n.t.label.perpage }}            
         </div>
     </section>
 

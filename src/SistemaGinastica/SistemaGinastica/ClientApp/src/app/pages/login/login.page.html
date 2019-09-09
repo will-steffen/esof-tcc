@@ -4,9 +4,11 @@
             <div class="img">
                 <img src="/assets/img/logo_white.svg">
             </div>
-            <input class="username" placeholder="Usuário" [(ngModel)]="username" (keydown.enter)="login()">
-            <input class="password" type="password" placeholder="Senha" [(ngModel)]="password" (keydown.enter)="login()">
-            <button (click)="login()">Entrar</button>
+            <input class="username" placeholder="{{ this.i18n.t.login.username }}" 
+                [(ngModel)]="username" (keydown.enter)="login()">
+            <input class="password" type="password" placeholder="{{ this.i18n.t.login.password }}" 
+                [(ngModel)]="password" (keydown.enter)="login()">
+            <button (click)="login()">{{ this.i18n.t.login.signin }}</button>
         </div>        
     </div>
 </div>

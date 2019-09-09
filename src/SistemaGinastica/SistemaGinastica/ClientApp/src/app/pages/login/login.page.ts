@@ -36,7 +36,7 @@ export class LoginPage extends BasePage {
             })
             .then(() => this.router.navigate([RouteConfig.app]))
             .catch(err => {
-                this.alert.error('Erro para fazer login');
+                this.alert.error(this.i18n.t.login.error);
             })
             .then(() => this.block.stop());
         }

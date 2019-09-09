@@ -2,7 +2,7 @@
 
     <div class="ui-g form">
         <div *ngFor="let field of filter.fields" class="{{ getLayoutSizeClass(field) }} ui-sm-12 filter-field">
-            <lb-form-input [input]="field" (enterKey)="search()"></lb-form-input>            
+            <g-form-input [input]="field" (enterKey)="search()"></g-form-input>            
         </div>            
     </div>
 
@@ -10,15 +10,13 @@
         <div class="button-base">
             <button class="btn" (click)="clean()">
                 <fa-icon [icon]="icon.clean"></fa-icon>
-                <!-- {{ i18n.t.core.label.cleanFilter }} -->
-                Limpar
+                {{ i18n.t.label.cleanFilter }}             
             </button>
         </div>
         <div class="button-base">
             <button class="btn" (click)="search()">
                 <fa-icon [icon]="icon.search"></fa-icon>
-                <!-- {{ i18n.t.core.label.searchFilter }} -->
-                Consultar
+                {{ i18n.t.label.searchFilter }}               
             </button>
         </div>
     </div>

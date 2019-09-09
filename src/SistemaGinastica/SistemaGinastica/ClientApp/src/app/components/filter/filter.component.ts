@@ -3,11 +3,12 @@ import { faEraser, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FormInputType } from "src/app/models/forms/base/form-input-type";
 import { Filter } from "src/app/models/filter/filter";
 import { FilterField } from "src/app/models/filter/filter-field";
+import { I18n } from "src/app/i18n";
 
 
 
 @Component({
-  selector: 'lb-filter',
+  selector: 'g-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.less']
 })
@@ -18,7 +19,7 @@ export class FilterComponent<T>{
   };
   FormInputType = FormInputType;
   @Input() filter: Filter<T>; 
-
+  constructor(public i18n: I18n){ }
 
   getLayoutSizeClass(field: FilterField) {
     let largeLayout = 'ui-lg-3 ui-md-6';

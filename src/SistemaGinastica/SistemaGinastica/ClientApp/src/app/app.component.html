@@ -6,11 +6,11 @@
     <p-footer class="confirm-dialog-footer">
         <button (click)="confimationDialog.reject()" class="btn">
             <fa-icon [icon]="icon.no"></fa-icon>
-            Não
+            {{ i18n.t.label.no }}
         </button>
         <button (click)="confimationDialog.accept()" class="btn">
             <fa-icon [icon]="icon.yes"></fa-icon>
-            Sim
+            {{ i18n.t.label.yes }}
         </button>
     </p-footer>
 </p-confirmDialog>

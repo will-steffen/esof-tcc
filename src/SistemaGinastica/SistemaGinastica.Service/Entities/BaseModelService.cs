@@ -1,4 +1,5 @@
-﻿using SistemaGinastica.DataAccess.Entities;
+﻿using SistemaGinastica.DataAccess.DataFilter;
+using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,11 @@ namespace SistemaGinastica.Service.Entities
         public virtual void Delete(TModel model)
         {
             DataAccess.Delete(model);
+        }
+
+        public virtual DataFilter<TModel> ListByFilter(DataFilter<TModel> filter)
+        {
+            return DataAccess.ListByFilter(filter);
         }
     }
 }

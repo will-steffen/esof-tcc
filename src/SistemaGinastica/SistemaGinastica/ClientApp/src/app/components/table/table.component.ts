@@ -3,9 +3,11 @@ import { Paginator } from "primeng/paginator";
 import { Table } from "src/app/models/table/table";
 import { TableColumn } from "src/app/models/table/table-column";
 import { Filter } from "src/app/models/filter/filter";
+import { I18n } from "src/app/i18n";
+import { I18nTags } from "src/app/enums/i18n-tags";
 
 @Component({
-    selector: 'lb-table',
+    selector: 'g-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.less']
   })
@@ -14,6 +16,8 @@ export class TableComponent<T> implements AfterViewInit {
     @Input() table: Table<T>;
     @Input() filter: Filter<T>;
     @ViewChild('paginator') paginator: Paginator;
+    
+    constructor(public i18n: I18n){ }
 
     sort(event) {
         this.filter.sort(event);            
@@ -51,15 +55,11 @@ export class TableComponent<T> implements AfterViewInit {
     getCounterString() {
         let startCount = ((this.filter.page - 1) * this.filter.pageSize) + 1;
         let endCount = this.filter.page * this.filter.pageSize;
-        endCount = endCount < this.filter.totalResults ? endCount : this.filter.totalResults
-        return 'Exibindo resultados de {SC} a {EC}, de um total de {T}.'
-            .replace('{T}', this.filter.totalResults.toString())
-            .replace('{SC}', startCount.toString())
-            .replace('{EC}', endCount.toString());
-        // return this.i18n.t.core.label.filterResult
-        //     .replace(I18nTags.Total, this.filter.totalResults.toString())
-        //     .replace(I18nTags.StarCount, startCount.toString())
-        //     .replace(I18nTags.EndCount, endCount.toString());
+        endCount = endCount < this.filter.totalResults ? endCount : this.filter.totalResults;
+        return this.i18n.t.label.filterResult
+            .replace(I18nTags.Total, this.filter.totalResults.toString())
+            .replace(I18nTags.StarCount, startCount.toString())
+            .replace(I18nTags.EndCount, endCount.toString());
     }
 
     onChangePageSize() {

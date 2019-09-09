@@ -39,16 +39,16 @@ export class PageRouteService {
         if(!user) return;
 
         this.appendPage(user, [], 
-            new PageRoute('Clientes', RouteConfig.customer, Icon.users));
+            new PageRoute(this.i18n.t.customer.title, RouteConfig.customer, Icon.users));
 
         this.appendPage(user, [UserType.ADMIN, UserType.RECEPCIONIST], 
-            new PageRoute('Aulas em Grupo', RouteConfig.groupClass, Icon.peopleCarry));
+            new PageRoute(this.i18n.t.groupClass.title, RouteConfig.groupClass, Icon.peopleCarry));
 
         this.appendPage(user, [UserType.ADMIN, UserType.RECEPCIONIST], 
-            new PageRoute('Instrutores', RouteConfig.instructor, Icon.teacher));
+            new PageRoute(this.i18n.t.instructor.title, RouteConfig.instructor, Icon.teacher));
 
         this.appendPage(user, [UserType.ADMIN], 
-            new PageRoute('Usuários', RouteConfig.user, Icon.userLock));
+            new PageRoute(this.i18n.t.user.title, RouteConfig.user, Icon.userLock));
     }
 
     appendPage(user: User, typeList: UserType[], page: PageRoute) {

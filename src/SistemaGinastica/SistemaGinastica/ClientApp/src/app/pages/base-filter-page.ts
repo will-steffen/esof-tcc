@@ -60,10 +60,10 @@ extends BasePage implements OnInit {
             this.service[request](this.defaultRoute, this.form.getDTO())
                 .then(() => {
                     this.filter.search().then(() => this.showDetail = false); 
-                    this.alert.success('Registro salvo com sucesso');                  
+                    this.alert.success(this.i18n.t.label.saveSuccess);                  
                 })
                 .catch(err => {
-                    this.alert.error('Erro para salvar o registro');   
+                    this.alert.error(this.i18n.t.label.saveError);   
                 })
                 .then(() => this.block.stop());
         }
