@@ -15,6 +15,9 @@ export interface LocaleType {
         show: string,
         perPage: string,
         requiredField: string,
+        cancel: string,
+        save: string,
+        delete: string,
     },
 
     customer: {
@@ -42,7 +45,17 @@ export interface LocaleType {
 
     user: {
         title: string,
+        type: string,
+        username: string, 
     },
 
-    enum: { }
+    personData: {
+        name: string,
+        rg: string,
+        cpf: string
+    },
+
+    enum: {
+        UserType: any
+    }
 }

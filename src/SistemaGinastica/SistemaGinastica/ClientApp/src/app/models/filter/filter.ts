@@ -35,7 +35,7 @@ export class Filter<T> {
 
     onResetPage: Function[] = [];
     skipSearch: number = 0;
-    showFilterArea = false;
+    showFilterArea = true;
 
 
     block: BlockHandler;

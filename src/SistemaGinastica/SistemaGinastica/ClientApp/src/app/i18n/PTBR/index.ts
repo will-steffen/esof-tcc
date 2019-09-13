@@ -20,6 +20,9 @@ export let Locale: LocaleType = {
         show: 'Mostrar',
         perPage: 'por Página',
         requiredField: 'Campo obrigatório não preenchido',
+        cancel: 'Cancelar',
+        save: 'Salvar',
+        delete: 'Excluir',
     },
 
     customer: {
@@ -44,9 +47,17 @@ export let Locale: LocaleType = {
         signin: 'Entrar',
         error: 'Usuário ou senha incorretos',
     },
-
+ 
     user: {
         title: 'Usuários',
+        type: 'Tipo',
+        username: 'Usuário', 
+    },
+
+    personData: {
+        name: 'Nome',
+        rg: 'RG',
+        cpf: 'CPF'
     },
 
     enum: EnumLocale 

@@ -1,11 +1,9 @@
 
-import { BaseEntity } from "./base-entity";
 import { UserType } from "../enums/user-type";
+import { PersonDataModel } from "./person-data-model";
 
-export class User extends BaseEntity {
-    name: string;
+export class User extends PersonDataModel {
     username: string;
-    email: string;
-    token: string;
     type: UserType;
+    token: string;
 }

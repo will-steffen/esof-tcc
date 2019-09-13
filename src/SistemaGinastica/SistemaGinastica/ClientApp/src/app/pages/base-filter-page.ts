@@ -8,10 +8,13 @@ import { Filter } from "../models/filter/filter";
 
 export class BaseFilterPage<TModel extends BaseEntity, TForm extends BaseForm<TModel>> 
 extends BasePage implements OnInit {
+
     filter = new Filter<TModel>();
     table = new Table<TModel>();
     form: TForm;
     showDetail = false;
+
+    permission = false;
 
     constructor(
         deps: BasePageDeps,
@@ -52,6 +55,11 @@ extends BasePage implements OnInit {
         return new this.TModel();
     }
 
+    edit(model: TModel) { 
+        this.form.Model(model);
+        this.showDetail = true;
+    }
+
     save() {        
         this.form.ShowValidation(true);
         if(this.form.isValid()){
@@ -59,7 +67,7 @@ extends BasePage implements OnInit {
             let request = this.form.model && this.form.model.id ? 'Put' : 'Post';
             this.service[request](this.defaultRoute, this.form.getDTO())
                 .then(() => {
-                    this.filter.search().then(() => this.showDetail = false); 
+                    this.filter.search().then(() => this.closeDetails()); 
                     this.alert.success(this.i18n.t.label.saveSuccess);                  
                 })
                 .catch(err => {
@@ -67,5 +75,13 @@ extends BasePage implements OnInit {
                 })
                 .then(() => this.block.stop());
         }
+    }
+
+    delete(model: TModel) {
+
+    }
+
+    closeDetails() {
+        this.showDetail = false
     }
 }

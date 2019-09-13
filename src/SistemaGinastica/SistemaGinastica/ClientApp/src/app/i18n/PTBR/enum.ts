@@ -1,12 +1,13 @@
-// import { LeadStatus } from "src/app/enums/lead-status";
+import { UserType } from "src/app/enums/user-type";
 
-// let leadStatus = {};
-// leadStatus[LeadStatus.NEW] = 'Novo';
-// leadStatus[LeadStatus.ANSWERED] = 'Respondido';
-// leadStatus[LeadStatus.WAITING_ANSWER] = 'Aguardando Resposta';
-// leadStatus[LeadStatus.CLOSED_DONE] = 'Fechado Ganho';
-// leadStatus[LeadStatus.CLOSED_LOST] = 'Fechado Perdido';
+
+let userType = {};
+userType[UserType.ADMIN] = 'Administrador';
+userType[UserType.MANAGER] = 'Gerente';
+userType[UserType.PHYSIOTHERAPIST] = 'Fisioterapeuta';
+userType[UserType.RECEPCIONIST] = 'Recepcionista';
+
 
 export const EnumLocale = {
-    
+    UserType: userType
 }

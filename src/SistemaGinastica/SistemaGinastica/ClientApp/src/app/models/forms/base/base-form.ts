@@ -1,6 +1,7 @@
 import { FormInput } from "./form-input";
 import { BaseEntity } from "src/app/models/base-entity";
 import { BaseModel } from "src/app/models/base-model";
+import { I18n } from "src/app/i18n";
 
 
 export class BaseForm<TModel extends BaseEntity> extends BaseModel {
@@ -8,6 +9,7 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
     model: TModel;
     inputList: FormInput<any>[] = [];
     subFormList: BaseForm<BaseEntity>[] = [];
+    i18n = I18n.current;
 
     Input<TValue>(label: string = '', defaultValue: any = '') : FormInput<TValue> {
         let input = new FormInput<TValue>(label, defaultValue);
@@ -25,8 +27,14 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
         this.subFormList.forEach(x => x.ShowValidation(showValidation));
     }
 
+    Model(model: TModel) {
+        this.reset(model);
+        this.configure(model);
+    }
 
+    configure(model: TModel) {
 
+    }
 
     reset(model: TModel) {
         this.model = model;

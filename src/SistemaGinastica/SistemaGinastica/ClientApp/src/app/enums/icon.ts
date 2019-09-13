@@ -1,6 +1,6 @@
 import {  
     faDollarSign, faTools, faStopwatch, faSeedling, faSun, faSignOutAlt, faChevronUp, 
-    faChevronDown, faTimes, faCheck, faEdit, faBan, faUsers, faPeopleCarry, faChalkboardTeacher, faUserLock, faBars, faPowerOff
+    faChevronDown, faTimes, faCheck, faEdit, faBan, faUsers, faPeopleCarry, faChalkboardTeacher, faUserLock, faBars, faPowerOff, faTrash
 } from "@fortawesome/free-solid-svg-icons";
 
 import { 
@@ -22,6 +22,7 @@ export const Icon = {
     edit: faEdit,
     cancel: faBan,
     save: faCheck,
+    delete: faTrash,
     users: faUsers,
     peopleCarry: faPeopleCarry,
     teacher: faChalkboardTeacher,

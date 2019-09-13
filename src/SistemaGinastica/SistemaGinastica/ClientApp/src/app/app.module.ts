@@ -40,6 +40,7 @@ import { GroupClassPage } from './pages/group-class/group-class.page';
 import { PageRouteService } from './services/page-route.service';
 import { BasePageDeps } from './pages/base-page-deps';
 import { PageTitleComponent } from './components/page-title/page-title.component';
+import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
 
 
 
@@ -50,6 +51,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     TableComponent,
     FilterComponent,
     PageTitleComponent,
+    FormDialogComponent,
     
     HomePage,
     LoginPage,
