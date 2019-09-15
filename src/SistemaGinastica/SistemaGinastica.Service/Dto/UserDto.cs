@@ -1,16 +1,13 @@
 ﻿using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.DomainModel.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SistemaGinastica.Dto.Entities
+namespace SistemaGinastica.Service.Dto
 {
     public class UserDto : PersonDataModelDto
     {     
         public string username { get; set; }
         public UserType type { get; set; }
+        public string password { get; set; }
 
         public UserDto() { }
 

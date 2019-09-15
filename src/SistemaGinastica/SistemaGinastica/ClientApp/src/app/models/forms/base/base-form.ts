@@ -29,11 +29,7 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
 
     Model(model: TModel) {
         this.reset(model);
-        this.configure(model);
-    }
-
-    configure(model: TModel) {
-
+        this.configure();
     }
 
     reset(model: TModel) {
@@ -57,7 +53,8 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
         }
     }
 
-    getDTO() : BaseModel {
+    configure() { }
+    getDTO(baseModel: BaseModel = null) : BaseModel {
         return new BaseModel();
     }
     

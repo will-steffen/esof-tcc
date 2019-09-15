@@ -8,6 +8,7 @@ import { UserField } from "src/app/enums/user-field";
 import { Icon } from "src/app/enums/icon";
 import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 import { UserType } from "src/app/enums/user-type";
+import { HttpStatus } from "src/app/enums/http-status";
 
 @Component({
     selector: 'app-user',
@@ -17,7 +18,11 @@ import { UserType } from "src/app/enums/user-type";
 export class UserPage extends BaseFilterPage<User, UserForm> {
     constructor(
         deps: BasePageDeps
-    ){ super(deps, User, UserForm, ApiRoute.user.filter, ApiRoute.user.default) }
+    ){ 
+        super(deps, User, UserForm, ApiRoute.user.filter, ApiRoute.user.default);        
+        this.errorMessageMap[HttpStatus.FAILED_DEPENDENCY] = this.i18n.t.user.message.notFound;
+        this.errorMessageMap[HttpStatus.CONFLICT] = this.i18n.t.user.message.usernameNotUnique;
+    }
 
     createFilter() {
         this.filter.CreateField(this.i18n.t.user.username, UserField.USERNAME);

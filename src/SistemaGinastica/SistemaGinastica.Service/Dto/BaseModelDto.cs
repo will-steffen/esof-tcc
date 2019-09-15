@@ -1,14 +1,11 @@
 ﻿using SistemaGinastica.DomainModel.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SistemaGinastica.Dto.Entities
+namespace SistemaGinastica.Service.Dto
 {
     public class BaseModelDto
     {
-        public long id { get; set; }
+        public long? id { get; set; }
         public DateTimeOffset createDate { get; set; }
         public DateTimeOffset updateDate { get; set; }
 

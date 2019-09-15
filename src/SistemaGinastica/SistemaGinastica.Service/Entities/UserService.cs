@@ -3,10 +3,11 @@ using SistemaGinastica.DomainModel.Authorization;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.DomainModel.Enums;
 using SistemaGinastica.DomainModel.Exceptions;
+using SistemaGinastica.Service.Dto;
 
 namespace SistemaGinastica.Service.Entities
 {
-    public class UserService : BaseModelService<User, UserDataAccess>
+    public class UserService : BaseCrudDtoService<User, UserDataAccess, UserDto>
     {
         public UserService(UserDataAccess da) : base(da) { }
 
@@ -26,7 +27,7 @@ namespace SistemaGinastica.Service.Entities
 
             if (user == null)
             {
-                throw new UserNotFoundException($"Usuário informado ({username}) para login não existe no sistema");
+                throw new EntityNotFoundException($"Usuário informado ({username}) para login não existe no sistema");
             }
 
             string hashPassword = AuthorizationProvider.GetHash(password, user.Salt);
@@ -37,8 +38,9 @@ namespace SistemaGinastica.Service.Entities
 
             return user;
         }
+        
 
-        protected void ValidateSave(User model)
+        protected override void ValidateSave(User model)
         {
             if (DataAccess.ExistsByUsernameIgnoreId(model.Username, model.Id))
             {
@@ -46,22 +48,23 @@ namespace SistemaGinastica.Service.Entities
             }
         }
 
-        public long Include(string name, string cpf, string rg, string username, string password, UserType type)
+        protected override User Map(User model, UserDto dto)
         {
-            User user = new User
+            model.Name = dto.name;
+            model.Cpf = dto.cpf;
+            model.Rg = dto.rg;
+            model.Username = dto.username;
+            model.Type = dto.type;
+
+            if (!string.IsNullOrEmpty(dto.password))
             {
-                Name = name,
-                Cpf = cpf,
-                Rg = rg,
-                Username = username,
-                Type = type,
-                Salt = AuthorizationProvider.GenerateSalt()
-            };
+                model.Salt = AuthorizationProvider.GenerateSalt();
+                model.HashPassword = AuthorizationProvider.GetHash(dto.password, model.Salt);
+            }
 
-            user.HashPassword = AuthorizationProvider.GetHash(password, user.Salt);
-            Save(user);
-            return user.Id;
-
+            return base.Map(model, dto);
         }
+
+
     }
 }

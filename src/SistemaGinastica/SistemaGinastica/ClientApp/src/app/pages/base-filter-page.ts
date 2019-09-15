@@ -15,6 +15,8 @@ extends BasePage implements OnInit {
     showDetail = false;
 
     permission = false;
+    successMessage;
+    errorMessageMap = {};
 
     constructor(
         deps: BasePageDeps,
@@ -26,6 +28,7 @@ extends BasePage implements OnInit {
         super(deps);
         this.filter.configure(filterRoute, TModel, deps);
         this.form = new this.TForm();
+        this.successMessage = this.i18n.t.label.saveSuccess;
     }
 
     ngOnInit() {
@@ -68,13 +71,21 @@ extends BasePage implements OnInit {
             this.service[request](this.defaultRoute, this.form.getDTO())
                 .then(() => {
                     this.filter.search().then(() => this.closeDetails()); 
-                    this.alert.success(this.i18n.t.label.saveSuccess);                  
+                    this.alert.success(this.successMessage);                  
                 })
                 .catch(err => {
-                    this.alert.error(this.i18n.t.label.saveError);   
+                    this.handleRequestError(err);
+                    
                 })
                 .then(() => this.block.stop());
         }
+    }
+
+    private handleRequestError(error) {
+        let message = this.errorMessageMap[error.status] 
+            ? this.errorMessageMap[error.status] 
+            : this.i18n.t.label.saveError;    
+        this.alert.error(message);   
     }
 
     delete(model: TModel) {

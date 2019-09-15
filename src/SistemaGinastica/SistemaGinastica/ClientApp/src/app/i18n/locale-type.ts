@@ -47,6 +47,10 @@ export interface LocaleType {
         title: string,
         type: string,
         username: string, 
+        message: {
+            usernameNotUnique: string,
+            notFound: string
+        },
     },
 
     personData: {

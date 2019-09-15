@@ -1,0 +1,84 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SistemaGinastica.DataAccess.DataFilter;
+using SistemaGinastica.DataAccess.Entities;
+using SistemaGinastica.DomainModel.Entities;
+using SistemaGinastica.DomainModel.Exceptions;
+using SistemaGinastica.Service.Dto;
+using SistemaGinastica.Service.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SistemaGinastica.Controllers
+{
+    public class BaseCrudDtoController<TModel, TService, TDataAccess, TDto> : BaseController
+        where TModel : BaseModel
+        where TService : BaseCrudDtoService<TModel, TDataAccess, TDto>
+        where TDataAccess : BaseDataAccess<TModel>
+        where TDto : BaseModelDto
+    {
+        protected TService Service;
+        protected Dictionary<string, string> fieldFilterMap = new Dictionary<string, string>();
+        protected Dictionary<string, string> fieldFilterMapOr = null;
+
+        public BaseCrudDtoController(TService service)
+        {
+            Service = service;
+        }
+
+        [HttpPost("filter")]
+        [Authorize]
+        public ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
+        {
+            var filter = filterDTO.GetDataFilterBase<TModel>(fieldFilterMap, fieldFilterMapOr);
+            filter.SetOrderBy(filterDTO.orderByField, fieldFilterMap);
+
+            filter = Service.ListByFilter(filter);
+            filterDTO.data = filter.Data.Select(x => (TDto)Activator.CreateInstance(typeof(TDto), new object[] { x })).ToList();            
+            filterDTO.totalResults = filter.TotalCount;
+
+            return Ok(filterDTO);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public virtual ActionResult<long> Include([FromBody] TDto dto)
+        {
+            try
+            {
+                return Ok(Service.Include(dto));
+            }
+            catch (SgException e)
+            {
+                return HandleError(e);
+            }
+        }
+
+        
+        [HttpPut]
+        [Authorize]
+        public virtual ActionResult<long> Update([FromBody] TDto dto)
+        {
+            try
+            {
+                return Ok(Service.Update(dto));
+            }
+            catch (SgException e)
+            {
+                return HandleError(e);
+            }
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public virtual ActionResult Delete([FromBody] long id)
+        {
+            try {
+                Service.Delete(id);
+                return Ok();
+            }
+            catch (SgException e) { return HandleError(e); }
+        }
+    }
+}

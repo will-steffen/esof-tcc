@@ -1,0 +1,112 @@
+@border-radius: 8px;
+body .ui-widget {
+    font-family: "homeDoctor";
+}
+body .ui-dialog {
+    .ui-dialog-titlebar{
+        border: none;
+        border-radius: @border-radius @border-radius 0 0;
+        background-color: @color-light;
+        color: @color-1;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: normal;
+        .title-action {color: @color-2;}
+    }
+    .ui-dialog-footer{
+        border: none;
+        border-radius: 0 0 @border-radius @border-radius;
+        padding: 10px 16px;
+        padding-top: 15px;
+        background-color: @color-light;
+        text-align: right;
+        p-footer{
+            &.confirm-dialog-footer{
+                display: flex;
+                justify-content: space-between;      
+            }      
+        }
+    }
+    .ui-dialog-content{
+        // display: flex;
+        // flex-direction: column;
+        color: @color-dark;
+        font-size: 1rem;
+        border: none;
+        padding-bottom: 0;
+        padding-top: 0;
+        background-color: @color-light;
+        .ui-confirmdialog-icon{
+            font-size: 4rem;
+            color: @color-1;
+            margin-right: 30px;
+        }
+        .ui-confirmdialog-message{
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        .form{
+            width: 100%;
+            .input-grp{
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+.modal-sm{
+    width: 25%;
+    min-width: 400px;
+}
+
+.modal-md{
+    width: 40%;
+    min-width: 400px;
+}
+
+.modal-lg{
+    width: 60%;
+}
+
+.modal-xg{
+    width: 80%;
+}
+
+.modal-xl{
+    width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+    .modal-lg, .modal-xg{
+        width: 100%;
+    }
+    .modal-sm, .modal-md {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .modal-sm, .modal-md, .modal-lg, .modal-xg{
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-height: 700px) {
+    .modal-sm, .modal-md, .modal-lg, .modal-xg, .modal-xl {
+        .ui-dialog-content{
+            max-height: ~'calc(100vh - 200px)';
+        }        
+    }
+}
+
+
+.modal-vertical-fixed{
+    .ui-dialog {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+}

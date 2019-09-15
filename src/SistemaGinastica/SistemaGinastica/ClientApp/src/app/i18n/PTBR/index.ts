@@ -52,6 +52,10 @@ export let Locale: LocaleType = {
         title: 'Usuários',
         type: 'Tipo',
         username: 'Usuário', 
+        message: {
+            usernameNotUnique: 'Usuário informado já existe',
+            notFound: 'Usuário não encontrado',
+        },
     },
 
     personData: {
