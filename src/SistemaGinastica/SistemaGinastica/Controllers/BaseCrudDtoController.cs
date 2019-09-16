@@ -27,15 +27,22 @@ namespace SistemaGinastica.Controllers
             Service = service;
         }
 
+        [HttpGet]
+        [Authorize]
+        public virtual ActionResult<IEnumerable<TDto>> List()
+        {
+            return Ok(Service.List().Select(x => GetDto(x)));
+        }
+
         [HttpPost("filter")]
         [Authorize]
-        public ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
+        public virtual ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
         {
             var filter = filterDTO.GetDataFilterBase<TModel>(fieldFilterMap, fieldFilterMapOr);
             filter.SetOrderBy(filterDTO.orderByField, fieldFilterMap);
 
             filter = Service.ListByFilter(filter);
-            filterDTO.data = filter.Data.Select(x => (TDto)Activator.CreateInstance(typeof(TDto), new object[] { x })).ToList();            
+            filterDTO.data = filter.Data.Select(x => GetDto(x)).ToList();            
             filterDTO.totalResults = filter.TotalCount;
 
             return Ok(filterDTO);
@@ -79,6 +86,11 @@ namespace SistemaGinastica.Controllers
                 return Ok();
             }
             catch (SgException e) { return HandleError(e); }
+        }
+
+        private TDto GetDto(TModel model)
+        {
+            return (TDto)Activator.CreateInstance(typeof(TDto), new object[] { model });
         }
     }
 }
