@@ -34,7 +34,7 @@ export class UserPage extends BaseFilterPage<User, UserForm> {
     }
 
     createTable() {
-        this.table.Action(Icon.edit, user => this.edit(user));        
+        this.table.Action(Icon.edit, model => this.edit(model));        
 
         this.table.Column()
             .Label(this.i18n.t.user.username)

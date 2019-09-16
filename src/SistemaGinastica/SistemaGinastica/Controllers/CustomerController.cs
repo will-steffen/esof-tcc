@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaGinastica.DataAccess.DataFilter;
+using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.Service.Dto;
 using SistemaGinastica.Service.Entities;
@@ -9,32 +10,20 @@ using System.Linq;
 
 namespace SistemaGinastica.Controllers
 {
-    public class CustomerController : BaseController
+    public class CustomerController : BaseCrudDtoController<Customer, CustomerService, CustomerDataAccess, CustomerDto>
     {
-        private CustomerService customerService;
-
-        public CustomerController(CustomerService customerService)
+        public CustomerController(CustomerService service) : base(service)
         {
-            this.customerService = customerService;
-        }
-  
-
-        [HttpPost("filter")]
-        [Authorize]
-        public ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
-        {
-            var fieldMap = new Dictionary<string, string>
+            fieldFilterMap = new Dictionary<string, string>
             {
+                {"Address", "Address"},
+                {"BirthDate", "BirthDate"},
+                {"AnnualPlan", "AnnualPlan"},
+                {"Registration", "Registration"},
+                {"Name", "Name"},
+                {"RG", "Rg"},
+                {"CPF", "Cpf"},
             };
-
-            var filter = filterDTO.GetDataFilterBase<Customer>(fieldMap);
-            filter.SetOrderBy(filterDTO.orderByField, fieldMap);
-
-            filter = customerService.ListByFilter(filter);
-            filterDTO.data = filter.Data.Select(x => new CustomerDto(x)).ToList();
-            filterDTO.totalResults = filter.TotalCount;
-
-            return Ok(filterDTO);
-        }
+        } 
     }
 }

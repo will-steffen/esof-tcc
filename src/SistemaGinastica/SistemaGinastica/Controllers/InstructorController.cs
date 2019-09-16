@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaGinastica.DataAccess.DataFilter;
+using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.Service.Dto;
 using SistemaGinastica.Service.Entities;
@@ -9,32 +10,25 @@ using System.Linq;
 
 namespace SistemaGinastica.Controllers
 {
-    public class InstructorController : BaseController
+    public class InstructorController : BaseCrudDtoController<Instructor, InstructorService, InstructorDataAccess, InstructorDto>
     {
-        private InstructorService instructorService;
-
-        public InstructorController(InstructorService instructorService)
+        public InstructorController(InstructorService service) : base(service)
         {
-            this.instructorService = instructorService;
-        }
-  
-
-        [HttpPost("filter")]
-        [Authorize]
-        public ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
-        {
-            var fieldMap = new Dictionary<string, string>
+            fieldFilterMap = new Dictionary<string, string>
             {
+                {"AuthorizedMuscle", "AuthorizedMuscle"},
+                {"AuthorizedGroupClass", "AuthorizedGroupClass"},
+                {"Name", "Name"},
+                {"RG", "Rg"},
+                {"CPF", "Cpf"},
             };
+        }
 
-            var filter = filterDTO.GetDataFilterBase<Instructor>(fieldMap);
-            filter.SetOrderBy(filterDTO.orderByField, fieldMap);
-
-            filter = instructorService.ListByFilter(filter);
-            filterDTO.data = filter.Data.Select(x => new InstructorDto(x)).ToList();
-            filterDTO.totalResults = filter.TotalCount;
-
-            return Ok(filterDTO);
+        [HttpGet("groupclass")]
+        [Authorize]
+        public virtual ActionResult<IEnumerable<InstructorDto>> ListGroupClass()
+        {
+            return Ok(Service.ListGroupClass().Select(x => GetDto(x)));
         }
     }
 }

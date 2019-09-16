@@ -13,6 +13,7 @@ export const ApiRoute = {
     instructor: {
         default: '/api/instructor',
         filter: '/api/instructor/filter',
+        groupClass: '/api/instructor/groupclass',
     },
     groupClass: {
         default: '/api/groupclass',

@@ -2,7 +2,7 @@ export const RouteConfig = {
     app: '',
     customer: 'customer',
     groupClass: 'group-class',
-    instructor: 'customer',
+    instructor: 'instructor',
     login: 'login',
     user: 'user'
 }

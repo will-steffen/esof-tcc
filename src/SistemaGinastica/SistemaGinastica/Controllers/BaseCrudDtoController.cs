@@ -21,6 +21,7 @@ namespace SistemaGinastica.Controllers
         protected TService Service;
         protected Dictionary<string, string> fieldFilterMap = new Dictionary<string, string>();
         protected Dictionary<string, string> fieldFilterMapOr = null;
+        protected Dictionary<string, string> fieldFilterMapOrder = null;
 
         public BaseCrudDtoController(TService service)
         {
@@ -29,7 +30,7 @@ namespace SistemaGinastica.Controllers
 
         [HttpGet]
         [Authorize]
-        public virtual ActionResult<IEnumerable<TDto>> List()
+        public virtual ActionResult Get()
         {
             return Ok(Service.List().Select(x => GetDto(x)));
         }
@@ -39,7 +40,8 @@ namespace SistemaGinastica.Controllers
         public virtual ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
         {
             var filter = filterDTO.GetDataFilterBase<TModel>(fieldFilterMap, fieldFilterMapOr);
-            filter.SetOrderBy(filterDTO.orderByField, fieldFilterMap);
+            if (fieldFilterMapOrder == null) fieldFilterMapOrder = fieldFilterMap;
+            filter.SetOrderBy(filterDTO.orderByField, fieldFilterMapOrder);
 
             filter = Service.ListByFilter(filter);
             filterDTO.data = filter.Data.Select(x => GetDto(x)).ToList();            
@@ -88,7 +90,7 @@ namespace SistemaGinastica.Controllers
             catch (SgException e) { return HandleError(e); }
         }
 
-        private TDto GetDto(TModel model)
+        protected TDto GetDto(TModel model)
         {
             return (TDto)Activator.CreateInstance(typeof(TDto), new object[] { model });
         }

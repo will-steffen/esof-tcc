@@ -22,10 +22,18 @@ export interface LocaleType {
 
     customer: {
         title: string,
+        address: string,
+        birthDate: string,
+        annualPlan: string, 
+        registration: string, 
     },
 
     groupClass: {
         title: string,
+        initHour: string,
+        endHour: string,
+        room: string,
+        instructor: string,
     },
 
     home: {
@@ -34,6 +42,8 @@ export interface LocaleType {
 
     instructor: {
         title: string,
+        authorizedMuscle: string,
+        authorizedGroupClass: string,
     },
 
     login: {
@@ -47,6 +57,7 @@ export interface LocaleType {
         title: string,
         type: string,
         username: string, 
+        password: string, 
         message: {
             usernameNotUnique: string,
             notFound: string

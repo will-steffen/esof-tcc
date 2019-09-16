@@ -27,10 +27,18 @@ export let Locale: LocaleType = {
 
     customer: {
         title: 'Clientes',
+        address: 'Endereço',
+        birthDate: 'Data de Nascimento',
+        annualPlan: 'Plano Anual', 
+        registration: 'Matrícula', 
     },
 
     groupClass: {
         title: 'Aulas em Grupo',
+        initHour: 'Hora de Início',
+        endHour: 'Hora de Término',
+        room: 'Sala',
+        instructor: 'Professor',
     },
 
     home: {
@@ -39,6 +47,8 @@ export let Locale: LocaleType = {
 
     instructor: {
         title: 'Professores',
+        authorizedMuscle: 'Professor de Musculação',
+        authorizedGroupClass: 'Professor de Aula em Grupo',
     },
 
     login: {
@@ -52,6 +62,7 @@ export let Locale: LocaleType = {
         title: 'Usuários',
         type: 'Tipo',
         username: 'Usuário', 
+        password: 'Senha',
         message: {
             usernameNotUnique: 'Usuário informado já existe',
             notFound: 'Usuário não encontrado',

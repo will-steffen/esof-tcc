@@ -1,1 +1,15 @@
 <g-page-title [title]="i18n.t.instructor.title"></g-page-title> 
+
+<g-filter [filter]="filter"></g-filter>
+<button (click)="edit()"> Adicionar </button>
+<g-table [filter]="filter" [table]="table"></g-table>
+
+<g-form-dialog [page]="this">
+    <div class="form ui-g">
+        <div class="ui-g-12"> <g-form-input [input]="form.personData.name"></g-form-input> </div>
+        <div class="ui-g-12"> <g-form-input [input]="form.personData.rg"></g-form-input> </div>
+        <div class="ui-g-12"> <g-form-input [input]="form.personData.cpf"></g-form-input> </div>
+        <div class="ui-g-12"> <g-form-input [input]="form.authorizedMuscle"></g-form-input> </div>
+        <div class="ui-g-12"> <g-form-input [input]="form.authorizedGroupClass"></g-form-input> </div>
+    </div>
+</g-form-dialog>

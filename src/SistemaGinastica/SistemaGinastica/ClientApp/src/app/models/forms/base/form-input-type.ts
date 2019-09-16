@@ -5,6 +5,8 @@ export enum FormInputType {
     SELECT = 'select',       
     PASSWORD = 'password',
     CHECKBOX = 'checkbox',
+    DATE = 'text',
+    HOUR = 'text',
     
     MULTI_SELECT = 'multi-select'
 }

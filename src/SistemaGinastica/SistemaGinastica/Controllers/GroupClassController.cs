@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaGinastica.DataAccess.DataFilter;
+using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.Service.Dto;
 using SistemaGinastica.Service.Entities;
@@ -9,32 +10,19 @@ using System.Linq;
 
 namespace SistemaGinastica.Controllers
 {
-    public class GroupClassController : BaseController
+    public class GroupClassController : BaseCrudDtoController<GroupClass, GroupClassService, GroupClassDataAccess, GroupClassDto>
     {
-        private GroupClassService groupClassService;
-
-        public GroupClassController(GroupClassService groupClassService)
+        public GroupClassController(GroupClassService service) : base(service)
         {
-            this.groupClassService = groupClassService;
-        }
-  
-
-        [HttpPost("filter")]
-        [Authorize]
-        public ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)
-        {
-            var fieldMap = new Dictionary<string, string>
+            fieldFilterMap = new Dictionary<string, string>
             {
+                {"InitHour", "InitHour"},
+                {"EndHour", "EndHour"},
+                {"Room", "Room"},
+                {"Instructor", "IdInstructor"},
             };
-
-            var filter = filterDTO.GetDataFilterBase<GroupClass>(fieldMap);
-            filter.SetOrderBy(filterDTO.orderByField, fieldMap);
-
-            filter = groupClassService.ListByFilter(filter);
-            filterDTO.data = filter.Data.Select(x => new GroupClassDto(x)).ToList();
-            filterDTO.totalResults = filter.TotalCount;
-
-            return Ok(filterDTO);
-        }
+            fieldFilterMapOrder = fieldFilterMap;
+            fieldFilterMapOrder["Instructor"] = "Instructor.Name";
+        }  
     }
 }

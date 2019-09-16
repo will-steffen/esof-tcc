@@ -14,7 +14,7 @@ namespace SistemaGinastica.Controllers
 {
     public class UserController : BaseCrudDtoController<User, UserService, UserDataAccess, UserDto>
     {       
-        public UserController(UserService userService) : base(userService)
+        public UserController(UserService service) : base(service)
         {
             fieldFilterMap = new Dictionary<string, string>
             {
@@ -28,7 +28,7 @@ namespace SistemaGinastica.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult<UserDto> Info()
+        public override ActionResult Get()
         {
             User user = Service.GetById(ApplicationEnv.GetUserIdentification().Id);
             return Ok(new UserDto(user));

@@ -19,12 +19,12 @@ export class PersonDataModelForm extends BaseForm<PersonDataModel> {
         }
     }
 
-    getDTO<TModel extends PersonDataModel>(baseModel: TModel) {
-        baseModel.id = this.model ? this.model.id : null;
-        baseModel.name = this.name.value;
-        baseModel.rg = this.rg.value;
-        baseModel.cpf = this.cpf.value;
-        return baseModel;
+    getDTO<TModel extends PersonDataModel>(baseDto: TModel) {
+        baseDto.id = this.model ? this.model.id : null;
+        baseDto.name = this.name.value;
+        baseDto.rg = this.rg.value;
+        baseDto.cpf = this.cpf.value;
+        return baseDto;
     }
     
 }
