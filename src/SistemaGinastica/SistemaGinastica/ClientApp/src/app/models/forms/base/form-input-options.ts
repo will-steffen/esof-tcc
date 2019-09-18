@@ -1,3 +1,4 @@
+import { I18n } from "src/app/i18n";
 
 export class FormInputOptions {    
     constructor(
@@ -20,5 +21,14 @@ export class FormInputOptions {
             }
         }
         return typeOptionsList;
+    }
+
+    static boolean(trueLabel = null, falseLabel = null) {
+        if(!trueLabel) trueLabel = I18n.current.t.label.yes;
+        if(!falseLabel) falseLabel = I18n.current.t.label.no;
+        return [
+            new FormInputOptions(true, trueLabel),
+            new FormInputOptions(false, falseLabel),
+        ];
     }
 }

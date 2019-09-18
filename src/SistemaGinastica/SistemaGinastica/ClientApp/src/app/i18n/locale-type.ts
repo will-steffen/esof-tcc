@@ -18,6 +18,7 @@ export interface LocaleType {
         cancel: string,
         save: string,
         delete: string,
+        logout: string,
     },
 
     customer: {

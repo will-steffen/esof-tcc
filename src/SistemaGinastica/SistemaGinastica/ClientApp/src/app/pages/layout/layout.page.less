@@ -2,31 +2,37 @@
 
 @nav-height: 40px;
 @border-def: 1px solid fade(@color-light, 15);
+@opened-menu-width: 250px;
+@closed-menu-width: 60px;
+@transition-menu: 0.4s;
 
 nav{
-    background-color: darken(@color-1, 20);
+    background-color: @color-1;
     color: @color-light;
     height: @nav-height;
     display: flex;
     .logo{
-        width: 250px;
+        width: @closed-menu-width;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
         border-right: @border-def;
+        transition: @transition-menu;
+        cursor: pointer; 
         img{
-            height: 60%;
-            cursor: pointer;
-            &:hover{ background-color: fade(@color-light, 15); }
-            &:active{ background-color: fade(@color-light, 50);}
+            height: 60%;                       
+        }
+        &:hover{ background-color: fade(@color-light, 15); }
+        &:active{ background-color: fade(@color-light, 50);}
+        &.opened {
+            width: @opened-menu-width;
         }
     }
     .container{
         flex: 1;
         display: flex;
-        .right-icons{
-            flex: 1;
+        .right-icons, .left-icons{            
             justify-content: flex-end;
             display: flex;
             button{
@@ -42,6 +48,23 @@ nav{
                 &:active{ background-color: fade(@color-light, 50);}
             }
         }
+        .right-icons{
+            flex: 1;
+        }
+        .left-icons{
+            justify-content: flex-start;
+            button{
+                border-left: none;
+                border-right: @border-def;
+            }
+        }
+        .page-title{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding-left: 40px;
+            font-size: 1.4rem;
+        }
     }
 }
 
@@ -49,19 +72,48 @@ nav{
     min-height: ~'calc(100vh - ' @nav-height ~')';
     display: flex;
     .menu{
-        width: 250px;
+        width: @closed-menu-width;
         background-color: @color-dark-2;
         color: @color-light;
-        .page-list{
+        transition: @transition-menu;
+        display: flex;
+        flex-direction: column;
+        .page-list, .fixed-bottom {            
             .page-item{
+                white-space: nowrap;
                 padding: 10px;
                 cursor: pointer;
                 border-bottom: @border-def;
+                .title{
+                    transition: @transition-menu;
+                    font-size: 0;
+                }
                 fa-icon {
+                    margin-left: 9px;
                     margin-right: 15px;
                 }
                 &:hover{ background-color: fade(@color-1, 15); }
                 &:active{ background-color: fade(@color-1, 50);}
+            }
+        }
+        .page-list{
+            flex: 1;
+        }
+        .fixed-bottom{
+            .page-item{
+                border-bottom: none;
+                border-top: @border-def;
+            }
+        }
+        &.opened {
+            width: @opened-menu-width;
+            .page-list, .fixed-bottom {
+                .page-item {
+                    text-align: left;
+                    .title{
+                        font-size: 1rem;
+                    }         
+                }
             }
         }
     }

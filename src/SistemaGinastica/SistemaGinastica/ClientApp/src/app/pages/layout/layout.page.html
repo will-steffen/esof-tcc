@@ -1,20 +1,33 @@
 <nav>
-    <div class="logo">
-        <img src="/assets/img/logo_white.svg" (click)="pageRouteService.goToHome()">
+    <div class="logo" (click)="pageRouteService.goToHome()" [class.opened]="showMenu">
+        <img src="/assets/img/logo_white.svg">
     </div>
     <div class="container">
-        <div class="right-icons">
-            <button (click)="logout()">
-                <fa-icon [icon]="icon.logout"></fa-icon>
+        <div class="left-icons">
+            <button (click)="toggleMenu()">
+                <fa-icon [icon]="icon.bars"></fa-icon>
             </button>
+        </div>
+        <div class="page-title">
+            {{ pageRouteService.getPageTitle() }}
+        </div>
+        <div class="right-icons">
+  
         </div>
     </div>
 </nav>
 <div class="body">
-    <div class="menu">
+    <div class="menu" [class.opened]="showMenu">
         <div class="page-list">
             <div *ngFor="let page of pageRouteService.pageList" (click)="pageRouteService.open(page)" class="page-item">
-                <fa-icon [icon]="page.icon"></fa-icon>{{ page.title }}
+                <fa-icon [icon]="page.icon"></fa-icon>
+                <span class="title">{{ page.title }}</span>
+            </div>
+        </div>
+        <div class="fixed-bottom">
+            <div class="page-item" (click)="logout()">
+                <fa-icon [icon]="icon.logout"></fa-icon>
+                <span class="title">{{ i18n.t.label.logout }}</span>
             </div>
         </div>
     </div>

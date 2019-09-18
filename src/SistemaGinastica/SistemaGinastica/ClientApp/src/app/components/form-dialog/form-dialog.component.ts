@@ -13,6 +13,7 @@ import { I18n } from "src/app/i18n";
 export class FormDialogComponent {
     @Input() page: BaseFilterPage<BaseEntity, BaseForm<BaseEntity>>;
     @Input() styleClass: string = 'modal-md';
+    @Input() title: string = '';
 
     icon = Icon;
     constructor(public i18n: I18n) { }

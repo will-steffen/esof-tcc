@@ -4,7 +4,7 @@
     display: flex;
     position: relative;
     .page-filter{
-        background-color: fade(darken(@color-1, 30), 90%);
+        background-color: fade(darken(@color-bg, 30), 95%);
         flex: 1;
         filter: grayscale(0);
         display: flex;
@@ -49,6 +49,9 @@
         padding-left: 35px;
         color: @color-light;
         border: 1px solid lighten(@color-dark, 5);
+        &::placeholder { 
+            color: darken(@color-light, 20);
+        }
     }
     button {
         width: 100%;

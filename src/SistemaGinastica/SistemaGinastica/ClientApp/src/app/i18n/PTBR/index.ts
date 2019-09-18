@@ -23,6 +23,7 @@ export let Locale: LocaleType = {
         cancel: 'Cancelar',
         save: 'Salvar',
         delete: 'Excluir',
+        logout: 'Sair',
     },
 
     customer: {

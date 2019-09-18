@@ -57,4 +57,10 @@ export class PageRouteService {
         }
     }
 
+    getPageTitle() {
+        let path = window.location.pathname.substring(1);
+        let page = this.pageList.First(page => path == page.route);
+        return page ? page.title : ''; 
+    }
+
 }

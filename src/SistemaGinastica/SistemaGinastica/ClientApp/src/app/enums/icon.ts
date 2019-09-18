@@ -1,6 +1,6 @@
 import {  
     faDollarSign, faTools, faStopwatch, faSeedling, faSun, faSignOutAlt, faChevronUp, 
-    faChevronDown, faTimes, faCheck, faEdit, faBan, faUsers, faPeopleCarry, faChalkboardTeacher, faUserLock, faBars, faPowerOff, faTrash
+    faChevronDown, faTimes, faCheck, faEdit, faBan, faUsers, faPeopleCarry, faChalkboardTeacher, faUserLock, faBars, faPowerOff, faTrash, faHamburger
 } from "@fortawesome/free-solid-svg-icons";
 
 import { 

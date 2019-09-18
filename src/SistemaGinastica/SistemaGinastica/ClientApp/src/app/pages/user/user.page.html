@@ -1,16 +1,31 @@
-
-<g-page-title [title]="i18n.t.user.title"></g-page-title> 
+<!-- <g-page-title [title]="i18n.t.user.title"></g-page-title>  -->
 <g-filter [filter]="filter"></g-filter>
 <button (click)="edit()"> Adicionar </button>
-<g-table [filter]="filter" [table]="table"></g-table>
 
-<g-form-dialog [page]="this">
+<div class="page-content">
+    <g-table [filter]="filter" [table]="table"></g-table>
+</div>
+
+
+<g-form-dialog [page]="this" [title]="'Usuário'">
     <div class="form ui-g">
-        <div class="ui-g-12"> <g-form-input [input]="form.personData.name"></g-form-input> </div>
-        <div class="ui-g-12"> <g-form-input [input]="form.personData.rg"></g-form-input> </div>
-        <div class="ui-g-12"> <g-form-input [input]="form.personData.cpf"></g-form-input> </div>
-        <div class="ui-g-12"> <g-form-input [input]="form.username"></g-form-input> </div>
-        <div class="ui-g-12"> <g-form-input [input]="form.type"></g-form-input> </div>
-        <div class="ui-g-12"> <g-form-input [input]="form.password"></g-form-input> </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.personData.name"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.personData.rg"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.personData.cpf"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.username"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.type"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.password"></g-form-input>
+        </div>
     </div>
 </g-form-dialog>

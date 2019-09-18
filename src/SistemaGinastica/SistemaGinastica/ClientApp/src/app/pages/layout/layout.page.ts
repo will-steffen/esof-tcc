@@ -9,6 +9,7 @@ import { BasePage } from "../base-page";
     styleUrls: ['./layout.page.less']
 })
 export class LayoutPage extends BasePage {
+    showMenu = false;
     constructor(
         public pageRouteService: PageRouteService, 
         deps: BasePageDeps
@@ -17,5 +18,9 @@ export class LayoutPage extends BasePage {
     logout() {
         this.userService.logout();
         this.pageRouteService.goToLogin();
+    }
+
+    toggleMenu() {
+        this.showMenu = !this.showMenu;
     }
 }

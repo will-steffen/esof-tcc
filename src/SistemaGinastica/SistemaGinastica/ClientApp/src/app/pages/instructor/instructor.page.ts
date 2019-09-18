@@ -7,6 +7,7 @@ import { ApiRoute } from "src/app/enums/api-route";
 import { InstructorField } from "src/app/enums/instructor-field";
 import { FormInputType } from "src/app/models/forms/base/form-input-type";
 import { Icon } from "src/app/enums/icon";
+import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 
 @Component({
     selector: 'app-instructor',
@@ -18,9 +19,13 @@ export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
         deps: BasePageDeps
     ){ super(deps, Instructor, InstructorForm, ApiRoute.instructor.filter, ApiRoute.instructor.default) }
 
-    createFilter() {
-        this.filter.CreateField(this.i18n.t.instructor.authorizedGroupClass, InstructorField.AUTHORIZED_GROUP_CLASS).Type(FormInputType.CHECKBOX);      
-        this.filter.CreateField(this.i18n.t.instructor.authorizedMuscle, InstructorField.AUTHORIZED_MUSCLE).Type(FormInputType.CHECKBOX);
+    createFilter() {       
+        this.filter.CreateField(this.i18n.t.instructor.authorizedGroupClass, InstructorField.AUTHORIZED_GROUP_CLASS)
+            .Options(FormInputOptions.boolean(), true);
+
+        this.filter.CreateField(this.i18n.t.instructor.authorizedMuscle, InstructorField.AUTHORIZED_MUSCLE)
+            .Options(FormInputOptions.boolean(), true);
+            
         this.filter.CreateField(this.i18n.t.personData.name, InstructorField.NAME);
         this.filter.CreateField(this.i18n.t.personData.rg, InstructorField.RG);
         this.filter.CreateField(this.i18n.t.personData.cpf, InstructorField.CPF); 
