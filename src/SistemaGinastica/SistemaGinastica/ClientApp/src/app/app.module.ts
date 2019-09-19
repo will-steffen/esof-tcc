@@ -14,6 +14,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
 
@@ -73,7 +74,8 @@ import { FormDialogComponent } from './components/form-dialog/form-dialog.compon
     ConfirmDialogModule,
     DialogModule,
     TableModule,
-	  PaginatorModule,
+    PaginatorModule,
+    CalendarModule
   ],
   providers: [
     ConfirmationService,

@@ -19,11 +19,11 @@ export class GroupClassForm extends BaseForm<GroupClass> {
 
     configure() {
         this.initHour = this.Input<Date>(this.i18n.t.groupClass.initHour)
-            .Type(FormInputType.DATE)
+            .Type(FormInputType.DATE_ONLY_TIME)
             .Required();
 
         this.endHour = this.Input<Date>(this.i18n.t.groupClass.endHour)
-            .Type(FormInputType.DATE)
+            .Type(FormInputType.DATE_ONLY_TIME)
             .Required();
 
         this.room = this.Input<string>(this.i18n.t.groupClass.room).Required();
