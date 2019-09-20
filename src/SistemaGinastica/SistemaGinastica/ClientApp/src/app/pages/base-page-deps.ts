@@ -5,6 +5,7 @@ import { LogHandler } from "../handlers/log.handler";
 import { UserService } from "../services/user.service";
 import { AlertHandler } from "../handlers/alert.handler";
 import { BlockHandler } from "../handlers/block.handler";
+import { PageRouteService } from "../services/page-route.service";
 
 @Injectable()
 export class BasePageDeps {
@@ -14,6 +15,7 @@ export class BasePageDeps {
         public logger: LogHandler,       
         public userService: UserService, 
         public block: BlockHandler,
-        public alert: AlertHandler
+        public alert: AlertHandler,
+        public pageRouteService: PageRouteService
     ){}
 }

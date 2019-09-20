@@ -40,16 +40,23 @@ nav{
                 background: none;
                 border-left: @border-def;
                 height: 100%;
-                width: 50px;
+                min-width: 50px;
                 color: white;
-                font-size: 20px;
+                font-size: 20px;                
                 cursor: pointer;
                 &:hover{ background-color: fade(@color-light, 15); }
                 &:active{ background-color: fade(@color-light, 50);}
             }
         }
         .right-icons{
-            flex: 1;
+            flex: 1; 
+            button{
+                font-size: 15px;
+                padding: 0 15px;
+                fa-icon{
+                    margin-right: 10px;
+                }
+            }         
         }
         .left-icons{
             justify-content: flex-start;

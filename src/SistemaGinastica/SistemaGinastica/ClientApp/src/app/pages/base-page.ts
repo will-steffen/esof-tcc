@@ -28,5 +28,6 @@ export class BasePage {
         this.userService = deps.userService;
         this.block = deps.block;
         this.alert = deps.alert;
+        deps.pageRouteService.setCurrentPage(this);
     }
 }

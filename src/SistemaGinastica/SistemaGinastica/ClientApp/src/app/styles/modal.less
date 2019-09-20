@@ -1,4 +1,5 @@
 @border-radius: 8px;
+@color-background: white;
 body .ui-widget {
     font-family: "homeDoctor";
 }
@@ -7,7 +8,7 @@ body .ui-dialog {
         border: none;
         border-bottom: 3px solid @color-1;
         border-radius: @border-radius @border-radius 0 0;
-        background-color: @color-light;
+        background-color: @color-background;
         color: @color-1;
         font-size: 1rem;
         text-transform: uppercase;
@@ -19,7 +20,7 @@ body .ui-dialog {
         border-radius: 0 0 @border-radius @border-radius;
         padding: 10px 16px;
         padding-top: 15px;
-        background-color: @color-light;
+        background-color: @color-background;
         text-align: right;
         p-footer{
             &.confirm-dialog-footer{
@@ -36,7 +37,7 @@ body .ui-dialog {
         border: none;
         padding-bottom: 0;
         padding-top: 0;
-        background-color: @color-light;
+        background-color: @color-background;
         .ui-confirmdialog-icon{
             font-size: 4rem;
             color: @color-1;

@@ -7,12 +7,15 @@ import { User } from "../models/user";
 import { RouteConfig } from "../enums/route-config";
 import { Router } from "@angular/router";
 import { Icon } from "../enums/icon";
+import { BasePage } from "../pages/base-page";
+import { Filter } from "../models/filter/filter";
 
 @Injectable()
 export class PageRouteService {
 
     pageList: Array<PageRoute> = [];
-
+    currentPage: BasePage;
+    
     constructor(
         private i18n: I18n,
         private userService: UserService,
@@ -61,6 +64,10 @@ export class PageRouteService {
         let path = window.location.pathname.substring(1);
         let page = this.pageList.First(page => path == page.route);
         return page ? page.title : ''; 
+    }
+
+    setCurrentPage(page: BasePage) {
+        this.currentPage = page;
     }
 
 }
