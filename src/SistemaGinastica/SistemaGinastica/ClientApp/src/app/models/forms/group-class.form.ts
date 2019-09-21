@@ -11,6 +11,7 @@ export class GroupClassForm extends BaseForm<GroupClass> {
     endHour: FormInput<Date>;
     room: FormInput<string>;
     instructor: FormInput<string>;
+    name: FormInput<string>;
     instructorList: Instructor[] = [];
 
     deps(instructorList: Instructor[]) {
@@ -27,14 +28,16 @@ export class GroupClassForm extends BaseForm<GroupClass> {
             .Required();
 
         this.room = this.Input<string>(this.i18n.t.groupClass.room).Required();
-        this.instructor = this.Input<string>(this.i18n.t.groupClass.room)
-            .Options(this.instructorList.map(x => new FormInputOptions(x.id, x.name)))
+        this.name = this.Input<string>(this.i18n.t.groupClass.name).Required();
+        this.instructor = this.Input<string>(this.i18n.t.groupClass.instructor)
+            .Options(this.instructorList.map(x => new FormInputOptions(x.id, x.name)), true)
             .Required();
 
         if (this.model) {
             this.initHour.SetValue(this.model.initHour);
             this.endHour.SetValue(this.model.endHour);
             this.room.SetValue(this.model.room);
+            this.name.SetValue(this.model.name);
             this.instructor.SetValue(this.model.instructor);
         }
     }
@@ -45,6 +48,7 @@ export class GroupClassForm extends BaseForm<GroupClass> {
         dto.initHour = this.initHour.value;
         dto.endHour = this.endHour.value;
         dto.room = this.room.value;
+        dto.name = this.name.value;
         dto.idInstructor = Number(this.instructor.value);
         return dto;
     }

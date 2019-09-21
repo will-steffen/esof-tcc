@@ -7,6 +7,7 @@ export class GroupClass extends BaseEntity {
     room: string;
     idInstructor: number;
     instructor: Instructor;
+    name: string;
 
     static fromData(data){
         let e: GroupClass = super.fromData(data);

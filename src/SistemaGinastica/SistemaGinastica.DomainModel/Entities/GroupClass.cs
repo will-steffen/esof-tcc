@@ -20,6 +20,11 @@ namespace SistemaGinastica.DomainModel.Entities
         [Required]
         public string Room { get; set; }
 
+        [Column("txt_name")]
+        [StringLength(250)]
+        [Required]
+        public string Name { get; set; }
+
 
 
         [Column("id_instructor")]

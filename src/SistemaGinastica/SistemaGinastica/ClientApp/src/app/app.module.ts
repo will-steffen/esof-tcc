@@ -42,6 +42,7 @@ import { PageRouteService } from './services/page-route.service';
 import { BasePageDeps } from './pages/base-page-deps';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
+import { InstructorService } from './services/instructor.service';
 
 
 
@@ -84,6 +85,7 @@ import { FormDialogComponent } from './components/form-dialog/form-dialog.compon
     AuthService,
     UserService,
     PageRouteService,
+    InstructorService,
 
     I18n,
     ServiceHandler,

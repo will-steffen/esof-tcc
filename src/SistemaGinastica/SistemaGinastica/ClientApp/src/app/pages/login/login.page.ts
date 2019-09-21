@@ -10,6 +10,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { LoginRequestDTO } from "src/app/dto/login-request.dto";
 import { BasePage } from "../base-page";
 import { BasePageDeps } from "../base-page-deps";
+import { PageRouteService } from "src/app/services/page-route.service";
 
 @Component({
     selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginPage extends BasePage {
 
     constructor(
         private authService: AuthService,
+        private pageRouteService: PageRouteService,
         deps: BasePageDeps
     ){ super(deps) }  
 
@@ -34,7 +36,10 @@ export class LoginPage extends BasePage {
                 this.userService.saveToken(data.token);
                 return this.userService.updateUserFromServer()
             })
-            .then(() => this.router.navigate([RouteConfig.app]))
+            .then(() => {
+                this.pageRouteService.setPages();
+                this.router.navigate([RouteConfig.app]);
+            })
             .catch(err => {
                 this.alert.error(this.i18n.t.login.error);
             })

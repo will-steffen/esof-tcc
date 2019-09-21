@@ -19,9 +19,10 @@ namespace SistemaGinastica.Controllers
                 {"InitHour", "InitHour"},
                 {"EndHour", "EndHour"},
                 {"Room", "Room"},
+                {"Name", "Name"},
                 {"Instructor", "IdInstructor"},
             };
-            fieldFilterMapOrder = fieldFilterMap;
+            fieldFilterMapOrder = new Dictionary<string, string>(fieldFilterMap);
             fieldFilterMapOrder["Instructor"] = "Instructor.Name";
         }  
     }

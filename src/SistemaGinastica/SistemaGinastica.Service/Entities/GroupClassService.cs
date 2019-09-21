@@ -16,6 +16,7 @@ namespace SistemaGinastica.Service.Entities
             model.InitHour = dto.initHour;
             model.EndHour = dto.endHour;
             model.Room = dto.room;
+            model.Name = dto.name;
             model.IdInstructor = dto.idInstructor;
             return base.Map(model, dto);
         }

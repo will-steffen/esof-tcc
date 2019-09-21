@@ -48,10 +48,6 @@ export class FormInput<TValue> {
     Options(options: FormInputOptions[], emptyFirst: boolean = false) {
         this.firstOptionEmpty = emptyFirst;
         this.options = options;
-
-        if (!emptyFirst && this.options.length || this.options.length === 1) {
-            this.SetValue(this.options[0].value);
-        }
         return this.Type(FormInputType.SELECT);
     }
 

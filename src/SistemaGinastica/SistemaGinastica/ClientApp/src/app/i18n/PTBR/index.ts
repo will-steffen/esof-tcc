@@ -39,6 +39,7 @@ export let Locale: LocaleType = {
         initHour: 'Hora de Início',
         endHour: 'Hora de Término',
         room: 'Sala',
+        name: 'Nome',
         instructor: 'Professor',
     },
 

@@ -3,4 +3,5 @@ export enum GroupClassField {
     END_HOUR = 'EndHour',    
     ROOM = 'Room',
     INSTRUCTOR = 'Instructor',
+    NAME = 'Name'
 }

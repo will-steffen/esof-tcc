@@ -4,6 +4,11 @@ import { GroupClassForm } from "src/app/models/forms/group-class.form";
 import { GroupClass } from "src/app/models/group-class";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
+import { Instructor } from "src/app/models/instructor";
+import { InstructorService } from "src/app/services/instructor.service";
+import { Icon } from "src/app/enums/icon";
+import { GroupClassField } from "src/app/enums/group-class-field";
+import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 
 @Component({
     selector: 'app-group-class',
@@ -12,6 +17,54 @@ import { BasePageDeps } from "../base-page-deps";
 })
 export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
     constructor(
-        deps: BasePageDeps
+        deps: BasePageDeps,
+        private instructorService: InstructorService
     ) { super(deps, GroupClass, GroupClassForm, ApiRoute.groupClass.filter, ApiRoute.groupClass.default) }
+
+    loadScreenDeps() : Promise<void> {
+        return new Promise(res => {
+            this.instructorService.getGroupClassList()
+                .then(instructorList => this.form.deps(instructorList))
+                .catch(err => {})
+                .then(() => res());
+        });
+    }
+
+    createFilter() {
+        this.filter.CreateField(this.i18n.t.groupClass.name, GroupClassField.NAME);
+        this.filter.CreateField(this.i18n.t.groupClass.instructor, GroupClassField.INSTRUCTOR)
+            .Options(this.form.instructorList.map(x => new FormInputOptions(x.id, x.name)), true)
+        this.filter.CreateField(this.i18n.t.groupClass.room, GroupClassField.ROOM);
+    
+    }
+
+
+    createTable() {
+        this.table.Action(Icon.edit, model => this.edit(model));        
+
+        this.table.Column()
+            .Label(this.i18n.t.groupClass.name)
+            .OrderBy(GroupClassField.NAME)
+            .Value(x => x.name);
+
+        this.table.Column()
+            .Label(this.i18n.t.groupClass.instructor)
+            .OrderBy(GroupClassField.INSTRUCTOR)
+            .Value(x => x.instructor.name);
+
+        this.table.Column()
+            .Label(this.i18n.t.groupClass.room)
+            .OrderBy(GroupClassField.ROOM)
+            .Value(x => x.room);
+
+        this.table.Column()
+            .Label(this.i18n.t.groupClass.initHour)
+            .OrderBy(GroupClassField.INIT_HOUR)
+            .Value(x => x.initHour.getHours() + ':' + x.initHour.getMinutes());
+
+        this.table.Column()
+            .Label(this.i18n.t.groupClass.endHour)
+            .OrderBy(GroupClassField.END_HOUR)
+            .Value(x => x.endHour.getHours() + ':' + x.endHour.getMinutes());
+    }
 }

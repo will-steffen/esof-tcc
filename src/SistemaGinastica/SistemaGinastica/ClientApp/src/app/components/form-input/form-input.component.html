@@ -25,11 +25,10 @@
     <!-- DATE, DATE_MONTH, DATE_TIME_ONLY, DATE_AND_TIME -->
     <div *ngIf="input.type == FormInputType.DATE || input.type == FormInputType.DATE_ONLY_TIME" 
     class="date-input">
-        <span class="ui-label">
-            <label class="truncate">{{ getLabel() }}</label>           
+        <span class="ui-label">                  
             <p-calendar [(ngModel)]="input.value"  appendTo="body"            
             [timeOnly]="input.type == FormInputType.DATE_ONLY_TIME"
-            [minDate]="getMin()" [showIcon]="true"
+            [showIcon]="true"
             inputId="{{ input.guid }}" placeholder="{{ getPlaceholder() }}"></p-calendar>
         </span>
     </div>

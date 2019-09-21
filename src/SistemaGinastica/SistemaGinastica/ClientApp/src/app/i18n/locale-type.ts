@@ -34,6 +34,7 @@ export interface LocaleType {
         initHour: string,
         endHour: string,
         room: string,
+        name: string,
         instructor: string,
     },
 
