@@ -39,7 +39,8 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model));        
+        this.table.Action(Icon.edit, model => this.edit(model));       
+        this.table.Action(Icon.delete, model => this.delete(model));   
 
         this.table.Column()
             .Label(this.i18n.t.customer.annualPlan)

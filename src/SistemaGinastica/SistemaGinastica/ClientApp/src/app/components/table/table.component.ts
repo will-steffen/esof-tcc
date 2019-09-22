@@ -33,10 +33,6 @@ export class TableComponent<T> implements AfterViewInit {
         return cl;
     } 
 
-    getActionsWidth() {
-        return (this.table.actionList.length * 3) + 'em';
-    }
-
 
     ngAfterViewInit() {
         if(this.filter){

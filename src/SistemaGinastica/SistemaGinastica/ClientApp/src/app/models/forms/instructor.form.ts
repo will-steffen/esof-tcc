@@ -3,6 +3,7 @@ import { Instructor } from "../instructor";
 import { FormInput } from "./base/form-input";
 import { PersonDataModelForm } from "./person-data.form";
 import { FormInputType } from "./base/form-input-type";
+import { FormInputOptions } from "./base/form-input-options";
 
 export class InstructorForm extends BaseForm<Instructor> {   
     authorizedMuscle: FormInput<boolean>;
@@ -11,11 +12,11 @@ export class InstructorForm extends BaseForm<Instructor> {
 
     configure() { 
         this.authorizedMuscle = this.Input<boolean>(this.i18n.t.instructor.authorizedMuscle)
-            .Type(FormInputType.CHECKBOX)
+            .Options(FormInputOptions.boolean(), true)
             .Required();
 
         this.authorizedGroupClass = this.Input<boolean>(this.i18n.t.instructor.authorizedGroupClass)
-            .Type(FormInputType.CHECKBOX)
+            .Options(FormInputOptions.boolean(), true)
             .Required();
 
         this.SubForm(this.personData).Model(this.model);

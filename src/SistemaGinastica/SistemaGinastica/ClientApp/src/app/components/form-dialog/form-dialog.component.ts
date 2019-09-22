@@ -18,6 +18,10 @@ export class FormDialogComponent {
     icon = Icon;
     constructor(public i18n: I18n) { }
 
+    showDelete() {
+        return this.page.form.model && this.page.form.model.id;
+    }
+
     closeDetails() {
         this.page.closeDetails();
     }
