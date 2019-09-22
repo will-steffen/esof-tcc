@@ -1,7 +1,7 @@
-import { FilterFieldSearchType } from "./filter-field-search-type";
 import { FormInput } from "../forms/base/form-input";
+import { FilterFieldSearchType } from "./filter-field-search-type";
 
-export class FilterField extends FormInput<any> {   
+export class FilterField extends FormInput<any> {
     ignoreValueOnFilter: any[] = [''];
     layoutSize: number = 1;
     filterType: FilterFieldSearchType;
@@ -9,7 +9,7 @@ export class FilterField extends FormInput<any> {
     constructor(
         public label: string,
         public field: string
-    ){ 
+    ) {
         super(label)
     }
 

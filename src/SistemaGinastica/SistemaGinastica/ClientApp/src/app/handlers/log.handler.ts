@@ -5,23 +5,23 @@ import { LogLevel } from 'src/environments/log-level';
 // Está como Injectable caso futuramente utilizemos algum serviço para logar fora do client;
 @Injectable()
 export class LogHandler {
-    
-    constructor() { } 
+
+    constructor() { }
 
     error(obj) {
-        if(AppConfig.logLevel >= LogLevel.ERROR){
+        if (AppConfig.logLevel >= LogLevel.ERROR) {
             console.error(obj);
         }
     }
 
     info(obj) {
-        if(AppConfig.logLevel >= LogLevel.INFO){
+        if (AppConfig.logLevel >= LogLevel.INFO) {
             console.info(obj);
         }
     }
 
-    debug (obj) {
-        if(AppConfig.logLevel >= LogLevel.DEBUG){
+    debug(obj) {
+        if (AppConfig.logLevel >= LogLevel.DEBUG) {
             console.debug(obj);
         }
     }

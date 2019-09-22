@@ -1,8 +1,8 @@
-import { BaseForm } from "./base/base-form";
 import { Customer } from "../customer";
+import { BaseForm } from "./base/base-form";
 import { FormInput } from "./base/form-input";
-import { PersonDataModelForm } from "./person-data.form";
 import { FormInputType } from "./base/form-input-type";
+import { PersonDataModelForm } from "./person-data.form";
 
 export class CustomerForm extends BaseForm<Customer> {
     address: FormInput<string>;
@@ -11,7 +11,7 @@ export class CustomerForm extends BaseForm<Customer> {
     registration: FormInput<string>;
     personData: PersonDataModelForm = new PersonDataModelForm();
 
-    configure() { 
+    configure() {
         this.address = this.Input<string>(this.i18n.t.customer.address).Required();
         this.birthDate = this.Input<Date>(this.i18n.t.customer.birthDate)
             .Type(FormInputType.DATE)
@@ -25,7 +25,7 @@ export class CustomerForm extends BaseForm<Customer> {
 
         this.SubForm(this.personData).Model(this.model);
 
-        if(this.model){
+        if (this.model) {
             this.address.SetValue(this.model.address);
             this.birthDate.SetValue(this.model.birthDate);
             this.annualPlan.SetValue(this.model.annualPlan);
@@ -33,7 +33,7 @@ export class CustomerForm extends BaseForm<Customer> {
         }
     }
 
-    getDTO() : Customer {
+    getDTO(): Customer {
         let dto = this.personData.getDTO(new Customer());
         dto.address = this.address.value;
         dto.birthDate = this.birthDate.value;

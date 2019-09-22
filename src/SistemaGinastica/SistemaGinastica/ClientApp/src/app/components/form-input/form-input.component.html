@@ -17,19 +17,18 @@
     </select>
 
     <!-- TEXTAREA -->
-    <textarea *ngIf="input.type == FormInputType.TEXTAREA" [rows]="5" [(ngModel)]="input.value" id="{{ input.guid }}"></textarea>
+    <textarea *ngIf="input.type == FormInputType.TEXTAREA" [rows]="5" [(ngModel)]="input.value"
+        id="{{ input.guid }}"></textarea>
 
     <!-- CHECKBOX -->
     <input *ngIf="input.type == FormInputType.CHECKBOX" [(ngModel)]="input.value" type="checkbox" id="{{ input.guid }}">
 
     <!-- DATE, DATE_MONTH, DATE_TIME_ONLY, DATE_AND_TIME -->
-    <div *ngIf="input.type == FormInputType.DATE || input.type == FormInputType.DATE_ONLY_TIME" 
-    class="date-input">
-        <span class="ui-label">                  
-            <p-calendar [(ngModel)]="input.value"  appendTo="body"            
-            [timeOnly]="input.type == FormInputType.DATE_ONLY_TIME"
-            [showIcon]="true"
-            inputId="{{ input.guid }}" placeholder="{{ getPlaceholder() }}"></p-calendar>
+    <div *ngIf="input.type == FormInputType.DATE || input.type == FormInputType.DATE_ONLY_TIME" class="date-input">
+        <span class="ui-label">
+            <p-calendar [(ngModel)]="input.value" appendTo="body"
+                [timeOnly]="input.type == FormInputType.DATE_ONLY_TIME" [showIcon]="true" inputId="{{ input.guid }}"
+                placeholder="{{ getPlaceholder() }}"></p-calendar>
         </span>
     </div>
 

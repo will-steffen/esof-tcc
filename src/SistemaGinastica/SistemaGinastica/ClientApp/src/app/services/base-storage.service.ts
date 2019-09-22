@@ -1,7 +1,7 @@
 
-import { BaseModel } from "../models/base-model";
-import { StorageHandler } from "../handlers/storage.handler";
 import { StorageTable } from "../enums/storage-table";
+import { StorageHandler } from "../handlers/storage.handler";
+import { BaseModel } from "../models/base-model";
 
 
 export class BaseStorageService<TModel extends BaseModel> {
@@ -25,13 +25,13 @@ export class BaseStorageService<TModel extends BaseModel> {
 
     public GetByStorageId(storageId: string): TModel {
         let obj = StorageHandler.GetByStorageId(this.table, storageId);
-        if(obj == null) return null;
+        if (obj == null) return null;
         return this.baseModelType.fromData(obj);
     }
 
     public GetByProp(prop: string, value: string): TModel {
         let obj = StorageHandler.GetByProp(this.table, prop, value);
-        if(obj == null) return null;
+        if (obj == null) return null;
         return this.baseModelType.fromData(obj);
     }
 

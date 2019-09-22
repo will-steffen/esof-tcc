@@ -41,7 +41,7 @@
         </ng-template>
     </p-table>
 
-    <section class="base-section" >
+    <section class="base-section">
         <div class="counter" *ngIf="filter.hasData()">
             {{ getCounterString() }}
         </div>
@@ -51,11 +51,11 @@
         </p-paginator>
 
         <div class="page-size" *ngIf="filter.hasData()">
-            {{ i18n.t.label.show }}            
+            {{ i18n.t.label.show }}
             <select [(ngModel)]="filter.pageSize" (change)="onChangePageSize()">
                 <option *ngFor="let s of filter.pageSizeOptions" value="{{ s }}">{{ s }}</option>
             </select>
-            {{ i18n.t.label.perpage }}            
+            {{ i18n.t.label.perpage }}
         </div>
     </section>
 

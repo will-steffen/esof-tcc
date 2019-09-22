@@ -31,7 +31,7 @@ Date.RemoveTime = function (date: Date): Date {
     let year = date.getFullYear()
     let month = date.getMonth() + 1;
     let day = date.getDate();
-    return new Date(year + "-"+  month + "-" + day);
+    return new Date(year + "-" + month + "-" + day);
 }
 
 Date.Format = function (date: Date, format: string): string {
@@ -39,7 +39,7 @@ Date.Format = function (date: Date, format: string): string {
 
     let formatSeparated = format.split(separator);
 
-    return formatSeparated.reduce( (accumulator, nextValue, index) => {
+    return formatSeparated.reduce((accumulator, nextValue, index) => {
         const sepr = index === 0 ? '' : separator;
         if (nextValue[0] === 'd') {
             return accumulator + sepr + addZeros(nextValue.length, date.getDate());
@@ -52,12 +52,12 @@ Date.Format = function (date: Date, format: string): string {
 }
 
 Date.GetLastInstant = function (date: Date): Date {
-    date.setHours(23,59,59,999);
+    date.setHours(23, 59, 59, 999);
     return date;
 }
 
 Date.GetFirstInstant = function (date: Date): Date {
-    date.setHours(0,0,0,0);
+    date.setHours(0, 0, 0, 0);
     return date;
 }
 
@@ -76,6 +76,6 @@ Date.MonthDiff = function (date1: Date, date2: Date): number {
     return months <= 0 ? 0 : months;
 }
 
-Date.YearDiff = function(recentDate: Date, pastDate: Date) {
+Date.YearDiff = function (recentDate: Date, pastDate: Date) {
     return new Date(recentDate.getTime() - pastDate.getTime()).getUTCFullYear() - 1970
 }

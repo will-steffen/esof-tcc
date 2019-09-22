@@ -1,41 +1,41 @@
-import { Input, Component, AfterViewInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, Input, ViewChild } from "@angular/core";
 import { Paginator } from "primeng/paginator";
+import { I18nTags } from "src/app/enums/i18n-tags";
+import { I18n } from "src/app/i18n";
+import { Filter } from "src/app/models/filter/filter";
 import { Table } from "src/app/models/table/table";
 import { TableColumn } from "src/app/models/table/table-column";
-import { Filter } from "src/app/models/filter/filter";
-import { I18n } from "src/app/i18n";
-import { I18nTags } from "src/app/enums/i18n-tags";
 
 @Component({
     selector: 'g-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.less']
-  })
+})
 export class TableComponent<T> implements AfterViewInit {
 
     @Input() table: Table<T>;
     @Input() filter: Filter<T>;
     @ViewChild('paginator') paginator: Paginator;
-    
-    constructor(public i18n: I18n){ }
+
+    constructor(public i18n: I18n) { }
 
     sort(event) {
-        this.filter.sort(event);            
+        this.filter.sort(event);
     }
 
     getPriorityClass(column: TableColumn<T>) {
-        let cl = '';  
-        if(column.priority && column.priority > 5){
+        let cl = '';
+        if (column.priority && column.priority > 5) {
             cl += ' ui-p-6';
-        }else if(column.priority && column.priority > 0){
+        } else if (column.priority && column.priority > 0) {
             cl += ' ui-p-' + column.priority;
-        }        
+        }
         return cl;
-    } 
+    }
 
 
     ngAfterViewInit() {
-        if(this.filter){
+        if (this.filter) {
             this.filter.AfterSearch(() => {
                 this.table.data = this.filter.data;
             });
@@ -44,7 +44,7 @@ export class TableComponent<T> implements AfterViewInit {
             });
             setTimeout(() => {
                 this.paginator.changePage(this.filter.page - 1);
-            }, 10); 
+            }, 10);
         }
     }
 
@@ -59,6 +59,6 @@ export class TableComponent<T> implements AfterViewInit {
     }
 
     onChangePageSize() {
-        if(this.filter) this.filter.onChangePageSize();
+        if (this.filter) this.filter.onChangePageSize();
     }
 }

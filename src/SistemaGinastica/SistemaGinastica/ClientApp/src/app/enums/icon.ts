@@ -1,11 +1,6 @@
-import {  
-    faDollarSign, faTools, faStopwatch, faSeedling, faSun, faSignOutAlt, faChevronUp, 
-    faChevronDown, faTimes, faCheck, faEdit, faBan, faUsers, faPeopleCarry, faChalkboardTeacher, faUserLock, faBars, faPowerOff, faTrash, faHamburger, faPlus
-} from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
+import { faBan, faBars, faChalkboardTeacher, faCheck, faChevronDown, faChevronUp, faDollarSign, faEdit, faPeopleCarry, faPlus, faPowerOff, faSeedling, faStopwatch, faSun, faTimes, faTools, faTrash, faUserLock, faUsers } from "@fortawesome/free-solid-svg-icons";
 
-import { 
-    faCalendarAlt 
-} from "@fortawesome/free-regular-svg-icons";
 
 export const Icon = {
     dollar: faDollarSign,

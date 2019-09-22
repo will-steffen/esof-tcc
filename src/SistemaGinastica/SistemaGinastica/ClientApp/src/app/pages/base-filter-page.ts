@@ -1,10 +1,10 @@
+import { PageType } from "../enums/page-type";
 import { BaseEntity } from "../models/base-entity";
 import { Filter } from "../models/filter/filter";
 import { BaseForm } from "../models/forms/base/base-form";
 import { Table } from "../models/table/table";
 import { BaseDetailPage } from "./base-detail-page";
 import { BasePageDeps } from "./base-page-deps";
-import { PageType } from "../enums/page-type";
 
 export class BaseFilterPage<TModel extends BaseEntity, TForm extends BaseForm<TModel>>
     extends BaseDetailPage<TModel, TForm> {
@@ -22,7 +22,7 @@ export class BaseFilterPage<TModel extends BaseEntity, TForm extends BaseForm<TM
     ) {
         super(deps, TModel, TForm, defaultRoute);
         this.type = PageType.FILTER;
-        if(!this.recoveredState){
+        if (!this.recoveredState) {
             this.filter = new Filter<TModel>();
             this.table = new Table<TModel>();
             this.showDetail = false;
@@ -31,7 +31,7 @@ export class BaseFilterPage<TModel extends BaseEntity, TForm extends BaseForm<TM
     }
 
     ngOnInit() {
-        if(this.recoveredState) return this.recoveredInit();
+        if (this.recoveredState) return this.recoveredInit();
         this.block.start();
         this.loadScreenDeps()
             .then(() => {

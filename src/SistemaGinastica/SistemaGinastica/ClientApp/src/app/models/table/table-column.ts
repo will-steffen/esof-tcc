@@ -3,7 +3,7 @@ export class TableColumn<T> {
     label: string = '';
     orderBy: string;
     width: string;
-    priority: number;   
+    priority: number;
 
     getValue: (model: T) => string = () => null;
 
@@ -25,11 +25,11 @@ export class TableColumn<T> {
     Width(width: string) {
         this.width = width;
         return this;
-    }    
+    }
 
     Value(getValue: (model: T) => string) {
         this.getValue = getValue;
         return this;
     }
-    
+
 }

@@ -1,7 +1,7 @@
+import { I18nTags } from "src/app/enums/i18n-tags";
 import { Language } from "src/app/enums/language";
 import { LocaleType } from "../locale-type";
 import { EnumLocale } from "./enum";
-import { I18nTags } from "src/app/enums/i18n-tags";
 
 export let Locale: LocaleType = {
     code: Language.PTBR,
@@ -24,18 +24,23 @@ export let Locale: LocaleType = {
         save: 'Salvar',
         delete: 'Excluir',
         logout: 'Sair',
+        add: 'Incluir',
+        showFilter: 'Expandir Filtros',
+        hideFilter: 'Recolher Filtros',
     },
 
     customer: {
         title: 'Clientes',
+        titleDetail: 'Cliente',
         address: 'Endereço',
         birthDate: 'Data de Nascimento',
-        annualPlan: 'Plano Anual', 
-        registration: 'Matrícula', 
+        annualPlan: 'Plano Anual',
+        registration: 'Matrícula',
     },
 
     groupClass: {
         title: 'Aulas em Grupo',
+        titleDetail: 'Aula em Grupo',
         initHour: 'Hora de Início',
         endHour: 'Hora de Término',
         room: 'Sala',
@@ -49,6 +54,7 @@ export let Locale: LocaleType = {
 
     instructor: {
         title: 'Professores',
+        titleDetail: 'Professor',
         authorizedMuscle: 'Professor de Musculação',
         authorizedGroupClass: 'Professor de Aula em Grupo',
     },
@@ -59,11 +65,12 @@ export let Locale: LocaleType = {
         signin: 'Entrar',
         error: 'Usuário ou senha incorretos',
     },
- 
+
     user: {
         title: 'Usuários',
+        titleDetail: 'Usuário',
         type: 'Tipo',
-        username: 'Usuário', 
+        username: 'Usuário',
         password: 'Senha',
         message: {
             usernameNotUnique: 'Usuário informado já existe',
@@ -77,5 +84,5 @@ export let Locale: LocaleType = {
         cpf: 'CPF'
     },
 
-    enum: EnumLocale 
+    enum: EnumLocale
 }

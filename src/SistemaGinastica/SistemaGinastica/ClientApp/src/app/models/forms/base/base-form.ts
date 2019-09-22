@@ -1,7 +1,7 @@
-import { FormInput } from "./form-input";
+import { I18n } from "src/app/i18n";
 import { BaseEntity } from "src/app/models/base-entity";
 import { BaseModel } from "src/app/models/base-model";
-import { I18n } from "src/app/i18n";
+import { FormInput } from "./form-input";
 
 
 export class BaseForm<TModel extends BaseEntity> extends BaseModel {
@@ -11,7 +11,7 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
     subFormList: BaseForm<BaseEntity>[] = [];
     i18n = I18n.current;
 
-    Input<TValue>(label: string = '', defaultValue: any = '') : FormInput<TValue> {
+    Input<TValue>(label: string = '', defaultValue: any = ''): FormInput<TValue> {
         let input = new FormInput<TValue>(label, defaultValue);
         this.inputList.push(input);
         return input;
@@ -38,25 +38,25 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
         this.subFormList = [];
     }
 
-    isValid() : boolean {
+    isValid(): boolean {
         return !this.getErrorMessage();
     }
 
-    getErrorMessage() : string {        
-        for(let i = 0; i < this.inputList.length; i++){
+    getErrorMessage(): string {
+        for (let i = 0; i < this.inputList.length; i++) {
             let m = this.inputList[i].getErrorMessage();
-            if(m) return m;
+            if (m) return m;
         }
-        for(let i = 0; i < this.subFormList.length; i++){
+        for (let i = 0; i < this.subFormList.length; i++) {
             let m = this.subFormList[i].getErrorMessage();
-            if(m) return m;
+            if (m) return m;
         }
     }
 
     configure() { }
-    getDTO(baseModel: BaseModel = null) : BaseModel {
+    getDTO(baseModel: BaseModel = null): BaseModel {
         return new BaseModel();
     }
-    
+
 
 }

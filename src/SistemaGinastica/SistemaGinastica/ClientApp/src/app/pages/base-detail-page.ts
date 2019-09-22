@@ -1,9 +1,9 @@
 import { OnInit } from "@angular/core";
+import { PageType } from "../enums/page-type";
 import { BaseEntity } from "../models/base-entity";
 import { BaseForm } from "../models/forms/base/base-form";
 import { BasePage } from "./base-page";
 import { BasePageDeps } from "./base-page-deps";
-import { PageType } from "../enums/page-type";
 
 export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TModel>>
     extends BasePage implements OnInit {
@@ -21,16 +21,16 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
     ) {
         super(deps);
         this.type = PageType.DETAIL;
-        if(!this.recoveredState){
+        if (!this.recoveredState) {
             this.form = new this.TForm();
             this.permission = false;
             this.successMessage = this.i18n.t.label.saveSuccess;
             this.errorMessageMap = {};
-        }        
+        }
     }
 
     ngOnInit() {
-        if(this.recoveredState) return this.recoveredInit();
+        if (this.recoveredState) return this.recoveredInit();
         this.block.start();
         this.loadScreenDeps()
             .then(() => { })

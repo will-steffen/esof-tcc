@@ -9,7 +9,7 @@ export class GroupClass extends BaseEntity {
     instructor: Instructor;
     name: string;
 
-    static fromData(data){
+    static fromData(data) {
         let e: GroupClass = super.fromData(data);
         e.initHour = e.initHour ? new Date(e.initHour) : null;
         e.endHour = e.endHour ? new Date(e.endHour) : null;

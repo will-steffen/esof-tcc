@@ -1,51 +1,65 @@
 @import './../../styles/vars.less';
 
-.action{
+.action {
     width: 100px;
-    fa-icon{
-        cursor: pointer;
-        font-size: 1.5em;
-        color: @color-1;
+
+    fa-icon {
+        cursor     : pointer;
+        font-size  : 1.5em;
+        color      : @color-1;
         margin-left: 10px;
-        &:hover{ opacity: 0.8; }
-        &:active{ opacity: 0.6; }
-    }
-}
-.base-section{
-    display: flex;
-    margin-top: 10px;
-    .counter, .page-size{
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .page-size{
-        justify-content: flex-end;
-        select{
-            margin: 0 7px;
-            width: unset;
-            padding: 0;
+
+        &:hover {
+            opacity: 0.8;
         }
-    }
-    p-paginator{ 
-        flex: 1
-    }  
-}
-@media screen {
-    @media (max-width: 1024px) {
-        .base-section{
-            .counter{
-                display: none;
-            }
-        }
-    }
-    @media (max-width: 600px) {
-        .base-section{
-            .page-size{
-                display: none;
-            }
+
+        &:active {
+            opacity: 0.6;
         }
     }
 }
 
+.base-section {
+    display   : flex;
+    margin-top: 10px;
+
+    .counter,
+    .page-size {
+        flex           : 1;
+        display        : flex;
+        align-items    : center;
+        justify-content: flex-start;
+    }
+
+    .page-size {
+        justify-content: flex-end;
+
+        select {
+            margin : 0 7px;
+            width  : unset;
+            padding: 0;
+        }
+    }
+
+    p-paginator {
+        flex: 1
+    }
+}
+
+@media screen {
+    @media (max-width: 1024px) {
+        .base-section {
+            .counter {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        .base-section {
+            .page-size {
+                display: none;
+            }
+        }
+    }
+}

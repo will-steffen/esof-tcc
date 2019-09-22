@@ -1,13 +1,12 @@
 import { Component } from "@angular/core";
-import { Instructor } from "src/app/models/instructor";
+import { ApiRoute } from "src/app/enums/api-route";
+import { Icon } from "src/app/enums/icon";
+import { InstructorField } from "src/app/enums/instructor-field";
+import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 import { InstructorForm } from "src/app/models/forms/instructor.form";
+import { Instructor } from "src/app/models/instructor";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
-import { ApiRoute } from "src/app/enums/api-route";
-import { InstructorField } from "src/app/enums/instructor-field";
-import { FormInputType } from "src/app/models/forms/base/form-input-type";
-import { Icon } from "src/app/enums/icon";
-import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 
 @Component({
     selector: 'app-instructor',
@@ -17,26 +16,26 @@ import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
     constructor(
         deps: BasePageDeps
-    ){ 
+    ) {
         super(deps, Instructor, InstructorForm, ApiRoute.instructor.filter, ApiRoute.instructor.default);
         this.title = this.i18n.t.instructor.title;
     }
 
-    createFilter() {       
+    createFilter() {
         this.filter.CreateField(this.i18n.t.instructor.authorizedGroupClass, InstructorField.AUTHORIZED_GROUP_CLASS)
             .Options(FormInputOptions.boolean(), true);
 
         this.filter.CreateField(this.i18n.t.instructor.authorizedMuscle, InstructorField.AUTHORIZED_MUSCLE)
             .Options(FormInputOptions.boolean(), true);
-            
+
         this.filter.CreateField(this.i18n.t.personData.name, InstructorField.NAME);
         this.filter.CreateField(this.i18n.t.personData.rg, InstructorField.RG);
-        this.filter.CreateField(this.i18n.t.personData.cpf, InstructorField.CPF); 
+        this.filter.CreateField(this.i18n.t.personData.cpf, InstructorField.CPF);
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model));      
-        this.table.Action(Icon.delete, model => this.delete(model));    
+        this.table.Action(Icon.edit, model => this.edit(model));
+        this.table.Action(Icon.delete, model => this.delete(model));
 
         this.table.Column()
             .Label(this.i18n.t.instructor.authorizedGroupClass)

@@ -1,14 +1,14 @@
+import { BlockHandler } from "src/app/handlers/block.handler";
+import { BasePageDeps } from "src/app/pages/base-page-deps";
 import { LogHandler } from "../../handlers/log.handler";
-import { UserService } from "../../services/user.service";
 import { ServiceHandler } from "../../handlers/service.handler";
-import { FilterOrder } from "./filter-order";
+import { UserService } from "../../services/user.service";
+import { FormInputType } from "../forms/base/form-input-type";
 import { FilterDTO } from "./filter-dto";
 import { FilterField } from "./filter-field";
 import { FilterFieldDTO } from "./filter-field-dto";
 import { FilterFieldSearchType } from "./filter-field-search-type";
-import { BlockHandler } from "src/app/handlers/block.handler";
-import { BasePageDeps } from "src/app/pages/base-page-deps";
-import { FormInputType } from "../forms/base/form-input-type";
+import { FilterOrder } from "./filter-order";
 
 
 
@@ -20,15 +20,15 @@ export class Filter<T> {
     pageSizeOptions = [10, 20, 50, 100];
     pageSize: number = this.pageSizeOptions[0];
     totalResults: number = 0;
-    page: number = 1;  
-    
+    page: number = 1;
+
     orderBy: string;
     orderDirection: FilterOrder;
 
     service: ServiceHandler;
     logger: LogHandler;
     filterRoute: string;
-    baseModelType: any;   
+    baseModelType: any;
     userService: UserService;
 
     afterSearchEvent: Function[] = [];
@@ -45,7 +45,7 @@ export class Filter<T> {
         this.service = deps.service;
         this.logger = deps.logger;
         this.filterRoute = filterRoute;
-        this.baseModelType = baseModelType;        
+        this.baseModelType = baseModelType;
         this.userService = deps.userService;
         this.block = deps.block;
     }
@@ -63,7 +63,7 @@ export class Filter<T> {
         return this;
     }
 
-    SkipSearch(n: number = 1): Filter<T>{
+    SkipSearch(n: number = 1): Filter<T> {
         this.skipSearch = n;
         return this;
     }
@@ -77,14 +77,14 @@ export class Filter<T> {
 
 
     paginate(event) {
-        if(this.setPaginate(event)){
+        if (this.setPaginate(event)) {
             this.privateSearch().then(() => this.onPaginateOrSort());
         }
     }
-    
+
     sort(event) {
         if (this.setOrder(event)) {
-            this.privateSearch().then(() => this.onPaginateOrSort());            
+            this.privateSearch().then(() => this.onPaginateOrSort());
         }
     }
 
@@ -92,8 +92,8 @@ export class Filter<T> {
 
     }
 
-    private setPaginate(paginateEvent) : boolean {
-        if(paginateEvent.page + 1 != this.page){
+    private setPaginate(paginateEvent): boolean {
+        if (paginateEvent.page + 1 != this.page) {
             this.page = paginateEvent.page + 1;
             this.pageSize = paginateEvent.rows;
             return true;
@@ -120,23 +120,23 @@ export class Filter<T> {
         dto.pageSize = this.pageSize;
         dto.page = this.page;
         dto.totalResults = this.totalResults;
-        dto.fields = [];   
+        dto.fields = [];
         let fields = this.fields.filter(x => x.type != FormInputType.MULTI_SELECT);
 
         let multiSelectFields = this.fields.filter(x => x.type == FormInputType.MULTI_SELECT);
 
         multiSelectFields.forEach(x => {
-            if(x.value && Array.isArray(x.value)){
+            if (x.value && Array.isArray(x.value)) {
                 x.value.forEach(subValue => {
                     let subField = Object.assign({}, x);
                     subField.value = subValue;
                     fields.push(subField);
-                })        
-            }    
+                })
+            }
         });
 
         fields.forEach(field => {
-            if(!field.ignoreValueOnFilter.Contains(field.value)){
+            if (!field.ignoreValueOnFilter.Contains(field.value)) {
                 let fieldDto = new FilterFieldDTO();
                 fieldDto.type = FilterFieldSearchType.EQUAL;
                 fieldDto.field = field.field;
@@ -144,13 +144,13 @@ export class Filter<T> {
                 if (field.type == FormInputType.TEXT) {
                     fieldDto.type = FilterFieldSearchType.LIKE;
                 }
-                if(field.filterType){
+                if (field.filterType) {
                     fieldDto.type = field.filterType;
-                    if(field.value.constructor.name == 'Date'){
-                        let d : Date = new Date(field.value.getTime());  
-                        if(field.filterType == FilterFieldSearchType.LESS_EQUAL){
+                    if (field.value.constructor.name == 'Date') {
+                        let d: Date = new Date(field.value.getTime());
+                        if (field.filterType == FilterFieldSearchType.LESS_EQUAL) {
                             fieldDto.argument = Date.GetLastInstant(d);
-                        } else if(field.filterType == FilterFieldSearchType.LESS)    {
+                        } else if (field.filterType == FilterFieldSearchType.LESS) {
                             fieldDto.argument = Date.GetFirstInstant(d);
                         }
                     }
@@ -167,18 +167,18 @@ export class Filter<T> {
         this.fields.forEach(field => {
             field.reset();
         });
-        this.onCleanPage.forEach(f=> f());
+        this.onCleanPage.forEach(f => f());
         this.resetPage();
     }
 
-    search() : Promise<void> { 
-        return this.privateSearch();      
+    search(): Promise<void> {
+        return this.privateSearch();
     }
 
-    private privateSearch() : Promise<void> {
+    private privateSearch(): Promise<void> {
         return new Promise((resolve) => {
-            if(!this.service || !this.filterRoute || !this.baseModelType) return;
-            if(this.skipSearch > 0){
+            if (!this.service || !this.filterRoute || !this.baseModelType) return;
+            if (this.skipSearch > 0) {
                 this.skipSearch--;
                 this.block.stop();
                 return resolve();
@@ -189,21 +189,21 @@ export class Filter<T> {
                     this.cloneLastFields();
                     this.data = filter.data.map(x => this.baseModelType.fromData(x));
                     this.totalResults = filter.totalResults;
-                    
+
                     this.afterSearchEvent.forEach(f => f());
-                    
+
                     resolve();
                 })
                 .catch(err => this.logger.error(err))
                 .then(() => {
                     this.block.stop()
                 });
-        });        
-    }  
+        });
+    }
 
     private cloneLastFields() {
         this.lastFieldsUsed = this.fields
-        .map(x => Object.assign(new FilterField(x.label, x.field), x));
+            .map(x => Object.assign(new FilterField(x.label, x.field), x));
     }
 
     hasData() {
@@ -213,31 +213,31 @@ export class Filter<T> {
     resetPage(cleanSelection = true): Promise<void> {
         this.page = 1;
 
-        this.onResetPage.forEach((f)=>f());
+        this.onResetPage.forEach((f) => f());
 
-        if(cleanSelection){
+        if (cleanSelection) {
             return this.search();
-        }else{
+        } else {
             return this.privateSearch();
         }
     }
 
-    OnResetPage(f: Function){
+    OnResetPage(f: Function) {
         this.onResetPage.push(f);
         return this;
     }
 
-    OnCleanPage(f: Function){
+    OnCleanPage(f: Function) {
         this.onCleanPage.push(f);
         return this;
     }
 
     toggleFilterArea() {
         this.showFilterArea = !this.showFilterArea;
-    }    
+    }
 
     onChangePageSize() {
-        this.resetPage(false);        
+        this.resetPage(false);
     }
 
 

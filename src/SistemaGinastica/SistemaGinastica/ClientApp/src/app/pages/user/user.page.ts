@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
-import { BaseFilterPage } from "../base-filter-page";
-import { User } from "src/app/models/user";
-import { UserForm } from "src/app/models/forms/user.form";
-import { BasePageDeps } from "../base-page-deps";
 import { ApiRoute } from "src/app/enums/api-route";
-import { UserField } from "src/app/enums/user-field";
-import { Icon } from "src/app/enums/icon";
-import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
-import { UserType } from "src/app/enums/user-type";
 import { HttpStatus } from "src/app/enums/http-status";
+import { Icon } from "src/app/enums/icon";
+import { UserField } from "src/app/enums/user-field";
+import { UserType } from "src/app/enums/user-type";
+import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
+import { UserForm } from "src/app/models/forms/user.form";
+import { User } from "src/app/models/user";
+import { BaseFilterPage } from "../base-filter-page";
+import { BasePageDeps } from "../base-page-deps";
 
 @Component({
     selector: 'app-user',
@@ -18,8 +18,8 @@ import { HttpStatus } from "src/app/enums/http-status";
 export class UserPage extends BaseFilterPage<User, UserForm> {
     constructor(
         deps: BasePageDeps
-    ){ 
-        super(deps, User, UserForm, ApiRoute.user.filter, ApiRoute.user.default);        
+    ) {
+        super(deps, User, UserForm, ApiRoute.user.filter, ApiRoute.user.default);
         this.title = this.i18n.t.user.title;
         this.errorMessageMap[HttpStatus.FAILED_DEPENDENCY] = this.i18n.t.user.message.notFound;
         this.errorMessageMap[HttpStatus.CONFLICT] = this.i18n.t.user.message.usernameNotUnique;
@@ -31,12 +31,12 @@ export class UserPage extends BaseFilterPage<User, UserForm> {
             .Options(FormInputOptions.fromEnum(UserType, this.i18n.t.enum.UserType), true);
         this.filter.CreateField(this.i18n.t.personData.name, UserField.NAME);
         this.filter.CreateField(this.i18n.t.personData.rg, UserField.RG);
-        this.filter.CreateField(this.i18n.t.personData.cpf, UserField.CPF);       
+        this.filter.CreateField(this.i18n.t.personData.cpf, UserField.CPF);
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model));        
-        this.table.Action(Icon.delete, model => this.delete(model));        
+        this.table.Action(Icon.edit, model => this.edit(model));
+        this.table.Action(Icon.delete, model => this.delete(model));
 
         this.table.Column()
             .Label(this.i18n.t.user.username)

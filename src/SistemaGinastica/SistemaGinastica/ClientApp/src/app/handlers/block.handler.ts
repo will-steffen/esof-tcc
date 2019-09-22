@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { NgBlockUI, BlockUI } from 'ng-block-ui';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Injectable()
 export class BlockHandler {
     @BlockUI() blockUI: NgBlockUI;
     private count = 0;
-    
+
     start() {
         this.blockUI.start();
         this.count++;

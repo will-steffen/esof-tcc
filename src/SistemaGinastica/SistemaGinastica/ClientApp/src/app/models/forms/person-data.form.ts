@@ -1,5 +1,5 @@
-import { BaseForm } from "./base/base-form";
 import { PersonDataModel } from "../person-data-model";
+import { BaseForm } from "./base/base-form";
 import { FormInput } from "./base/form-input";
 
 export class PersonDataModelForm extends BaseForm<PersonDataModel> {
@@ -12,7 +12,7 @@ export class PersonDataModelForm extends BaseForm<PersonDataModel> {
         this.rg = this.Input(this.i18n.t.personData.rg);
         this.cpf = this.Input(this.i18n.t.personData.cpf);
 
-        if(this.model){
+        if (this.model) {
             this.name.SetValue(this.model.name);
             this.rg.SetValue(this.model.rg);
             this.cpf.SetValue(this.model.cpf);
@@ -26,5 +26,5 @@ export class PersonDataModelForm extends BaseForm<PersonDataModel> {
         baseDto.cpf = this.cpf.value;
         return baseDto;
     }
-    
+
 }

@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { I18n } from "src/app/i18n";
 import { FormInput } from "src/app/models/forms/base/form-input";
 import { FormInputType } from "src/app/models/forms/base/form-input-type";
-import { I18n } from "src/app/i18n";
 
 
 
@@ -10,18 +10,17 @@ import { I18n } from "src/app/i18n";
     templateUrl: './form-input.component.html',
     styleUrls: ['./form-input.component.less']
 })
-export class FormInputComponent {    
+export class FormInputComponent {
     FormInputType = FormInputType;
-    @Input() input: FormInput<any>;  
+    @Input() input: FormInput<any>;
     @Output('enterKey') enterKey = new EventEmitter();
 
-    constructor(public i18n: I18n){ }
-
+    constructor(public i18n: I18n) { }
 
     onEnterKey() {
         if (this.enterKey.observers.length > 0) this.enterKey.emit("enterKey");
     }
-    
+
     getLabel() {
         return this.input.label;
     }

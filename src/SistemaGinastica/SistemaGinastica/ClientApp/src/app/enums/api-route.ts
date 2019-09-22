@@ -1,5 +1,3 @@
-
-
 export const ApiRoute = {
     auth: '/api/auth',
     user: {

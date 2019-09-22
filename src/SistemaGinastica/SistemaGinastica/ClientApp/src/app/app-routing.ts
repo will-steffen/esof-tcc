@@ -1,14 +1,14 @@
 import { Route } from "@angular/router";
-import { HomePage } from "./pages/home/home.page";
 import { RouteConfig } from "./enums/route-config";
-import { LoginPage } from "./pages/login/login.page";
-import { LayoutPage } from "./pages/layout/layout.page";
-import { AuthService } from "./services/auth.service";
-import { UserPage } from "./pages/user/user.page";
+import { CustomerDetailPage } from "./pages/customer-detail/customer-detail.page";
 import { CustomerPage } from "./pages/customer/customer.page";
 import { GroupClassPage } from "./pages/group-class/group-class.page";
+import { HomePage } from "./pages/home/home.page";
 import { InstructorPage } from "./pages/instructor/instructor.page";
-import { CustomerDetailPage } from "./pages/customer-detail/customer-detail.page";
+import { LayoutPage } from "./pages/layout/layout.page";
+import { LoginPage } from "./pages/login/login.page";
+import { UserPage } from "./pages/user/user.page";
+import { AuthService } from "./services/auth.service";
 
 
 

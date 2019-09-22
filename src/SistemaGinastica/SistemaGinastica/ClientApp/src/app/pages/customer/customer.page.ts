@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
+import { ApiRoute } from "src/app/enums/api-route";
+import { CustomerField } from "src/app/enums/customer-field";
+import { Icon } from "src/app/enums/icon";
+import { RouteConfig } from "src/app/enums/route-config";
 import { Customer } from "src/app/models/customer";
+import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 import { CustomerForm } from "src/app/models/forms/customer.form";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
-import { ApiRoute } from "src/app/enums/api-route";
-import { RouteConfig } from "src/app/enums/route-config";
-import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
-import { CustomerField } from "src/app/enums/customer-field";
-import { Icon } from "src/app/enums/icon";
 
 @Component({
     selector: 'app-customer',
@@ -17,7 +17,7 @@ import { Icon } from "src/app/enums/icon";
 export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     constructor(
         deps: BasePageDeps
-    ) { 
+    ) {
         super(deps, Customer, CustomerForm, ApiRoute.customer.filter, ApiRoute.customer.default);
         this.title = this.i18n.t.customer.title;
     }
@@ -26,21 +26,21 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.pageRouteService.navigate(this, RouteConfig.customer, model ? model.id : 0);
     }
 
-    createFilter() {       
+    createFilter() {
         this.filter.CreateField(this.i18n.t.customer.annualPlan, CustomerField.ANNUAL_PLAN)
-            .Options(FormInputOptions.boolean(), true);               
+            .Options(FormInputOptions.boolean(), true);
         this.filter.CreateField(this.i18n.t.customer.address, CustomerField.ADDRESS);
         this.filter.CreateField(this.i18n.t.customer.birthDate, CustomerField.BIRTH_DATE);
         this.filter.CreateField(this.i18n.t.customer.registration, CustomerField.REGISTRATION);
 
         this.filter.CreateField(this.i18n.t.personData.name, CustomerField.NAME);
         this.filter.CreateField(this.i18n.t.personData.rg, CustomerField.RG);
-        this.filter.CreateField(this.i18n.t.personData.cpf, CustomerField.CPF); 
+        this.filter.CreateField(this.i18n.t.personData.cpf, CustomerField.CPF);
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model));       
-        this.table.Action(Icon.delete, model => this.delete(model));   
+        this.table.Action(Icon.edit, model => this.edit(model));
+        this.table.Action(Icon.delete, model => this.delete(model));
 
         this.table.Column()
             .Label(this.i18n.t.customer.annualPlan)

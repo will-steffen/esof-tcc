@@ -19,18 +19,23 @@ export interface LocaleType {
         save: string,
         delete: string,
         logout: string,
+        add: string,
+        showFilter: string,
+        hideFilter: string,
     },
 
     customer: {
         title: string,
+        titleDetail: string,
         address: string,
         birthDate: string,
-        annualPlan: string, 
-        registration: string, 
+        annualPlan: string,
+        registration: string,
     },
 
     groupClass: {
         title: string,
+        titleDetail: string,
         initHour: string,
         endHour: string,
         room: string,
@@ -44,6 +49,7 @@ export interface LocaleType {
 
     instructor: {
         title: string,
+        titleDetail: string,
         authorizedMuscle: string,
         authorizedGroupClass: string,
     },
@@ -57,9 +63,10 @@ export interface LocaleType {
 
     user: {
         title: string,
+        titleDetail: string,
         type: string,
-        username: string, 
-        password: string, 
+        username: string,
+        password: string,
         message: {
             usernameNotUnique: string,
             notFound: string

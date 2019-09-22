@@ -1,4 +1,4 @@
-export enum FilterOrder{
+export enum FilterOrder {
     Asc = 'ASC',
     Desc = 'DESC'
 }

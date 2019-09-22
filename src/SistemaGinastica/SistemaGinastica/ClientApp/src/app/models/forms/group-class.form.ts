@@ -1,9 +1,9 @@
-import { BaseForm } from "./base/base-form";
 import { GroupClass } from "../group-class";
 import { Instructor } from "../instructor";
+import { BaseForm } from "./base/base-form";
 import { FormInput } from "./base/form-input";
-import { FormInputType } from "./base/form-input-type";
 import { FormInputOptions } from "./base/form-input-options";
+import { FormInputType } from "./base/form-input-type";
 
 export class GroupClassForm extends BaseForm<GroupClass> {
 

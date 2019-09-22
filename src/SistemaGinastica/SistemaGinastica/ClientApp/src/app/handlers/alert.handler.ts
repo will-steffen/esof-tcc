@@ -20,9 +20,9 @@ export class AlertHandler {
 
     success(str: string) {
         this.toastr.success(str, null, { progressBar: true, positionClass: this.positionClass });
-    } 
+    }
 
-    confirm(message: string, isDelete = false) : Promise<void> {
+    confirm(message: string, isDelete = false): Promise<void> {
         let icon = isDelete ? 'pi pi-trash' : 'pi';
         return new Promise((resolve, reject) => {
             this.confirmationService.confirm({

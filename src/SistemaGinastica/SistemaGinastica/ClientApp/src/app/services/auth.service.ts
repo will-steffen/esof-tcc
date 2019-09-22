@@ -1,20 +1,20 @@
-import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { Injectable } from "@angular/core";
-import { RouteConfig } from "../enums/route-config";
-import { ServiceHandler } from "../handlers/service.handler";
-import { UserService } from "./user.service";
-import { ApiRoute } from "../enums/api-route";
-import { User } from "../models/user";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { LoginRequestDTO } from "../dto/login-request.dto";
 import { LoginResponseDTO } from "../dto/login-response.dto";
+import { ApiRoute } from "../enums/api-route";
+import { RouteConfig } from "../enums/route-config";
+import { ServiceHandler } from "../handlers/service.handler";
+import { User } from "../models/user";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class AuthService implements CanActivate {
 
     constructor(
         private service: ServiceHandler,
-        private userService: UserService, 
-        private router: Router, 
+        private userService: UserService,
+        private router: Router,
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {

@@ -4,5 +4,5 @@ export class LoginRequestDTO extends BaseModel {
     constructor(
         public username: string,
         public password: string
-    ){ super() }    
+    ) { super() }
 }

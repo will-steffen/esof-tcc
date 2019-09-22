@@ -1,43 +1,47 @@
 @import '../../styles/vars.less';
 
 
-.filters{
+.filters {
     background-color: lighten(@color-dark, 70);
-    border-bottom: 1px solid @color-1;   
-    padding: 10px 20px 15px 20px;
-    transition: 0.3s;
-    // font-size: 0.8rem;
-    // @media only screen and (max-width: @max-width-mobile){
-    //     padding: 10px @content-padding-mobile;
-    // } 
-    .title{
+    border-bottom   : 1px solid @color-1;
+    padding         : 10px 20px 15px 20px;
+    transition      : 0.3s;
+
+    .title {
         font-size: 12px;
     }
-    app-filter-field{
+
+    app-filter-field {
         display: contents;
-    }     
-    .buttons{
-        display: flex;
+    }
+
+    .buttons {
+        display        : flex;
         justify-content: flex-end;
-        .button-base{
+
+        .button-base {
             margin-left: 20px;
-            button{
-                width: 100%;              
+
+            button {
+                width: 100%;
             }
-        }        
-    } 
+        }
+    }
+
     &.closed {
-        height: 0;
-        font-size: 0;
-        padding-top: 0;
+        height        : 0;
+        font-size     : 0;
+        padding-top   : 0;
         padding-bottom: 0;
-        margin: 0;
-        border-width: 0;
-        .form{
+        margin        : 0;
+        border-width  : 0;
+
+        .form {
             display: none;
         }
     }
-    &.disabled{
+
+    &.disabled {
         opacity: 0.2;
     }
 }
@@ -48,19 +52,21 @@
     }
 }
 
-.form{
-    .input-group{
-        label{
-            font-size: 12px;
+.form {
+    .input-group {
+        label {
+            font-size  : 12px;
             font-weight: 700;
-            color: #525252;
+            color      : #525252;
         }
     }
 
-    input, textarea, select{
+    input,
+    textarea,
+    select {
         border-bottom: 1px solid #a9a9a9;
-        padding: 2px;
-        width: 100%;
-        font-size: 14px;    
+        padding      : 2px;
+        width        : 100%;
+        font-size    : 14px;
     }
 }

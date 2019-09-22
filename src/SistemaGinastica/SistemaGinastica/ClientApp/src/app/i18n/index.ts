@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
-import { LocaleType } from "./locale-type";
-import { Locale as Locale_PTBR } from './PTBR';
 // import { Locale as Locale_EN } from './EN';
 // import { Locale as Locale_ES } from './ES';
 import { Language } from "../enums/language";
-import { StorageHandler } from "../handlers/storage.handler";
 import { StorageTable } from "../enums/storage-table";
+import { StorageHandler } from "../handlers/storage.handler";
+import { LocaleType } from "./locale-type";
+import { Locale as Locale_PTBR } from './PTBR';
 
 
 @Injectable()
 export class I18n {
-    static current: I18n;  
+    static current: I18n;
 
     t: LocaleType;
     options = [Locale_PTBR/*, Locale_EN, Locale_ES*/];
@@ -25,14 +25,14 @@ export class I18n {
     }
 
     changeLanguage(code: Language) {
-        let reload = code != this.t.code;    
+        let reload = code != this.t.code;
         let selected = this.options.First(o => { return o.code == code });
         if (selected) {
             this.t = selected;
             StorageHandler.DeleteTable(StorageTable.i18n);
             StorageHandler.Save(StorageTable.i18n, { code: code });
-            if(reload) window.location.reload();
-        }        
+            if (reload) window.location.reload();
+        }
     }
 
     getBrowserCode() {

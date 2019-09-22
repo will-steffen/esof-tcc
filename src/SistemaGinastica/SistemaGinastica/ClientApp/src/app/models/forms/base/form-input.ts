@@ -1,13 +1,13 @@
-import { FormInputType } from "./form-input-type";
-import { FormInputOptions } from "./form-input-options";
 import { StorageHandler } from "src/app/handlers/storage.handler";
 import { I18n } from "src/app/i18n";
+import { FormInputOptions } from "./form-input-options";
+import { FormInputType } from "./form-input-type";
 
 class FormInputValidation {
     constructor(
         public message: string,
         public validation: Function
-    ){}    
+    ) { }
 }
 
 export class FormInput<TValue> {
@@ -20,7 +20,7 @@ export class FormInput<TValue> {
     required = false;
     disabled = false;
     showValidation = false;
-    
+
     validationList: FormInputValidation[] = [];
 
     requiredErrorMessage = I18n.current.t.label.requiredField;
@@ -81,7 +81,7 @@ export class FormInput<TValue> {
         this.value = this.defaultValue;
     }
 
-    isRequiredValid () : boolean {
+    isRequiredValid(): boolean {
         if (this.required && !this.disabled) {
             if ((this.type === FormInputType.TEXT || this.type === FormInputType.TEXTAREA)) {
                 return !String.IsNullOrEmpty(this.value as any);
@@ -92,9 +92,9 @@ export class FormInput<TValue> {
     }
 
     getErrorMessage(): string {
-        if(!this.isRequiredValid()) return this.requiredErrorMessage;
-        for(let i = 0; i < this.validationList.length; i++){
-            if(!this.validationList[i].validation(this))
+        if (!this.isRequiredValid()) return this.requiredErrorMessage;
+        for (let i = 0; i < this.validationList.length; i++) {
+            if (!this.validationList[i].validation(this))
                 return this.validationList[i].message;
         }
         return null;

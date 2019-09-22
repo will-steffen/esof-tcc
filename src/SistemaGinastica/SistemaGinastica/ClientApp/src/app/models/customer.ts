@@ -6,7 +6,7 @@ export class Customer extends PersonDataModel {
     annualPlan: boolean;
     registration: string;
 
-    static fromData(data){
+    static fromData(data) {
         let e: Customer = super.fromData(data);
         e.birthDate = e.birthDate ? new Date(e.birthDate) : null;
         return e;

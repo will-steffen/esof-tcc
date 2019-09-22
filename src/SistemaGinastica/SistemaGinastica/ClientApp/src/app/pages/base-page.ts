@@ -1,18 +1,18 @@
 
 import { Router } from "@angular/router";
 import { Icon } from "../enums/icon";
-import { ServiceHandler } from "../handlers/service.handler";
-import { LogHandler } from "../handlers/log.handler";
-import { UserService } from "../services/user.service";
-import { BlockHandler } from "../handlers/block.handler";
-import { AlertHandler } from "../handlers/alert.handler";
-import { I18n } from "../i18n";
-import { BasePageDeps } from "./base-page-deps";
-import { PageRouteService } from "../services/page-route.service";
 import { PageType } from "../enums/page-type";
+import { AlertHandler } from "../handlers/alert.handler";
+import { BlockHandler } from "../handlers/block.handler";
+import { LogHandler } from "../handlers/log.handler";
+import { ServiceHandler } from "../handlers/service.handler";
+import { I18n } from "../i18n";
+import { PageRouteService } from "../services/page-route.service";
+import { UserService } from "../services/user.service";
+import { BasePageDeps } from "./base-page-deps";
 
 export class BasePage {
- 
+
     router: Router;
     service: ServiceHandler;
     logger: LogHandler;
@@ -26,7 +26,7 @@ export class BasePage {
     recoveredState;
     type: PageType;
 
-    constructor(deps: BasePageDeps){  
+    constructor(deps: BasePageDeps) {
         this.type = PageType.BASE;
         this.i18n = I18n.current;
         this.router = deps.router;
@@ -37,7 +37,7 @@ export class BasePage {
         this.alert = deps.alert;
         this.pageRouteService = deps.pageRouteService;
         deps.pageRouteService.setCurrentPage(this);
-        if(!this.recoveredState){
+        if (!this.recoveredState) {
             this.recoveredState = false;
             this.title = '';
         }
