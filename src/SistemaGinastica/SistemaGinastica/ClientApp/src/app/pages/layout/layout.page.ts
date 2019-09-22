@@ -18,8 +18,12 @@ export class LayoutPage extends BasePage {
     ) { super(deps); }
 
     logout() {
-        this.userService.logout();
-        this.pageRouteService.goToLogin();
+        this.alert.confirm(this.i18n.t.label.confirmLogout)
+            .then(() => {
+                this.userService.logout();
+                this.pageRouteService.goToLogin();
+            })
+            .catch(() => { });
     }
 
     toggleMenu() {

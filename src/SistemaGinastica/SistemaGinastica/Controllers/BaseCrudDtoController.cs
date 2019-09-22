@@ -93,9 +93,9 @@ namespace SistemaGinastica.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize]
-        public virtual ActionResult Delete([FromBody] long id)
+        public virtual ActionResult Delete(long id)
         {
             try {
                 Service.Delete(id);

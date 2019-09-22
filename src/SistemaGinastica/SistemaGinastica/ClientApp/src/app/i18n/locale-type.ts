@@ -8,6 +8,7 @@ export interface LocaleType {
         noResults: string,
         filterResult: string,
         saveSuccess: string,
+        deleteSuccess: string,
         saveError: string,
         yes: string,
         no: string,
@@ -22,6 +23,8 @@ export interface LocaleType {
         add: string,
         showFilter: string,
         hideFilter: string,
+        confirmDelete: string,
+        confirmLogout: string,
     },
 
     customer: {

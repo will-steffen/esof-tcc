@@ -13,6 +13,7 @@ export let Locale: LocaleType = {
         noResults: 'Sem Resultados',
         filterResult: `Exibindo resultados de ${I18nTags.StarCount} a ${I18nTags.EndCount}, de um total de ${I18nTags.Total}.`,
         saveSuccess: 'Registro salvo com sucesso',
+        deleteSuccess: 'Registro excluído com sucesso',
         saveError: 'Erro para salvar o registro',
         yes: 'Sim',
         no: 'Não',
@@ -27,6 +28,8 @@ export let Locale: LocaleType = {
         add: 'Incluir',
         showFilter: 'Expandir Filtros',
         hideFilter: 'Recolher Filtros',
+        confirmDelete: 'Tem certeza que deseja excluir este registro?',
+        confirmLogout: 'Tem certeza que deseja sair do sistema?',
     },
 
     customer: {

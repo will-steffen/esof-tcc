@@ -23,7 +23,7 @@ export class AlertHandler {
     }
 
     confirm(message: string, isDelete = false): Promise<void> {
-        let icon = isDelete ? 'pi pi-trash' : 'pi';
+        let icon = isDelete ? 'pi pi-trash' : null;
         return new Promise((resolve, reject) => {
             this.confirmationService.confirm({
                 message: message,

@@ -11,6 +11,7 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
     form: TForm;
     permission: boolean;
     successMessage;
+    deleteSuccess;
     errorMessageMap: any;
 
     constructor(
@@ -25,6 +26,7 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
             this.form = new this.TForm();
             this.permission = false;
             this.successMessage = this.i18n.t.label.saveSuccess;
+            this.deleteSuccess = this.i18n.t.label.deleteSuccess;
             this.errorMessageMap = {};
         }
     }
@@ -53,13 +55,11 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
             let request = this.form.model && this.form.model.id ? 'Put' : 'Post';
             this.service[request](this.defaultRoute, this.form.getDTO())
                 .then(() => {
-
                     this.afterSave();
                     this.alert.success(this.successMessage);
                 })
                 .catch(err => {
                     this.handleRequestError(err);
-
                 })
                 .then(() => this.block.stop());
         }
@@ -76,7 +76,22 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
         this.alert.error(message);
     }
 
-    delete(model: TModel) { }
+    delete(model: TModel) {
+        this.alert.confirm(this.i18n.t.label.confirmDelete, true)
+            .then(() => {
+                this.block.start();
+                this.service.Delete(this.defaultRoute + '/' + model.id)
+                    .then(() => {
+                        this.afterSave();
+                        this.alert.success(this.deleteSuccess);
+                    })
+                    .catch(err => {
+                        this.handleRequestError(err);
+                    })
+                    .then(() => this.block.stop());
+            })
+            .catch(() => { })
+    }
 
     closeDetails() {
         window.history.back();
