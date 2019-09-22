@@ -19,7 +19,10 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
     constructor(
         deps: BasePageDeps,
         private instructorService: InstructorService
-    ) { super(deps, GroupClass, GroupClassForm, ApiRoute.groupClass.filter, ApiRoute.groupClass.default) }
+    ) { 
+        super(deps, GroupClass, GroupClassForm, ApiRoute.groupClass.filter, ApiRoute.groupClass.default);
+        this.title = this.i18n.t.groupClass.title;
+    }
 
     loadScreenDeps() : Promise<void> {
         return new Promise(res => {

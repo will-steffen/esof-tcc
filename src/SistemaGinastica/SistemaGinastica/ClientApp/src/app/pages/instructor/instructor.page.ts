@@ -17,7 +17,10 @@ import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
     constructor(
         deps: BasePageDeps
-    ){ super(deps, Instructor, InstructorForm, ApiRoute.instructor.filter, ApiRoute.instructor.default) }
+    ){ 
+        super(deps, Instructor, InstructorForm, ApiRoute.instructor.filter, ApiRoute.instructor.default);
+        this.title = this.i18n.t.instructor.title;
+    }
 
     createFilter() {       
         this.filter.CreateField(this.i18n.t.instructor.authorizedGroupClass, InstructorField.AUTHORIZED_GROUP_CLASS)

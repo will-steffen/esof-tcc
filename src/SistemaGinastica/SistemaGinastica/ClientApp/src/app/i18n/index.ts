@@ -10,8 +10,7 @@ import { StorageTable } from "../enums/storage-table";
 
 @Injectable()
 export class I18n {
-    static current: I18n;
-    static get = () => I18n.current;
+    static current: I18n;  
 
     t: LocaleType;
     options = [Locale_PTBR/*, Locale_EN, Locale_ES*/];

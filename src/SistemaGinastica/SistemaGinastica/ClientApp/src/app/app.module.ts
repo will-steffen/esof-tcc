@@ -43,6 +43,8 @@ import { BasePageDeps } from './pages/base-page-deps';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
 import { InstructorService } from './services/instructor.service';
+import { CustomerDetailPage } from './pages/customer-detail/customer-detail.page';
+import { CustomerService } from './services/customer.service';
 
 
 
@@ -60,6 +62,7 @@ import { InstructorService } from './services/instructor.service';
     LayoutPage,
     UserPage,
     CustomerPage,
+    CustomerDetailPage,
     InstructorPage,
     GroupClassPage
   ],
@@ -86,6 +89,7 @@ import { InstructorService } from './services/instructor.service';
     UserService,
     PageRouteService,
     InstructorService,
+    CustomerService,
 
     I18n,
     ServiceHandler,

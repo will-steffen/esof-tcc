@@ -1,37 +1,37 @@
-import { OnInit } from "@angular/core";
-import { BasePage } from "./base-page";
 import { BaseEntity } from "../models/base-entity";
+import { Filter } from "../models/filter/filter";
 import { BaseForm } from "../models/forms/base/base-form";
 import { Table } from "../models/table/table";
+import { BaseDetailPage } from "./base-detail-page";
 import { BasePageDeps } from "./base-page-deps";
-import { Filter } from "../models/filter/filter";
+import { PageType } from "../enums/page-type";
 
-export class BaseFilterPage<TModel extends BaseEntity, TForm extends BaseForm<TModel>> 
-extends BasePage implements OnInit {
+export class BaseFilterPage<TModel extends BaseEntity, TForm extends BaseForm<TModel>>
+    extends BaseDetailPage<TModel, TForm> {
 
-    filter = new Filter<TModel>();
-    table = new Table<TModel>();
-    form: TForm;
-    showDetail = false;
-
-    permission = false;
-    successMessage;
-    errorMessageMap = {};
+    filter: Filter<TModel>;
+    table: Table<TModel>;
+    showDetail: boolean;
 
     constructor(
         deps: BasePageDeps,
-        private TModel: any, 
-        private TForm: any,
+        TModel: any,
+        TForm: any,
         public filterRoute: string,
-        public defaultRoute: string
-    ){
-        super(deps);
-        this.filter.configure(filterRoute, TModel, deps);
-        this.form = new this.TForm();
-        this.successMessage = this.i18n.t.label.saveSuccess;
+        defaultRoute: string
+    ) {
+        super(deps, TModel, TForm, defaultRoute);
+        this.type = PageType.FILTER;
+        if(!this.recoveredState){
+            this.filter = new Filter<TModel>();
+            this.table = new Table<TModel>();
+            this.showDetail = false;
+            this.filter.configure(filterRoute, TModel, deps);
+        }
     }
 
     ngOnInit() {
+        if(this.recoveredState) return this.recoveredInit();
         this.block.start();
         this.loadScreenDeps()
             .then(() => {
@@ -40,9 +40,9 @@ extends BasePage implements OnInit {
                 this.table.actionList = [];
                 this.table.columnList = [];
                 this.createTable();
-                this.filter.search().then(() => this.afterFirstSearch());
+                this.recoveredInit();
             })
-            .catch(err => {})
+            .catch(err => { })
             .then(() => this.block.stop());
     }
 
@@ -50,46 +50,17 @@ extends BasePage implements OnInit {
     createTable() { }
     afterFirstSearch() { }
 
-    loadScreenDeps() : Promise<void> {
-        return new Promise(r => r());
+    recoveredInit() {
+        this.filter.search().then(() => this.afterFirstSearch());
     }
 
-    getModel(): TModel {
-        return new this.TModel();
-    }
-
-    edit(model: TModel) { 
+    edit(model: TModel) {
         this.form.Model(model);
         this.showDetail = true;
     }
 
-    save() {        
-        this.form.ShowValidation(true);
-        if(this.form.isValid()){
-            this.block.start();
-            let request = this.form.model && this.form.model.id ? 'Put' : 'Post';
-            this.service[request](this.defaultRoute, this.form.getDTO())
-                .then(() => {
-                    this.filter.search().then(() => this.closeDetails()); 
-                    this.alert.success(this.successMessage);                  
-                })
-                .catch(err => {
-                    this.handleRequestError(err);
-                    
-                })
-                .then(() => this.block.stop());
-        }
-    }
-
-    private handleRequestError(error) {
-        let message = this.errorMessageMap[error.status] 
-            ? this.errorMessageMap[error.status] 
-            : this.i18n.t.label.saveError;    
-        this.alert.error(message);   
-    }
-
-    delete(model: TModel) {
-
+    afterSave() {
+        this.filter.search().then(() => this.closeDetails());
     }
 
     closeDetails() {

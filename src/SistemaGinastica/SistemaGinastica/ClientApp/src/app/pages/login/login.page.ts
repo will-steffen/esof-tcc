@@ -23,9 +23,8 @@ export class LoginPage extends BasePage {
     password: string;
 
     constructor(
-        private authService: AuthService,
-        private pageRouteService: PageRouteService,
-        deps: BasePageDeps
+        deps: BasePageDeps,
+        private authService: AuthService
     ){ super(deps) }  
 
     login(){

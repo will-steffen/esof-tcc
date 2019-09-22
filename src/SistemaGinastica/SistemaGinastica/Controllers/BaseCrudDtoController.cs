@@ -35,6 +35,20 @@ namespace SistemaGinastica.Controllers
             return Ok(Service.List().Select(x => GetDto(x)));
         }
 
+        [HttpGet("{id}")]
+        [Authorize]
+        public virtual ActionResult GetById(long id)
+        {
+            try
+            {
+                return Ok(GetDto(Service.FindById(id)));
+            }
+            catch (SgException e)
+            {
+                return HandleError(e);
+            }
+        }
+
         [HttpPost("filter")]
         [Authorize]
         public virtual ActionResult<FilterDto> Filter([FromBody] FilterDto filterDTO)

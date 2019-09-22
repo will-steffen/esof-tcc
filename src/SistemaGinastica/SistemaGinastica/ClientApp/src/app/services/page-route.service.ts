@@ -15,6 +15,7 @@ export class PageRouteService {
 
     pageList: Array<PageRoute> = [];
     currentPage: BasePage;
+    statePages: BasePage[] = [];
     
     constructor(
         private i18n: I18n,
@@ -25,6 +26,7 @@ export class PageRouteService {
     }
 
     open(page: PageRoute) {
+        this.statePages = [];
         this.router.navigate([page.route]);
     }
 
@@ -61,13 +63,21 @@ export class PageRouteService {
     }
 
     getPageTitle() {
-        let path = window.location.pathname.substring(1);
-        let page = this.pageList.First(page => path == page.route);
-        return page ? page.title : ''; 
+        return this.currentPage ? this.currentPage.title : '';
     }
 
     setCurrentPage(page: BasePage) {
+        let recoveredPage = this.statePages.find(p => p.constructor.name == page.constructor.name);
+        if(recoveredPage){
+            page = Object.assign(page, recoveredPage);
+            page.recoveredState = true;
+        }
         this.currentPage = page;
+    }
+
+    navigate(originPage: BasePage, ...params: Array<string | number>) {
+        this.statePages.push(originPage)
+        this.router.navigate(params);
     }
 
 }

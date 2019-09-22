@@ -37,6 +37,8 @@ export class CustomerForm extends BaseForm<Customer> {
         let dto = this.personData.getDTO(new Customer());
         dto.address = this.address.value;
         dto.birthDate = this.birthDate.value;
+        dto.annualPlan = this.annualPlan.value;
+        dto.registration = this.registration.value;
         return dto;
     }
 }

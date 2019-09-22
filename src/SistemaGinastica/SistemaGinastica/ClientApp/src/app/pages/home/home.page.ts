@@ -8,5 +8,8 @@ import { BasePageDeps } from "../base-page-deps";
     styleUrls: ['./home.page.less']
 })
 export class HomePage extends BasePage {
-    constructor( deps: BasePageDeps ) { super(deps) }
+    constructor( deps: BasePageDeps ) { 
+        super(deps);
+        this.title = this.i18n.t.home.title;
+    }
 }

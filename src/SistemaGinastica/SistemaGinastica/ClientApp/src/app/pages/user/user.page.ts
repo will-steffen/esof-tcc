@@ -20,6 +20,7 @@ export class UserPage extends BaseFilterPage<User, UserForm> {
         deps: BasePageDeps
     ){ 
         super(deps, User, UserForm, ApiRoute.user.filter, ApiRoute.user.default);        
+        this.title = this.i18n.t.user.title;
         this.errorMessageMap[HttpStatus.FAILED_DEPENDENCY] = this.i18n.t.user.message.notFound;
         this.errorMessageMap[HttpStatus.CONFLICT] = this.i18n.t.user.message.usernameNotUnique;
     }

@@ -11,21 +11,34 @@
         <div class="page-title">
             {{ pageRouteService.getPageTitle() }}
         </div>
-        <div class="right-icons">          
-            <button *ngIf="pageRouteService.currentPage.edit" (click)="pageRouteService.currentPage.edit()"> 
+
+        <div class="right-icons" *ngIf="pageRouteService.currentPage.type == PageType.FILTER">
+            <button *ngIf="pageRouteService.currentPage.edit" (click)="pageRouteService.currentPage.edit()">
                 <fa-icon [icon]="icon.add"></fa-icon>
                 <span>Incluir</span>
             </button>
-            <button *ngIf="pageRouteService.currentPage.filter" (click)="pageRouteService.currentPage.filter.toggleFilterArea()">
+            <button *ngIf="pageRouteService.currentPage.filter"
+                (click)="pageRouteService.currentPage.filter.toggleFilterArea()">
 
                 <fa-icon [icon]="icon.up" *ngIf="pageRouteService.currentPage.filter.showFilterArea"></fa-icon>
                 <span *ngIf="pageRouteService.currentPage.filter.showFilterArea">Recolher Filtros</span>
 
                 <fa-icon [icon]="icon.down" *ngIf="!pageRouteService.currentPage.filter.showFilterArea"></fa-icon>
                 <span *ngIf="!pageRouteService.currentPage.filter.showFilterArea">Expandir Filtros</span>
-          
+
             </button>
         </div>
+        <div class="right-icons" *ngIf="pageRouteService.currentPage.type == PageType.DETAIL">
+            <button (click)="pageRouteService.currentPage.closeDetails()">
+                <fa-icon [icon]="icon.cancel"></fa-icon>
+                <span>Cancelar</span>
+            </button>
+            <button (click)="pageRouteService.currentPage.save()">
+                <fa-icon [icon]="icon.save"></fa-icon>
+                <span>Salvar</span>
+            </button>
+        </div>
+
     </div>
 </nav>
 <div class="body">
