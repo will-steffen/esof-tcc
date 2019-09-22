@@ -65,3 +65,30 @@ textarea {
         color           : @color-1;
     }
 }
+
+
+.date-input {
+    border-bottom: 1px solid @color-dark;
+
+    .ui-calendar-w-btn {
+        width: ~'calc(100% - 32px)';
+    }
+
+    input {
+        border: none;
+    }
+
+    .ui-calendar-button {
+        background-color: @color-1 !important;
+        border-color    : @color-1 !important;
+        border-radius   : 0 !important;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
+    }
+}
