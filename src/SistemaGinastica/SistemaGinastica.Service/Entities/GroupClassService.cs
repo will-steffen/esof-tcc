@@ -1,9 +1,8 @@
 ﻿using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.Service.Dto;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace SistemaGinastica.Service.Entities
 {
@@ -18,7 +17,17 @@ namespace SistemaGinastica.Service.Entities
             model.Room = dto.room;
             model.Name = dto.name;
             model.IdInstructor = dto.idInstructor;
+            model.WeekDayList = dto.weekDayList.Select(x => new GroupClassWeekDay { WeekDay = x }).ToList();
             return base.Map(model, dto);
+        }
+
+        public void OnDeleteInstructor(long idInstructor)
+        {
+            List<GroupClass> instructorClassList = DataAccess.GetByIdIndtructor(idInstructor);
+            instructorClassList.ForEach(groupClass => {
+                groupClass.IdInstructor = null;
+                Save(groupClass);
+            });
         }
     }
 }

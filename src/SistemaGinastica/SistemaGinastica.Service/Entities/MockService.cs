@@ -27,7 +27,7 @@ namespace SistemaGinastica.Service.Entities
         {
             User user = userService.Include(new UserDto
             {
-                name = "Admin",
+                name = "Administrador do Sistema",
                 cpf = "00000000000",
                 rg = "000000003",
                 password = "admin",
@@ -39,9 +39,10 @@ namespace SistemaGinastica.Service.Entities
         public void Mock()
         {
             AdminUser();
+            CreateUserTypes();
             Instructor instructor1 = instructorService.Include(new InstructorDto
             {
-                name = "Admin",
+                name = "Administrador do Sistema",
                 cpf = "00000000000",
                 rg = "000000003",
                 authorizedMuscle = true,
@@ -55,6 +56,39 @@ namespace SistemaGinastica.Service.Entities
                 room = "Sala 3",
                 name = "Spnning",
                 idInstructor = instructor1.Id
+            });
+        }
+
+        private void CreateUserTypes()
+        {
+            userService.Include(new UserDto
+            {
+                name = "Jorge Chagas",
+                cpf = "00000000000",
+                rg = "000000003",
+                password = "recepcionista",
+                username = "recepcionista",
+                type = UserType.RECEPCIONIST
+            });
+
+            userService.Include(new UserDto
+            {
+                name = "Roberto da Silva",
+                cpf = "00000000000",
+                rg = "000000003",
+                password = "fisio",
+                username = "fisio",
+                type = UserType.PHYSIOTHERAPIST
+            });
+
+            userService.Include(new UserDto
+            {
+                name = "Fátima Maria do Santos",
+                cpf = "00000000000",
+                rg = "000000003",
+                password = "gerente",
+                username = "gerente",
+                type = UserType.MANAGER
             });
         }
     }

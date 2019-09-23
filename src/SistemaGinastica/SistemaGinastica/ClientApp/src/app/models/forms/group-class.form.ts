@@ -30,15 +30,14 @@ export class GroupClassForm extends BaseForm<GroupClass> {
         this.room = this.Input<string>(this.i18n.t.groupClass.room).Required();
         this.name = this.Input<string>(this.i18n.t.groupClass.name).Required();
         this.instructor = this.Input<string>(this.i18n.t.groupClass.instructor)
-            .Options(this.instructorList.map(x => new FormInputOptions(x.id, x.name)), true)
-            .Required();
+            .Options(this.instructorList.map(x => new FormInputOptions(x.id, x.name)), true);
 
         if (this.model) {
             this.initHour.SetValue(this.model.initHour);
             this.endHour.SetValue(this.model.endHour);
             this.room.SetValue(this.model.room);
             this.name.SetValue(this.model.name);
-            this.instructor.SetValue(this.model.instructor);
+            this.instructor.SetValue(this.model.idInstructor);
         }
     }
 

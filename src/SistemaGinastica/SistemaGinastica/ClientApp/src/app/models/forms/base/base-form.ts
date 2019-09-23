@@ -54,9 +54,8 @@ export class BaseForm<TModel extends BaseEntity> extends BaseModel {
     }
 
     configure() { }
+
     getDTO(baseModel: BaseModel = null): BaseModel {
         return new BaseModel();
     }
-
-
 }

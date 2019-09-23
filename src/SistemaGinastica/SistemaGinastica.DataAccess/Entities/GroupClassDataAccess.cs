@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaGinastica.DomainModel;
 using SistemaGinastica.DomainModel.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SistemaGinastica.DataAccess.Entities
 {
@@ -14,7 +12,14 @@ namespace SistemaGinastica.DataAccess.Entities
 
         public override IQueryable<GroupClass> GetBaseQueryable()
         {
-            return Set().Include(x => x.Instructor);
+            return Set()
+                .Include(x => x.Instructor)
+                .Include(x => x.WeekDayList);
+        }
+
+        public List<GroupClass> GetByIdIndtructor(long idInstructor)
+        {
+            return Set().Where(x => x.IdInstructor == idInstructor).ToList();
         }
     }
 }

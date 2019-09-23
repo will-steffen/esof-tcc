@@ -28,4 +28,8 @@ export class FormInputComponent {
     getPlaceholder() {
         return this.i18n.t.label.select;
     }
+
+    showInvalidClass() {
+        return this.input.showValidation && this.input.getErrorMessage();
+    }
 }

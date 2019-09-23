@@ -23,6 +23,10 @@ export class TableComponent<T> implements AfterViewInit {
         this.filter.sort(event);
     }
 
+    getActionsWidth() {
+        return (this.table.actionList.length * 50) + 'px';
+    }
+
     getPriorityClass(column: TableColumn<T>) {
         let cl = '';
         if (column.priority && column.priority > 5) {

@@ -53,7 +53,7 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.table.Column()
             .Label(this.i18n.t.groupClass.instructor)
             .OrderBy(GroupClassField.INSTRUCTOR)
-            .Value(x => x.instructor.name);
+            .Value(x => x.instructor ? x.instructor.name : '-');
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.room)

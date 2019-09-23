@@ -1,5 +1,8 @@
 ﻿using SistemaGinastica.DomainModel.Entities;
+using SistemaGinastica.DomainModel.Enums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaGinastica.Service.Dto
 {
@@ -9,8 +12,9 @@ namespace SistemaGinastica.Service.Dto
         public DateTime endHour { get; set; }
         public string room { get; set; }
         public string name { get; set; }
-        public long idInstructor { get; set; }
+        public long? idInstructor { get; set; }
         public InstructorDto instructor { get; set; }
+        public List<WeekDay> weekDayList { get; set; } = new List<WeekDay>();
 
         public GroupClassDto() { }
 
@@ -22,6 +26,7 @@ namespace SistemaGinastica.Service.Dto
             name = model.Name;
             idInstructor = model.IdInstructor;
             if (model.Instructor != null) instructor = new InstructorDto(model.Instructor);
+            if (model.WeekDayList != null) weekDayList = model.WeekDayList.Select(x => x.WeekDay).ToList();
         }
     }
 }

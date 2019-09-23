@@ -3,6 +3,7 @@ import { PageType } from "src/app/enums/page-type";
 import { PageRouteService } from "src/app/services/page-route.service";
 import { BasePage } from "../base-page";
 import { BasePageDeps } from "../base-page-deps";
+import { User } from "src/app/models/user";
 
 @Component({
     selector: 'app-layout',
@@ -12,10 +13,14 @@ import { BasePageDeps } from "../base-page-deps";
 export class LayoutPage extends BasePage {
     showMenu = false;
     PageType = PageType;
+    user: User;
     constructor(
         public pageRouteService: PageRouteService,
         deps: BasePageDeps
-    ) { super(deps); }
+    ) { 
+        super(deps);
+        this.user = this.userService.getUser();
+    }
 
     logout() {
         this.alert.confirm(this.i18n.t.label.confirmLogout)

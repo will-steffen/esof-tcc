@@ -11,7 +11,7 @@
                     {{ c.label }}
                 </th>
 
-                <th class="action" *ngIf="table.actionList.length">
+                <th class="action" *ngIf="table.actionList.length" width="{{ getActionsWidth() }}">
                     {{ i18n.t.label.actions }}
                 </th>
             </tr>

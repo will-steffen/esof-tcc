@@ -69,14 +69,29 @@ nav {
         }
 
         .right-icons {
-            flex: 1;
-
             button {
                 font-size: 15px;
                 padding  : 0 15px;
 
                 fa-icon {
                     margin-right: 10px;
+                }
+            }
+            .user-identification{
+                border-left: @border-def;
+                padding: 0 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: darken(@color-1, 10);
+                .info{
+                    text-align: center;
+                }
+                .name{
+                    font-size: 0.8em;
+                }
+                .type{
+                    font-size: 0.6em;
                 }
             }
         }

@@ -9,7 +9,12 @@ namespace SistemaGinastica.Service.Entities
 {
     public class InstructorService : BaseCrudDtoService<Instructor, InstructorDataAccess, InstructorDto>
     {
-        public InstructorService(InstructorDataAccess da) : base(da) { }
+        private GroupClassService groupClassService;
+
+        public InstructorService(InstructorDataAccess da, GroupClassService groupClassService) : base(da)
+        {
+            this.groupClassService = groupClassService;
+        }
 
         public IEnumerable<Instructor> ListGroupClass()
         {
@@ -24,6 +29,12 @@ namespace SistemaGinastica.Service.Entities
             model.AuthorizedMuscle = dto.authorizedMuscle;
             model.AuthorizedGroupClass = dto.authorizedGroupClass;
             return base.Map(model, dto);
+        }
+
+        public override void Delete(long id)
+        {
+            groupClassService.OnDeleteInstructor(id);
+            base.Delete(id);
         }
     }
 }

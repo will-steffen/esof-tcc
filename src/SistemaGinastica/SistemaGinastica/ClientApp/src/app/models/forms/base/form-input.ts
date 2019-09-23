@@ -74,6 +74,7 @@ export class FormInput<TValue> {
     }
 
     SetValue(value: any) {
+        if(value === null) value = '';
         this.value = value;
     }
 

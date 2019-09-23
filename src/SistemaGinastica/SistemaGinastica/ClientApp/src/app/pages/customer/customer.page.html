@@ -3,3 +3,29 @@
 <div class="page-content">
     <g-table [filter]="filter" [table]="table"></g-table>
 </div>
+
+<g-form-dialog [page]="this" [title]="i18n.t.customer.titleDetail">
+    <div class="form ui-g">
+        <div class="ui-g-12">
+            <g-form-input [input]="form.personData.name"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.personData.rg"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.personData.cpf"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.address"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.birthDate"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.annualPlan"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.registration"></g-form-input>
+        </div>
+    </div>
+</g-form-dialog>

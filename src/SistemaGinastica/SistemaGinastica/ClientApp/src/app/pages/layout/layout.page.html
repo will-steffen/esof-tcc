@@ -13,6 +13,12 @@
         </div>
 
         <div class="right-icons" *ngIf="pageRouteService.currentPage.type == PageType.FILTER">
+            <div class="user-identification" *ngIf="user">
+                <div class="info">
+                    <div class="name">{{ user.name }}</div>
+                    <div class="type">{{ i18n.t.enum.UserType[user.type] }}</div>
+                </div>
+            </div>
             <button *ngIf="pageRouteService.currentPage.edit" (click)="pageRouteService.currentPage.edit()">
                 <fa-icon [icon]="icon.add"></fa-icon>
                 <span>{{ i18n.t.label.add }}</span>

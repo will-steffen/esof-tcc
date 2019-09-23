@@ -28,7 +28,7 @@ namespace SistemaGinastica.DomainModel.Entities
 
 
         [Column("id_instructor")]
-        public long IdInstructor { get; set; }
+        public long? IdInstructor { get; set; }
 
         [ForeignKey("IdInstructor")]
         [InverseProperty("GroupClassList")]
@@ -37,5 +37,6 @@ namespace SistemaGinastica.DomainModel.Entities
 
 
         public virtual List<Presence> PresenceList { get; set; }
+        public virtual List<GroupClassWeekDay> WeekDayList { get; set; }
     }
 }

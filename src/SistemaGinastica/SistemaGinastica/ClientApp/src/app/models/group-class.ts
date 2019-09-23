@@ -1,5 +1,6 @@
 import { BaseEntity } from "./base-entity";
 import { Instructor } from "./instructor";
+import { WeekDay } from "../enums/week-day";
 
 export class GroupClass extends BaseEntity {
     initHour: Date;
@@ -8,6 +9,7 @@ export class GroupClass extends BaseEntity {
     idInstructor: number;
     instructor: Instructor;
     name: string;
+    weekDayList: WeekDay[];
 
     static fromData(data) {
         let e: GroupClass = super.fromData(data);

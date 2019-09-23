@@ -22,10 +22,6 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.title = this.i18n.t.customer.title;
     }
 
-    edit(model: Customer) {
-        this.pageRouteService.navigate(this, RouteConfig.customer, model ? model.id : 0);
-    }
-
     createFilter() {
         this.filter.CreateField(this.i18n.t.customer.annualPlan, CustomerField.ANNUAL_PLAN)
             .Options(FormInputOptions.boolean(), true);
@@ -40,7 +36,8 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
 
     createTable() {
         this.table.Action(Icon.edit, model => this.edit(model));
-        this.table.Action(Icon.delete, model => this.delete(model));
+        this.table.Action(Icon.creditCard, model => this.edit(model));
+        this.table.Action(Icon.delete, model => this.delete(model));        
 
         this.table.Column()
             .Label(this.i18n.t.customer.annualPlan)
