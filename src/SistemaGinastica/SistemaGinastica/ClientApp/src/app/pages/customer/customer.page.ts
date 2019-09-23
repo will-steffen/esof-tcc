@@ -8,6 +8,7 @@ import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 import { CustomerForm } from "src/app/models/forms/customer.form";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
+import { PlanType } from "src/app/enums/plan-type";
 
 @Component({
     selector: 'app-customer',
@@ -24,7 +25,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
 
     createFilter() {
         this.filter.CreateField(this.i18n.t.customer.planType, CustomerField.PLAN_TYPE)
-            .Options(FormInputOptions.boolean(), true);
+            .Options(FormInputOptions.fromEnum(PlanType, this.i18n.t.enum.PlanType), true);
         this.filter.CreateField(this.i18n.t.customer.address, CustomerField.ADDRESS);
         this.filter.CreateField(this.i18n.t.customer.birthDate, CustomerField.BIRTH_DATE);
         this.filter.CreateField(this.i18n.t.customer.registration, CustomerField.REGISTRATION);
@@ -42,7 +43,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Column()
             .Label(this.i18n.t.customer.planType)
             .OrderBy(CustomerField.PLAN_TYPE)
-            .Value(x => x.planType ? this.i18n.t.label.yes : this.i18n.t.label.no);
+            .Value(x => this.i18n.t.enum.PlanType[x.planType]);
 
         this.table.Column()
             .Label(this.i18n.t.customer.address)

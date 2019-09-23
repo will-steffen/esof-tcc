@@ -21,6 +21,7 @@ namespace SistemaGinastica.Controllers
                 {"Room", "Room"},
                 {"Name", "Name"},
                 {"Instructor", "IdInstructor"},
+                {"WeekDay", "WeekDayList.WeekDay" }
             };
             fieldFilterMapOrder = new Dictionary<string, string>(fieldFilterMap);
             fieldFilterMapOrder["Instructor"] = "Instructor.Name";

@@ -8,6 +8,7 @@ import { GroupClass } from "src/app/models/group-class";
 import { InstructorService } from "src/app/services/instructor.service";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
+import { WeekDay } from "src/app/enums/week-day";
 
 @Component({
     selector: 'app-group-class',
@@ -35,8 +36,10 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
     createFilter() {
         this.filter.CreateField(this.i18n.t.groupClass.name, GroupClassField.NAME);
         this.filter.CreateField(this.i18n.t.groupClass.instructor, GroupClassField.INSTRUCTOR)
-            .Options(this.form.instructorList.map(x => new FormInputOptions(x.id, x.name)), true)
+            .Options(this.form.instructorList.map(x => new FormInputOptions(x.id, x.name)), true);
         this.filter.CreateField(this.i18n.t.groupClass.room, GroupClassField.ROOM);
+        this.filter.CreateField(this.i18n.t.groupClass.weekDay, GroupClassField.WEEK_DAY)
+            .Options(FormInputOptions.fromEnum(WeekDay, this.i18n.t.enum.WeekDay), true);
 
     }
 
@@ -63,12 +66,12 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.table.Column()
             .Label(this.i18n.t.groupClass.initHour)
             .OrderBy(GroupClassField.INIT_HOUR)
-            .Value(x => x.initHour.getHours() + ':' + x.initHour.getMinutes());
+            .Value(x => x.initHour.ToOnlyTimeString());
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.endHour)
             .OrderBy(GroupClassField.END_HOUR)
-            .Value(x => x.endHour.getHours() + ':' + x.endHour.getMinutes());
+            .Value(x => x.endHour.ToOnlyTimeString());
 
          this.table.Column()
             .Label(this.i18n.t.groupClass.weekDay)            
