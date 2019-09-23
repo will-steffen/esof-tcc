@@ -12,10 +12,10 @@ namespace SistemaGinastica.DomainModel.Entities
         public DateTime ExpectedDate { get; set; }
 
         [Column("dt_payment")]
-        public DateTime PaymentDate { get; set; }
+        public DateTimeOffset? PaymentDate { get; set; }
 
         [Column("num_value")]
-        public float Vallue { get; set; }
+        public float Value { get; set; }
 
         [Column("id_customer")]
         public long IdCustomer { get; set; }

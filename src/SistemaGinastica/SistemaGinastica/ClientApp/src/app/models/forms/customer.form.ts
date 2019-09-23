@@ -3,11 +3,13 @@ import { BaseForm } from "./base/base-form";
 import { FormInput } from "./base/form-input";
 import { FormInputType } from "./base/form-input-type";
 import { PersonDataModelForm } from "./person-data.form";
+import { PlanType } from "src/app/enums/plan-type";
+import { FormInputOptions } from "./base/form-input-options";
 
 export class CustomerForm extends BaseForm<Customer> {
     address: FormInput<string>;
     birthDate: FormInput<Date>;
-    annualPlan: FormInput<boolean>;
+    planType: FormInput<PlanType>;
     registration: FormInput<string>;
     personData: PersonDataModelForm = new PersonDataModelForm();
 
@@ -17,8 +19,8 @@ export class CustomerForm extends BaseForm<Customer> {
             .Type(FormInputType.DATE)
             .Required();
 
-        this.annualPlan = this.Input<boolean>(this.i18n.t.customer.annualPlan)
-            .Type(FormInputType.CHECKBOX)
+        this.planType = this.Input<PlanType>(this.i18n.t.customer.planType)            
+        .Options(FormInputOptions.fromEnum(PlanType, this.i18n.t.enum.PlanType), true)
             .Required();
 
         this.registration = this.Input<string>(this.i18n.t.customer.registration).Required();
@@ -28,7 +30,7 @@ export class CustomerForm extends BaseForm<Customer> {
         if (this.model) {
             this.address.SetValue(this.model.address);
             this.birthDate.SetValue(this.model.birthDate);
-            this.annualPlan.SetValue(this.model.annualPlan);
+            this.planType.SetValue(this.model.planType);
             this.registration.SetValue(this.model.registration);
         }
     }
@@ -37,7 +39,7 @@ export class CustomerForm extends BaseForm<Customer> {
         let dto = this.personData.getDTO(new Customer());
         dto.address = this.address.value;
         dto.birthDate = this.birthDate.value;
-        dto.annualPlan = this.annualPlan.value;
+        dto.planType = this.planType.value;
         dto.registration = this.registration.value;
         return dto;
     }

@@ -47,7 +47,7 @@ export class FormInput<TValue> {
 
     Options(options: FormInputOptions[], emptyFirst: boolean = false) {
         this.firstOptionEmpty = emptyFirst;
-        this.options = options;
+        this.options = options;        
         return this.Type(FormInputType.SELECT);
     }
 

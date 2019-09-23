@@ -11,6 +11,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { AppRouting } from './app-routing';
@@ -80,7 +81,8 @@ import './utils/string';
     DialogModule,
     TableModule,
     PaginatorModule,
-    CalendarModule
+    CalendarModule,
+    MultiSelectModule
   ],
   providers: [
     ConfirmationService,

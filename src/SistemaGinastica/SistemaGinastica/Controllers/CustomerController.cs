@@ -18,7 +18,7 @@ namespace SistemaGinastica.Controllers
             {
                 {"Address", "Address"},
                 {"BirthDate", "BirthDate"},
-                {"AnnualPlan", "AnnualPlan"},
+                {"PlanType", "PlanType"},
                 {"Registration", "Registration"},
                 {"Name", "Name"},
                 {"RG", "Rg"},

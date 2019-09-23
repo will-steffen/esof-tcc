@@ -48,7 +48,7 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.table.Column()
             .Label(this.i18n.t.groupClass.name)
             .OrderBy(GroupClassField.NAME)
-            .Value(x => x.name);
+            .Value(x => x.name)
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.instructor)
@@ -69,5 +69,9 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
             .Label(this.i18n.t.groupClass.endHour)
             .OrderBy(GroupClassField.END_HOUR)
             .Value(x => x.endHour.getHours() + ':' + x.endHour.getMinutes());
+
+         this.table.Column()
+            .Label(this.i18n.t.groupClass.weekDay)            
+            .Value(x => x.weekDayList.map(x => this.i18n.t.enum.WeekDay[x]).join(', '));
     }
 }

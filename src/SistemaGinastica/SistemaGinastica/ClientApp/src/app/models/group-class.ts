@@ -16,6 +16,7 @@ export class GroupClass extends BaseEntity {
         e.initHour = e.initHour ? new Date(e.initHour) : null;
         e.endHour = e.endHour ? new Date(e.endHour) : null;
         e.instructor = e.instructor ? Instructor.fromData(e.instructor) : null;
+        if(e.weekDayList) e.weekDayList = e.weekDayList.Order();
         return e;
     }
 }

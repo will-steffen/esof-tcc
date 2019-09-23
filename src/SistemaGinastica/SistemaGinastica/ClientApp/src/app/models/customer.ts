@@ -1,9 +1,10 @@
 import { PersonDataModel } from "./person-data-model";
+import { PlanType } from "../enums/plan-type";
 
 export class Customer extends PersonDataModel {
     address: string;
     birthDate: Date;
-    annualPlan: boolean;
+    planType: PlanType;
     registration: string;
 
     static fromData(data) {

@@ -70,7 +70,7 @@ namespace SistemaGinastica.Controllers
         {
             try
             {
-                return Ok(Service.Include(dto));
+                return Ok(Service.Include(dto).Id);
             }
             catch (SgException e)
             {
@@ -85,7 +85,7 @@ namespace SistemaGinastica.Controllers
         {
             try
             {
-                return Ok(Service.Update(dto));
+                return Ok(Service.Update(dto).Id);
             }
             catch (SgException e)
             {

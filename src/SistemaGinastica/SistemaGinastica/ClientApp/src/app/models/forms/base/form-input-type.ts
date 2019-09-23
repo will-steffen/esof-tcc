@@ -7,5 +7,5 @@ export enum FormInputType {
     CHECKBOX = 'checkbox',
     DATE = 'date',
     DATE_ONLY_TIME = 'date_only_time',
-    MULTI_SELECT = 'multi-select'
+    MULTI_SELECT = 'multi_select'
 }

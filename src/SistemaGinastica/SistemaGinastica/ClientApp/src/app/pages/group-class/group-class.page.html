@@ -8,20 +8,23 @@
 
 <g-form-dialog [page]="this" [title]="i18n.t.groupClass.titleDetail">
     <div class="form ui-g">
-        <div class="ui-g-12 ui-sm-12">
+        <div class="ui-g-6 ui-sm-12">
             <g-form-input [input]="form.name"></g-form-input>
         </div>
         <div class="ui-g-6 ui-sm-12">
             <g-form-input [input]="form.room"></g-form-input>
         </div>
         <div class="ui-g-6 ui-sm-12">
-            <g-form-input [input]="form.instructor"></g-form-input>
-        </div>
-        <div class="ui-g-6 ui-sm-12">
             <g-form-input [input]="form.initHour"></g-form-input>
         </div>
         <div class="ui-g-6 ui-sm-12">
             <g-form-input [input]="form.endHour"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.weekDay"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.instructor"></g-form-input>
         </div>
     </div>
 </g-form-dialog>

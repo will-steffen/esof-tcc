@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaGinastica.DomainModel.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,9 +19,9 @@ namespace SistemaGinastica.DomainModel.Entities
         [Required]
         public DateTime BirthDate { get; set; }
 
-        [Column("fl_annual_plan")]
+        [Column("cd_plan_type")]
         [Required]
-        public bool AnnualPlan { get; set; }
+        public PlanType PlanType { get; set; }
 
         [Column("txt_registration")]
         [StringLength(150)]

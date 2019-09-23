@@ -25,10 +25,21 @@
 
     <!-- DATE, DATE_MONTH, DATE_TIME_ONLY, DATE_AND_TIME -->
     <div *ngIf="input.type == FormInputType.DATE || input.type == FormInputType.DATE_ONLY_TIME" class="date-input">
-        <span class="ui-label">
+        <span>
             <p-calendar [(ngModel)]="input.value" appendTo="body"
                 [timeOnly]="input.type == FormInputType.DATE_ONLY_TIME" [showIcon]="true" inputId="{{ input.guid }}"
                 placeholder="{{ getPlaceholder() }}"></p-calendar>
+        </span>
+    </div>
+
+    <!-- MULTI_SELECT -->
+    <div *ngIf="input.type == FormInputType.MULTI_SELECT">
+        <span>
+            <p-multiSelect [options]="input.options" [(ngModel)]="input.value"                
+                [defaultLabel]="getPlaceholder()" appendTo="body"
+                [selectedItemsLabel]="'{0} Itens Selecionados'"
+                inputId="{{ input.guid }}">
+            </p-multiSelect>
         </span>
     </div>
 

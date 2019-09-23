@@ -37,7 +37,7 @@ export let Locale: LocaleType = {
         titleDetail: 'Cliente',
         address: 'Endereço',
         birthDate: 'Data de Nascimento',
-        annualPlan: 'Plano Anual',
+        planType: 'Tipo de Plano',
         registration: 'Matrícula',
     },
 
@@ -49,6 +49,7 @@ export let Locale: LocaleType = {
         room: 'Sala',
         name: 'Nome',
         instructor: 'Professor',
+        weekDay: 'Dias da Semana'
     },
 
     home: {

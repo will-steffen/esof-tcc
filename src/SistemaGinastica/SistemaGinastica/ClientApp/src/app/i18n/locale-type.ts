@@ -32,7 +32,7 @@ export interface LocaleType {
         titleDetail: string,
         address: string,
         birthDate: string,
-        annualPlan: string,
+        planType: string,
         registration: string,
     },
 
@@ -44,6 +44,7 @@ export interface LocaleType {
         room: string,
         name: string,
         instructor: string,
+        weekDay: string
     },
 
     home: {
@@ -83,6 +84,8 @@ export interface LocaleType {
     },
 
     enum: {
-        UserType: any
+        UserType: any,
+        PlanType: any,
+        WeekDay: any
     }
 }

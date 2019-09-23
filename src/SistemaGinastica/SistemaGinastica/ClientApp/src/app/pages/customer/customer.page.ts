@@ -23,7 +23,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     createFilter() {
-        this.filter.CreateField(this.i18n.t.customer.annualPlan, CustomerField.ANNUAL_PLAN)
+        this.filter.CreateField(this.i18n.t.customer.planType, CustomerField.PLAN_TYPE)
             .Options(FormInputOptions.boolean(), true);
         this.filter.CreateField(this.i18n.t.customer.address, CustomerField.ADDRESS);
         this.filter.CreateField(this.i18n.t.customer.birthDate, CustomerField.BIRTH_DATE);
@@ -40,9 +40,9 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Action(Icon.delete, model => this.delete(model));        
 
         this.table.Column()
-            .Label(this.i18n.t.customer.annualPlan)
-            .OrderBy(CustomerField.ANNUAL_PLAN)
-            .Value(x => x.annualPlan ? this.i18n.t.label.yes : this.i18n.t.label.no);
+            .Label(this.i18n.t.customer.planType)
+            .OrderBy(CustomerField.PLAN_TYPE)
+            .Value(x => x.planType ? this.i18n.t.label.yes : this.i18n.t.label.no);
 
         this.table.Column()
             .Label(this.i18n.t.customer.address)

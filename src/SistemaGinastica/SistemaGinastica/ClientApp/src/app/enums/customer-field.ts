@@ -1,7 +1,7 @@
 export enum CustomerField {
     ADDRESS = 'Address',
     BIRTH_DATE = 'BirthDate',
-    ANNUAL_PLAN = 'AnnualPlan',
+    PLAN_TYPE = 'PlanType',
     REGISTRATION = 'Registration',
 
     NAME = 'Name',

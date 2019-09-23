@@ -18,7 +18,7 @@ namespace SistemaGinastica.Service.Entities
             model.Rg = dto.rg;
             model.Address = dto.address;
             model.BirthDate = dto.birthDate;
-            model.AnnualPlan = dto.annualPlan;
+            model.PlanType = dto.planType;
             model.Registration = dto.registration;
             return base.Map(model, dto);
         }

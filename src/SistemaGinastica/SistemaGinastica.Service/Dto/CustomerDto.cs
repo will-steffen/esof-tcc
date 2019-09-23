@@ -1,5 +1,8 @@
 ﻿using SistemaGinastica.DomainModel.Entities;
+using SistemaGinastica.DomainModel.Enums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaGinastica.Service.Dto
 {
@@ -7,8 +10,9 @@ namespace SistemaGinastica.Service.Dto
     {
         public string address { get; set; }
         public DateTime birthDate { get; set; }
-        public bool annualPlan { get; set; }
+        public PlanType planType { get; set; }
         public string registration { get; set; }
+        public virtual List<PaymentDto> paymentList { get; set; }
 
         public CustomerDto() { }
 
@@ -16,8 +20,9 @@ namespace SistemaGinastica.Service.Dto
         {
             address = model.Address;
             birthDate = model.BirthDate;
-            annualPlan = model.AnnualPlan;
+            planType = model.PlanType;
             registration = model.Registration;
+            if (model.PaymentList != null) paymentList = model.PaymentList.Select(x => new PaymentDto(x)).ToList();
         }
     }
 }
