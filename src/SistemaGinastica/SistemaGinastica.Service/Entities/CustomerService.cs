@@ -9,7 +9,19 @@ namespace SistemaGinastica.Service.Entities
 {
     public class CustomerService : BaseCrudDtoService<Customer, CustomerDataAccess, CustomerDto>
     {
-        public CustomerService(CustomerDataAccess da) : base(da) { }
+        private PaymentService paymentService;
+
+        public CustomerService(CustomerDataAccess da, PaymentService paymentService) : base(da)
+        {
+            this.paymentService = paymentService;
+        }
+
+        public override Customer Include(CustomerDto dto)
+        {
+            Customer customer = MapAndSave(new Customer(), dto);
+            paymentService.GenerateFirstPayment(customer);
+            return customer;
+        }
 
         protected override Customer Map(Customer model, CustomerDto dto)
         {
@@ -20,7 +32,14 @@ namespace SistemaGinastica.Service.Entities
             model.BirthDate = dto.birthDate;
             model.PlanType = dto.planType;
             model.Registration = dto.registration;
+            model.PlanValue = dto.planValue;
             return base.Map(model, dto);
+        }
+
+        public Customer RegisterPayment(PaymentDto payment)
+        {           
+            paymentService.RegisterPayment(FindById(payment.idCustomer), payment);
+            return FindById(payment.idCustomer);
         }
     }
 }

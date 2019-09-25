@@ -34,6 +34,8 @@ export interface LocaleType {
         birthDate: string,
         planType: string,
         registration: string,
+        nextPayment: string,
+        planValue: string,
     },
 
     groupClass: {

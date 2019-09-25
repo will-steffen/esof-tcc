@@ -9,6 +9,8 @@ import { CustomerForm } from "src/app/models/forms/customer.form";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
 import { PlanType } from "src/app/enums/plan-type";
+import { PaymentForm } from "src/app/models/forms/payment.form";
+import { CustomerService } from "src/app/services/customer.service";
 
 @Component({
     selector: 'app-customer',
@@ -16,8 +18,14 @@ import { PlanType } from "src/app/enums/plan-type";
     styleUrls: ['./customer.page.less']
 })
 export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
+    showPayment = false;
+    showAddPayment = false;
+    paymentForm = new PaymentForm();
+    customerOnEditPayment: Customer;
+
     constructor(
-        deps: BasePageDeps
+        deps: BasePageDeps,
+        private customerService: CustomerService
     ) {
         super(deps, Customer, CustomerForm, ApiRoute.customer.filter, ApiRoute.customer.default);
         this.title = this.i18n.t.customer.title;
@@ -37,24 +45,10 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
 
     createTable() {
         this.table.Action(Icon.edit, model => this.edit(model));
-        this.table.Action(Icon.creditCard, model => this.edit(model));
-        this.table.Action(Icon.delete, model => this.delete(model));        
-
-        this.table.Column()
-            .Label(this.i18n.t.customer.planType)
-            .OrderBy(CustomerField.PLAN_TYPE)
-            .Value(x => this.i18n.t.enum.PlanType[x.planType]);
-
-        this.table.Column()
-            .Label(this.i18n.t.customer.address)
-            .OrderBy(CustomerField.ADDRESS)
-            .Value(x => x.address);
-
-        this.table.Column()
-            .Label(this.i18n.t.customer.birthDate)
-            .OrderBy(CustomerField.BIRTH_DATE)
-            .Value(x => x.birthDate.toLocaleDateString());
-
+        this.table.Action(Icon.creditCard, model => this.editPayment(model));
+        this.table.Action(Icon.delete, model => this.delete(model));  
+        
+        
         this.table.Column()
             .Label(this.i18n.t.customer.registration)
             .OrderBy(CustomerField.REGISTRATION)
@@ -66,13 +60,49 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
             .Value(x => x.name);
 
         this.table.Column()
-            .Label(this.i18n.t.personData.rg)
-            .OrderBy(CustomerField.RG)
-            .Value(x => x.rg);
-
-        this.table.Column()
             .Label(this.i18n.t.personData.cpf)
             .OrderBy(CustomerField.CPF)
             .Value(x => x.cpf);
+
+        this.table.Column()
+            .Label(this.i18n.t.customer.planType)
+            .OrderBy(CustomerField.PLAN_TYPE)
+            .Value(x => this.i18n.t.enum.PlanType[x.planType]);        
+
+        this.table.Column()
+            .Label(this.i18n.t.customer.nextPayment)
+            .OrderBy(CustomerField.NEXT_PAYMENT)
+            .Value(x => x.nextPayment.expectedDate.toLocaleDateString());
+    }
+
+    editPayment(customer: Customer) {
+        this.customerOnEditPayment = customer;
+        this.showPayment = true;
+        console.log(customer)
+    }
+
+    addPayment() {
+        this.paymentForm.configure();
+        this.paymentForm.date.SetValue(Date.Now());
+        this.paymentForm.value.SetValue(this.customerOnEditPayment.planValue);
+        this.showAddPayment = true;
+    }
+
+    savePayment() {
+        alert('salvo');
+        let paymentData = this.paymentForm.getDTO();
+        paymentData.id = this.customerOnEditPayment.nextPayment.id;
+        paymentData.idCustomer = this.customerOnEditPayment.id;
+        this.block.start();
+        this.customerService.registerPayment(paymentData)
+            .then(customer => {
+                this.customerOnEditPayment = Object.assign(this.customerOnEditPayment, customer);
+                this.editPayment(this.customerOnEditPayment);
+                this.showAddPayment = false;;
+            })
+            .catch(err => this.alert.error('Falha para registrar o Pagamento'))
+            .then(() =>  this.block.stop())
+     
+        this.showAddPayment = false;
     }
 }

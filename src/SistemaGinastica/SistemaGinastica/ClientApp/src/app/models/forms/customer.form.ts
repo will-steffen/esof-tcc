@@ -11,6 +11,7 @@ export class CustomerForm extends BaseForm<Customer> {
     birthDate: FormInput<Date>;
     planType: FormInput<PlanType>;
     registration: FormInput<string>;
+    planValue: FormInput<string>;
     personData: PersonDataModelForm = new PersonDataModelForm();
 
     configure() {
@@ -24,6 +25,9 @@ export class CustomerForm extends BaseForm<Customer> {
             .Required();
 
         this.registration = this.Input<string>(this.i18n.t.customer.registration).Required();
+        this.planValue = this.Input<string>(this.i18n.t.customer.planValue)
+            .Type(FormInputType.NUMBER)
+            .Required();
 
         this.SubForm(this.personData).Model(this.model);
 
@@ -32,6 +36,7 @@ export class CustomerForm extends BaseForm<Customer> {
             this.birthDate.SetValue(this.model.birthDate);
             this.planType.SetValue(this.model.planType);
             this.registration.SetValue(this.model.registration);
+            this.planValue.SetValue(this.model.planValue);
         }
     }
 
@@ -41,6 +46,7 @@ export class CustomerForm extends BaseForm<Customer> {
         dto.birthDate = this.birthDate.value;
         dto.planType = this.planType.value;
         dto.registration = this.registration.value;
+        dto.planValue = Number(this.planValue.value);        
         return dto;
     }
 }

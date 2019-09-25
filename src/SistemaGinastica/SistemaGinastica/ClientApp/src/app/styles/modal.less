@@ -1,4 +1,4 @@
-@border-radius   : 8px;
+@border-radius : 8px;
 @color-background: white;
 
 body .ui-widget {
@@ -7,14 +7,14 @@ body .ui-widget {
 
 body .ui-dialog {
     .ui-dialog-titlebar {
-        border          : none;
-        border-bottom   : 3px solid @color-1;
-        border-radius   : @border-radius @border-radius 0 0;
+        border: none;
+        border-bottom: 3px solid @color-1;
+        border-radius: @border-radius @border-radius 0 0;
         background-color: @color-background;
-        color           : @color-1;
-        font-size       : 1rem;
-        text-transform  : uppercase;
-        font-weight     : normal;
+        color: @color-1;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: normal;
 
         .title-action {
             color: @color-2;
@@ -22,40 +22,40 @@ body .ui-dialog {
     }
 
     .ui-dialog-footer {
-        border          : none;
-        border-radius   : 0 0 @border-radius @border-radius;
-        padding         : 10px 16px;
-        padding-top     : 15px;
+        border: none;
+        border-radius: 0 0 @border-radius @border-radius;
+        padding: 10px 16px;
+        padding-top: 15px;
         background-color: @color-background;
-        text-align      : right;
+        text-align: right;
 
         p-footer {
             &.confirm-dialog-footer {
-                display        : flex;
+                display: flex;
                 justify-content: space-between;
             }
         }
     }
 
     .ui-dialog-content {
-        color           : @color-dark;
-        font-size       : 1rem;
-        border          : none;
+        color: @color-dark;
+        font-size: 1rem;
+        border: none;
         background-color: @color-background;
         display: flex;
 
         .ui-confirmdialog-icon {
-            font-size   : 3rem;
-            color       : @color-1;
+            font-size: 3rem;
+            color: @color-1;
             margin-right: 30px;
         }
 
         .ui-confirmdialog-message {
-            flex           : 1;
-            display        : flex;
+            flex: 1;
+            display: flex;
             justify-content: flex-start;
-            align-items    : center;
-            font-size      : 1rem;
+            align-items: center;
+            font-size: 1rem;
         }
 
         .form {
@@ -65,17 +65,27 @@ body .ui-dialog {
                 margin-bottom: 30px;
             }
         }
+
+        .body-content {
+            width: 100%;
+        }
+    }
+
+    .footer-modal {
+        .left {
+            float: left;
+        }
     }
 }
 
 
 .modal-sm {
-    width    : 25%;
+    width: 25%;
     min-width: 400px;
 }
 
 .modal-md {
-    width    : 40%;
+    width: 40%;
     min-width: 400px;
 }
 
@@ -131,7 +141,7 @@ body .ui-dialog {
 
 .modal-vertical-fixed {
     .ui-dialog {
-        top      : 50% !important;
+        top: 50% !important;
         transform: translateY(-50%) !important;
     }
 }

@@ -1,26 +1,26 @@
 input,
 textarea,
 select {
-    background   : none;
-    border       : none;
+    background: none;
+    border: none;
     border-bottom: 1px solid @color-dark;
-    color        : @color-dark;
-    padding      : 8px;
+    color: @color-dark;
+    padding: 8px;
     // width     :  ~'calc(100% - 16px)';
-    width        : 100%;
-    font-size    : 1rem;
+    width: 100%;
+    font-size: 1rem;
     outline-color: @color-2;
-    font-family  : sans-serif;
+    font-family: sans-serif;
 
     &::placeholder {
-        color    : @color-dark;
-        opacity  : 0.8;
+        color: @color-dark;
+        opacity: 0.8;
         font-size: 1em;
     }
 
     &.light {
         border-bottom: 1px solid @color-light;
-        color        : @color-light;
+        color: @color-light;
 
         &::placeholder {
             color: @color-light;
@@ -34,13 +34,13 @@ textarea {
 }
 
 .btn {
-    background   : none;
-    border       : 2px solid @color-1;
-    color        : @color-1;
+    background: none;
+    border: 2px solid @color-1;
+    color: @color-1;
     border-radius: 999px;
-    padding      : 0.3em 2em;
+    padding: 0.3em 2em;
     outline-color: @color-2;
-    cursor       : pointer;
+    cursor: pointer;
 
     &:hover {
         background-color: fade(@color-1, 20);
@@ -48,13 +48,13 @@ textarea {
 
     &:active {
         background-color: fade(@color-1, 50);
-        color           : @color-light;
+        color: @color-light;
     }
 }
 
 .btn-light {
     border-color: @color-light;
-    color       : @color-light;
+    color: @color-light;
 
     &:hover {
         background-color: fade(@color-light, 20);
@@ -62,7 +62,7 @@ textarea {
 
     &:active {
         background-color: fade(@color-light, 90);
-        color           : @color-1;
+        color: @color-1;
     }
 }
 
@@ -79,9 +79,9 @@ textarea {
     }
 
     .ui-calendar-button {
-        background-color: @color-1 !important;
-        border-color    : @color-1 !important;
-        border-radius   : 0 !important;
+        background-color: @color-1  !important;
+        border-color: @color-1  !important;
+        border-radius: 0 !important;
 
         &:hover {
             opacity: 0.8;
@@ -91,7 +91,8 @@ textarea {
             opacity: 0.6;
         }
     }
-    .ui-inputtext{
+
+    .ui-inputtext {
         background: none;
     }
 }

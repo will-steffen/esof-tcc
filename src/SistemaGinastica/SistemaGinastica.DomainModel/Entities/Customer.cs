@@ -23,6 +23,9 @@ namespace SistemaGinastica.DomainModel.Entities
         [Required]
         public PlanType PlanType { get; set; }
 
+        [Column("num_plan_value")]
+        public float PlanValue { get; set; }
+
         [Column("txt_registration")]
         [StringLength(150)]
         [Required]

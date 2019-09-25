@@ -145,15 +145,7 @@ export class Filter<T> {
                     fieldDto.type = FilterFieldSearchType.LIKE;
                 }
                 if (field.filterType) {
-                    fieldDto.type = field.filterType;
-                    if (field.value.constructor.name == 'Date') {
-                        let d: Date = new Date(field.value.getTime());
-                        if (field.filterType == FilterFieldSearchType.LESS_EQUAL) {
-                            fieldDto.argument = Date.GetLastInstant(d);
-                        } else if (field.filterType == FilterFieldSearchType.LESS) {
-                            fieldDto.argument = Date.GetFirstInstant(d);
-                        }
-                    }
+                    fieldDto.type = field.filterType;             
                 }
                 dto.fields.push(fieldDto);
             }

@@ -2,8 +2,8 @@
 interface Array<T> {
     Contains(item): boolean;
     RemoveFirstByProp(prop, value): void;
-    OrderBy(f: (obj: T) => boolean, asc: boolean): T[];
-    OrderBy(f: (obj: T) => boolean): T[];
+    OrderBy(f: (obj: T) => any, asc: boolean): T[];
+    OrderBy(f: (obj: T) => any): T[];
     Order(): T[];
     Order(asc): T[];
     Any(f: (obj: T) => boolean): boolean;

@@ -39,6 +39,9 @@ export let Locale: LocaleType = {
         birthDate: 'Data de Nascimento',
         planType: 'Tipo de Plano',
         registration: 'Matrícula',
+        nextPayment: 'Próximo Pagamento',
+        planValue: 'Valor do Plano',
+
     },
 
     groupClass: {

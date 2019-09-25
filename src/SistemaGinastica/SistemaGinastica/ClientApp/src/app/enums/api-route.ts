@@ -7,6 +7,7 @@ export const ApiRoute = {
     customer: {
         default: '/api/customer',
         filter: '/api/customer/filter',
+        payment: '/api/customer/payment',
     },
     instructor: {
         default: '/api/instructor',

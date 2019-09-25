@@ -25,7 +25,88 @@
             <g-form-input [input]="form.planType"></g-form-input>
         </div>
         <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.planValue"></g-form-input>
+        </div>
+        <div class="ui-g-6 ui-sm-12">
             <g-form-input [input]="form.registration"></g-form-input>
         </div>
     </div>
 </g-form-dialog>
+
+
+<p-dialog [(visible)]="showPayment" [modal]="true" [styleClass]="'modal-md'" [resizable]="false" [blockScroll]="true"
+    [closeOnEscape]="true" [header]="'Pagamentos'">
+    <div class="body-content" *ngIf="customerOnEditPayment">
+        Nome: {{ customerOnEditPayment.name }} 
+
+        <div class="table">
+            <p-table [value]="customerOnEditPayment.paymentList" [autoLayout]="true">
+                <ng-template pTemplate="header">
+                    <tr *ngIf="table.data.length">
+                        <th [pSortableColumn]="'expectedDate'">
+                            <p-sortIcon [field]="'expectedDate'"></p-sortIcon>
+                            Data Estimada
+                        </th>
+                        <th [pSortableColumn]="'paymentDate'">
+                            <p-sortIcon [field]="'paymentDate'"></p-sortIcon>
+                            Data de Pagamento
+                        </th>
+                        <th [pSortableColumn]="'value'">
+                            <p-sortIcon [field]="'value'"></p-sortIcon>
+                            Valor
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td> {{ item.expectedDate.toLocaleDateString() }} </td>
+                        <td> {{ item.paymentDate ? item.paymentDate.toLocaleDateString() : '-' }} </td>
+                        <td> {{ item.value.toFixed(2) }} </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <p-footer class="footer-modal">
+        <div class="button-modal">
+            <button class="btn left" (click)="showPayment = false">
+                <fa-icon [icon]="icon.no"></fa-icon>
+                <!-- {{ i18n.t.label.delete }} -->
+                Fechar
+            </button>
+
+            <button class="btn" (click)="addPayment()">
+                <fa-icon [icon]="icon.creditCard"></fa-icon>
+                <!-- {{ i18n.t.label.delete }} -->
+                Registrar Novo Pagamento
+            </button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="showAddPayment" [modal]="true" [styleClass]="'modal-sm'" [resizable]="false" [blockScroll]="true"
+    [closeOnEscape]="true" [header]="'Registrar Pagamento'">
+    <div class="body-content" *ngIf="customerOnEditPayment">
+        <div class="form ui-g">
+            <div class="ui-g-12">
+                <g-form-input [input]="paymentForm.date"></g-form-input>
+            </div>
+            <div class="ui-g-12">
+                <g-form-input [input]="paymentForm.value"></g-form-input>
+            </div>
+        </div>
+    </div>
+    <p-footer class="footer-modal">
+        <div class="button-modal">
+            <button class="btn left" (click)="showAddPayment = false">
+                <fa-icon [icon]="icon.cancel"></fa-icon>
+                {{ i18n.t.label.cancel }}
+            </button>
+
+            <button class="btn" (click)="savePayment()">
+                <fa-icon [icon]="icon.save"></fa-icon>
+                {{ i18n.t.label.save }}
+            </button>
+        </div>
+    </p-footer>
+</p-dialog>

@@ -12,6 +12,7 @@ namespace SistemaGinastica.Service.Dto
         public DateTime birthDate { get; set; }
         public PlanType planType { get; set; }
         public string registration { get; set; }
+        public float planValue { get; set; }
         public virtual List<PaymentDto> paymentList { get; set; }
 
         public CustomerDto() { }
@@ -22,6 +23,7 @@ namespace SistemaGinastica.Service.Dto
             birthDate = model.BirthDate;
             planType = model.PlanType;
             registration = model.Registration;
+            planValue = model.PlanValue;
             if (model.PaymentList != null) paymentList = model.PaymentList.Select(x => new PaymentDto(x)).ToList();
         }
     }
