@@ -14,7 +14,7 @@ export class Customer extends PersonDataModel {
     static fromData(data) {
         let e: Customer = super.fromData(data);
         e.birthDate = e.birthDate ? new Date(e.birthDate) : null;
-        e.paymentList = e.paymentList ? e.paymentList.map(x => Payment.fromData(x)) : [];
+        e.paymentList = e.paymentList ? e.paymentList.map(Payment.fromData) : [];
         e.nextPayment = e.paymentList.First(x => !!x.expectedDate && !x.paymentDate);        
         return e;
     }

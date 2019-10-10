@@ -1,5 +1,7 @@
 ﻿using SistemaGinastica.DomainModel.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaGinastica.Service.Dto
 {
@@ -9,6 +11,7 @@ namespace SistemaGinastica.Service.Dto
         public DateTimeOffset? paymentDate { get; set; }
         public float value { get; set; }
         public long idCustomer { get; set; }
+        public List<VacationDto> vacationList { get; set; }
 
         public PaymentDto() { }
 
@@ -18,6 +21,9 @@ namespace SistemaGinastica.Service.Dto
             paymentDate = model.PaymentDate;
             value = model.Value;
             idCustomer = model.IdCustomer;
+            vacationList = model.VacationList != null ? model.VacationList.Select(x => new VacationDto(x)).ToList() : null;
+
+
         }
     }
 }
