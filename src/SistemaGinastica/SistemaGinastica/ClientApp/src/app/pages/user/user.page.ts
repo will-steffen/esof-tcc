@@ -35,8 +35,8 @@ export class UserPage extends BaseFilterPage<User, UserForm> {
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model));
-        this.table.Action(Icon.delete, model => this.delete(model));
+        this.table.Action(Icon.edit, model => this.edit(model)).Tooltip(this.i18n.t.label.edit);
+        this.table.Action(Icon.delete, model => this.delete(model)).Tooltip(this.i18n.t.label.delete);
 
         this.table.Column()
             .Label(this.i18n.t.user.username)

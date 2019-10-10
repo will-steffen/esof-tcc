@@ -20,6 +20,8 @@ namespace SistemaGinastica.Service.Entities
         {
             Customer customer = MapAndSave(new Customer(), dto);
             paymentService.GenerateFirstPayment(customer);
+            customer.Registration = customer.Id.ToString().PadLeft(5, '0');
+            Save(customer);
             return customer;
         }
 
@@ -30,8 +32,7 @@ namespace SistemaGinastica.Service.Entities
             model.Rg = dto.rg;
             model.Address = dto.address;
             model.BirthDate = dto.birthDate;
-            model.PlanType = dto.planType;
-            model.Registration = dto.registration;
+            model.PlanType = dto.planType;            
             model.PlanValue = dto.planValue;
             return base.Map(model, dto);
         }

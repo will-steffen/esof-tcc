@@ -4,6 +4,7 @@ export enum FormInputType {
     NUMBER = 'number',
     SELECT = 'select',
     PASSWORD = 'password',
+    MASK = 'mask',
     CHECKBOX = 'checkbox',
     DATE = 'date',
     DATE_ONLY_TIME = 'date_only_time',

@@ -1,9 +1,14 @@
-<div class="input-group" *ngIf="input" [class.invalid]="showInvalidClass()">
+<div class="input-group" *ngIf="input" [class.invalid]="showInvalidClass()" [class.disabled]="input.disabled">
     <label>{{ getLabel() }}</label>
 
     <!-- TEXT, PASSWORD -->
     <input *ngIf="input.type == FormInputType.TEXT || input.type == FormInputType.PASSWORD" [(ngModel)]="input.value"
-        type="{{ input.type == FormInputType.PASSWORD ? 'password' : '' }}" id="{{ input.guid }}">
+        type="{{ input.type == FormInputType.PASSWORD ? 'password' : '' }}" id="{{ input.guid }}" [disabled]="input.disabled">
+
+    <!-- MASK -->
+    <p-inputMask [(ngModel)]="input.value" mask="{{ input.mask }}"
+        inputId="{{ input.guid }}" *ngIf="input.type == FormInputType.MASK"
+        slotChar="_"></p-inputMask>
 
     <!-- NUMBER -->
     <input *ngIf="input.type == FormInputType.NUMBER" [(ngModel)]="input.value" type="number" id="{{ input.guid }}">

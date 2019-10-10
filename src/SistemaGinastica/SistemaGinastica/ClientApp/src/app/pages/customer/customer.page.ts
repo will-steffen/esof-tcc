@@ -43,11 +43,22 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model));
-        this.table.Action(Icon.creditCard, model => this.editPayment(model));
-        this.table.Action(Icon.delete, model => this.delete(model));
+
+        this.table.Action(Icon.edit, model => this.edit(model))
+            .Tooltip(this.i18n.t.label.edit);
+
+        this.table.Action(Icon.creditCard, model => this.editPayment(model))
+            .Tooltip(this.i18n.t.customer.payment);
+
+        this.table.Action(Icon.plane, model => this.editPayment(model))
+            .Tooltip(this.i18n.t.customer.vacation)
+            .DisabledIf(model => model.planType != PlanType.ANNUALLY);
+
+        this.table.Action(Icon.delete, model => this.delete(model))
+            .Tooltip(this.i18n.t.label.delete);
 
 
+            
         this.table.Column()
             .Label(this.i18n.t.customer.registration)
             .OrderBy(CustomerField.REGISTRATION)

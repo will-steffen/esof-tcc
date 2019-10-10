@@ -20,11 +20,11 @@ export class CustomerForm extends BaseForm<Customer> {
             .Type(FormInputType.DATE)
             .Required();
 
-        this.planType = this.Input<PlanType>(this.i18n.t.customer.planType)            
+        this.planType = this.Input<PlanType>(this.i18n.t.customer.planType)           
         .Options(FormInputOptions.fromEnum(PlanType, this.i18n.t.enum.PlanType), true)
             .Required();
 
-        this.registration = this.Input<string>(this.i18n.t.customer.registration).Required();
+        this.registration = this.Input<string>(this.i18n.t.customer.registration).Disabled();
         this.planValue = this.Input<string>(this.i18n.t.customer.planValue)
             .Type(FormInputType.NUMBER)
             .Required();

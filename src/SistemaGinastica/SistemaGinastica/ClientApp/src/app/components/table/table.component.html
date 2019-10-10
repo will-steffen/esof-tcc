@@ -33,7 +33,11 @@
 
                 <td class="action" *ngIf="table.actionList.length">
                     <section>
-                        <fa-icon *ngFor="let act of table.actionList" [icon]="act.icon" (click)="act.action(item)">
+                        <fa-icon *ngFor="let act of table.actionList" 
+                        [icon]="act.icon" (click)="act.click(item)" 
+                        [class.disabled]="act.isDisabled(item)"
+                        pTooltip="{{ act.tooltip }}"
+                        tooltipPosition="top">
                         </fa-icon>
                     </section>
                 </td>

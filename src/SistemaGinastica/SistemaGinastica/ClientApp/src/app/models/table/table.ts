@@ -9,9 +9,10 @@ export class Table<T> {
     columnList: TableColumn<T>[] = [];
     actionList: TableColumnAction<T>[] = [];
 
-    Action(icon, action: (item: T) => void, isVisible: (item: T) => boolean = (x) => true) {
-        this.actionList.push(new TableColumnAction<T>(icon, action, isVisible));
-        return this;
+    Action(icon, action: (item: T) => void) : TableColumnAction<T> {
+        let actionIcon = new TableColumnAction<T>(icon, action);
+        this.actionList.push(actionIcon);
+        return actionIcon;
     }
 
     Column(): TableColumn<T> {

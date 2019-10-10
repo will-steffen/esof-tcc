@@ -9,8 +9,8 @@ export class PersonDataModelForm extends BaseForm<PersonDataModel> {
 
     configure() {
         this.name = this.Input(this.i18n.t.personData.name);
-        this.rg = this.Input(this.i18n.t.personData.rg);
-        this.cpf = this.Input(this.i18n.t.personData.cpf);
+        this.rg = this.Input<string>(this.i18n.t.personData.rg).Mask('99.999.999-9');
+        this.cpf = this.Input<string>(this.i18n.t.personData.cpf).Mask('999.999.999-99');
 
         if (this.model) {
             this.name.SetValue(this.model.name);

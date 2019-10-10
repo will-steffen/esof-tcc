@@ -28,7 +28,6 @@ namespace SistemaGinastica.DomainModel.Entities
 
         [Column("txt_registration")]
         [StringLength(150)]
-        [Required]
         public string Registration { get; set; }
 
         public virtual List<Payment> PaymentList { get; set; }

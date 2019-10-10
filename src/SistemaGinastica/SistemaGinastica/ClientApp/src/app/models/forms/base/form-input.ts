@@ -20,6 +20,7 @@ export class FormInput<TValue> {
     required = false;
     disabled = false;
     showValidation = false;
+    mask: string;
 
     validationList: FormInputValidation[] = [];
 
@@ -77,6 +78,14 @@ export class FormInput<TValue> {
         if(value === null) value = '';
         this.value = value;
     }
+
+    Mask(mask: string) {
+        this.mask = mask;        
+        return this.Type(FormInputType.MASK);
+    }
+
+
+
 
     reset() {
         this.value = this.defaultValue;

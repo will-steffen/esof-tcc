@@ -31,6 +31,7 @@ export let Locale: LocaleType = {
         confirmDelete: 'Tem certeza que deseja excluir este registro?',
         confirmLogout: 'Tem certeza que deseja sair do sistema?',
         close: 'Fechar',
+        edit: 'Editar'
     },
 
     customer: {
@@ -42,7 +43,8 @@ export let Locale: LocaleType = {
         registration: 'Matrícula',
         nextPayment: 'Próximo Pagamento',
         planValue: 'Valor do Plano',
-
+        payment: 'Pagamentos',
+        vacation: 'Férias',
     },
 
     groupClass: {
