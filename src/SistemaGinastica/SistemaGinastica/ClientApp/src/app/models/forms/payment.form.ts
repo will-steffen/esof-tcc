@@ -8,11 +8,11 @@ export class PaymentForm extends BaseForm<Payment> {
     value: FormInput<string>;
 
     configure() {
-        this.date = this.Input<Date>(this.i18n.t.instructor.authorizedMuscle)
+        this.date = this.Input<Date>(this.i18n.t.payment.date)
             .Type(FormInputType.DATE)
             .Required();
 
-        this.value = this.Input<string>(this.i18n.t.instructor.authorizedGroupClass)
+        this.value = this.Input<string>(this.i18n.t.payment.value)
             .Type(FormInputType.NUMBER)
             .Required(); 
     }

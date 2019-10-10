@@ -30,6 +30,7 @@ export let Locale: LocaleType = {
         hideFilter: 'Recolher Filtros',
         confirmDelete: 'Tem certeza que deseja excluir este registro?',
         confirmLogout: 'Tem certeza que deseja sair do sistema?',
+        close: 'Fechar',
     },
 
     customer: {
@@ -89,6 +90,16 @@ export let Locale: LocaleType = {
         name: 'Nome',
         rg: 'RG',
         cpf: 'CPF'
+    },
+
+    payment: {
+        value: 'Valor',
+        date: 'Data de Pagamento',
+        registerPayment: 'Registrar Novo Pagamento',
+        expectedDate: 'Data Estimada',
+        message: {
+            generalError: 'Falha para registrar o Pagamento',
+        },
     },
 
     enum: EnumLocale

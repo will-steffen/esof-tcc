@@ -37,7 +37,7 @@
 <p-dialog [(visible)]="showPayment" [modal]="true" [styleClass]="'modal-md'" [resizable]="false" [blockScroll]="true"
     [closeOnEscape]="true" [header]="'Pagamentos'">
     <div class="body-content" *ngIf="customerOnEditPayment">
-        Nome: {{ customerOnEditPayment.name }} 
+        {{ i18n.t.personData.name }}: {{ customerOnEditPayment.name }}
 
         <div class="table">
             <p-table [value]="customerOnEditPayment.paymentList" [autoLayout]="true">
@@ -45,15 +45,15 @@
                     <tr *ngIf="table.data.length">
                         <th [pSortableColumn]="'expectedDate'">
                             <p-sortIcon [field]="'expectedDate'"></p-sortIcon>
-                            Data Estimada
+                            {{ i18n.t.payment.expectedDate }}
                         </th>
                         <th [pSortableColumn]="'paymentDate'">
                             <p-sortIcon [field]="'paymentDate'"></p-sortIcon>
-                            Data de Pagamento
+                            {{ i18n.t.payment.date }}
                         </th>
                         <th [pSortableColumn]="'value'">
                             <p-sortIcon [field]="'value'"></p-sortIcon>
-                            Valor
+                            {{ i18n.t.payment.value }}
                         </th>
                     </tr>
                 </ng-template>
@@ -71,14 +71,12 @@
         <div class="button-modal">
             <button class="btn left" (click)="showPayment = false">
                 <fa-icon [icon]="icon.no"></fa-icon>
-                <!-- {{ i18n.t.label.delete }} -->
-                Fechar
+                {{ i18n.t.label.close }}
             </button>
 
             <button class="btn" (click)="addPayment()">
                 <fa-icon [icon]="icon.creditCard"></fa-icon>
-                <!-- {{ i18n.t.label.delete }} -->
-                Registrar Novo Pagamento
+                {{ i18n.t.payment.registerPayment }}
             </button>
         </div>
     </p-footer>

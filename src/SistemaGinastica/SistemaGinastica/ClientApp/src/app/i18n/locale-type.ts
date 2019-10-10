@@ -25,6 +25,7 @@ export interface LocaleType {
         hideFilter: string,
         confirmDelete: string,
         confirmLogout: string,
+        close: string,
     },
 
     customer: {
@@ -83,6 +84,16 @@ export interface LocaleType {
         name: string,
         rg: string,
         cpf: string
+    },
+
+    payment: {
+        value: string,
+        date: string,
+        registerPayment: string,
+        expectedDate: string,
+        message: {
+            generalError: string,
+        },
     },
 
     enum: {
