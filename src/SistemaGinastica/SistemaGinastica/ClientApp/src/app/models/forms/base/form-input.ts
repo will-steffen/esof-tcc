@@ -21,6 +21,10 @@ export class FormInput<TValue> {
     disabled = false;
     showValidation = false;
     mask: string;
+    disabledIf: Function;
+    onChangeList: Function[] = [];
+    maxDate: Date;
+    minDate: Date;
 
     validationList: FormInputValidation[] = [];
 
@@ -63,6 +67,11 @@ export class FormInput<TValue> {
         return this;
     }
 
+    DisabledIf(disabledIf: () => boolean) {
+        this.disabledIf = disabledIf
+        return this;
+    }
+
     Validation(message: string, validation: (input: FormInput<TValue>) => boolean) {
         let v = new FormInputValidation(message, validation);
         this.validationList.push(v);
@@ -76,6 +85,7 @@ export class FormInput<TValue> {
 
     SetValue(value: any) {
         if(value === null) value = '';
+        this.onChangeEvent();
         this.value = value;
     }
 
@@ -84,11 +94,35 @@ export class FormInput<TValue> {
         return this.Type(FormInputType.MASK);
     }
 
+    OnChange(onChange: () => void) {
+        this.onChangeList.push(onChange);
+        return this;
+    }
+
+    MaxDate(maxDate : Date) {
+        this.maxDate = maxDate;
+        return this;
+    }
+
+    MinDate(minDate : Date) {
+        this.minDate = minDate;
+        return this;
+    }
+
 
 
 
     reset() {
         this.value = this.defaultValue;
+    }
+
+    isDisabled() {
+        if(this.disabledIf) return this.disabledIf();
+        return this.disabled;
+    }
+
+    onChangeEvent() {
+        this.onChangeList.forEach(x => x());
     }
 
     isRequiredValid(): boolean {

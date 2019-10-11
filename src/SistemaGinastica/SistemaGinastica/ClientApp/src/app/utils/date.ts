@@ -23,9 +23,20 @@ Date.DaysBetween = function (date1, date2): number {
 
 interface Date {
     ToOnlyTimeString() : string;
+    AddDays(n: number) : Date;
+    Clone(): Date;
 }
 
 Date.prototype.ToOnlyTimeString = function (): string {
     const date = this as Date;
     return date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0');
+}
+
+Date.prototype.AddDays = function(n: number) {
+    this.setDate(this.getDate() + n);
+    return this;
+}
+
+Date.prototype.Clone = function() {    
+    return new Date(this.getTime());
 }

@@ -2,13 +2,13 @@ import { Component } from "@angular/core";
 import { ApiRoute } from "src/app/enums/api-route";
 import { GroupClassField } from "src/app/enums/group-class-field";
 import { Icon } from "src/app/enums/icon";
+import { WeekDay } from "src/app/enums/week-day";
 import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 import { GroupClassForm } from "src/app/models/forms/group-class.form";
 import { GroupClass } from "src/app/models/group-class";
 import { InstructorService } from "src/app/services/instructor.service";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
-import { WeekDay } from "src/app/enums/week-day";
 
 @Component({
     selector: 'app-group-class',
@@ -40,7 +40,6 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.filter.CreateField(this.i18n.t.groupClass.room, GroupClassField.ROOM);
         this.filter.CreateField(this.i18n.t.groupClass.weekDay, GroupClassField.WEEK_DAY)
             .Options(FormInputOptions.fromEnum(WeekDay, this.i18n.t.enum.WeekDay), true);
-
     }
 
 
@@ -73,8 +72,8 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
             .OrderBy(GroupClassField.END_HOUR)
             .Value(x => x.endHour.ToOnlyTimeString());
 
-         this.table.Column()
-            .Label(this.i18n.t.groupClass.weekDay)            
+        this.table.Column()
+            .Label(this.i18n.t.groupClass.weekDay)
             .Value(x => x.weekDayList.map(x => this.i18n.t.enum.WeekDay[x]).join(', '));
     }
 }

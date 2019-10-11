@@ -1,20 +1,24 @@
-<div class="input-group" *ngIf="input" [class.invalid]="showInvalidClass()" [class.disabled]="input.disabled">
+<div class="input-group" *ngIf="input" [class.invalid]="showInvalidClass()" [class.disabled]="input.isDisabled()">
     <label>{{ getLabel() }}</label>
 
     <!-- TEXT, PASSWORD -->
     <input *ngIf="input.type == FormInputType.TEXT || input.type == FormInputType.PASSWORD" [(ngModel)]="input.value"
-        type="{{ input.type == FormInputType.PASSWORD ? 'password' : '' }}" id="{{ input.guid }}" [disabled]="input.disabled">
+        type="{{ input.type == FormInputType.PASSWORD ? 'password' : '' }}" id="{{ input.guid }}" [disabled]="input.isDisabled()"
+        (change)="input.onChangeEvent()">
 
     <!-- MASK -->
     <p-inputMask [(ngModel)]="input.value" mask="{{ input.mask }}"
         inputId="{{ input.guid }}" *ngIf="input.type == FormInputType.MASK"
+        [disabled]="input.isDisabled()" (change)="input.onChangeEvent()"
         slotChar="_"></p-inputMask>
 
     <!-- NUMBER -->
-    <input *ngIf="input.type == FormInputType.NUMBER" [(ngModel)]="input.value" type="number" id="{{ input.guid }}">
+    <input *ngIf="input.type == FormInputType.NUMBER" [(ngModel)]="input.value" 
+    type="number" id="{{ input.guid }}" [disabled]="input.isDisabled()" (change)="input.onChangeEvent()">
 
     <!-- SELECT -->
-    <select *ngIf="input.type == FormInputType.SELECT" [(ngModel)]="input.value" id="{{ input.guid }}">
+    <select *ngIf="input.type == FormInputType.SELECT" [(ngModel)]="input.value" id="{{ input.guid }}" 
+    [disabled]="input.isDisabled()" (change)="input.onChangeEvent()">
         <option value="" *ngIf="input.firstOptionEmpty"> {{ getPlaceholder() }} </option>
         <option *ngFor="let opt of input.options" value="{{ opt.value }}">
             {{ opt.label }}
@@ -23,26 +27,40 @@
 
     <!-- TEXTAREA -->
     <textarea *ngIf="input.type == FormInputType.TEXTAREA" [rows]="5" [(ngModel)]="input.value"
-        id="{{ input.guid }}"></textarea>
+        id="{{ input.guid }}" [disabled]="input.isDisabled()" (change)="input.onChangeEvent()"></textarea>
 
     <!-- CHECKBOX -->
-    <input *ngIf="input.type == FormInputType.CHECKBOX" [(ngModel)]="input.value" type="checkbox" id="{{ input.guid }}">
+    <input *ngIf="input.type == FormInputType.CHECKBOX" [(ngModel)]="input.value" 
+    [disabled]="input.isDisabled()" type="checkbox" id="{{ input.guid }}" (change)="input.onChangeEvent()">
 
     <!-- DATE, DATE_MONTH, DATE_TIME_ONLY, DATE_AND_TIME -->
     <div *ngIf="input.type == FormInputType.DATE || input.type == FormInputType.DATE_ONLY_TIME" class="date-input">
         <span>
-            <p-calendar [(ngModel)]="input.value" appendTo="body"
-                [timeOnly]="input.type == FormInputType.DATE_ONLY_TIME" [showIcon]="true" inputId="{{ input.guid }}"
-                placeholder="{{ getPlaceholder() }}"></p-calendar>
+            <p-calendar 
+                [locale]="i18n.t.calendar"
+                dateFormat="{{ i18n.t.calendar.dateFormat }}"
+                [(ngModel)]="input.value" 
+                appendTo="body" [disabled]="input.isDisabled()"
+                [timeOnly]="input.type == FormInputType.DATE_ONLY_TIME" 
+                [showIcon]="true" inputId="{{ input.guid }}"
+                placeholder="{{ getPlaceholder() }}" 
+                (onBlur)="input.onChangeEvent()" (onSelect)="input.onChangeEvent()"
+                [minDate]="input.minDate" [maxDate]="input.maxDate">
+            </p-calendar>
         </span>
     </div>
 
     <!-- MULTI_SELECT -->
     <div *ngIf="input.type == FormInputType.MULTI_SELECT">
         <span>
-            <p-multiSelect [options]="input.options" [(ngModel)]="input.value"                
-                [defaultLabel]="getPlaceholder()" appendTo="body"
+            <p-multiSelect 
+                [options]="input.options" 
+                [(ngModel)]="input.value"                
+                [defaultLabel]="getPlaceholder()" 
+                appendTo="body"
                 [selectedItemsLabel]="'{0} Itens Selecionados'"
+                [disabled]="input.isDisabled()"
+                (change)="input.onChangeEvent()"
                 inputId="{{ input.guid }}">
             </p-multiSelect>
         </span>

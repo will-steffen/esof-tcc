@@ -1,6 +1,19 @@
+export type CalendarLocaleType = {
+    firstDayOfWeek: number,
+    dayNames: string[],
+    dayNamesShort: string[],
+    dayNamesMin: string[],
+    monthNames: string[],
+    monthNamesShort: string[],
+    today: string,
+    clear: string,
+    dateFormat: string,
+    dateMonthFormat: string
+}
+
 export interface LocaleType {
     code: string,
-    dateFormat: string,
+    calendar: CalendarLocaleType,
     label: {
         cleanFilter: string,
         searchFilter: string,
@@ -97,6 +110,13 @@ export interface LocaleType {
         message: {
             generalError: string,
         },
+    },
+
+    vacation: {
+        initDate: string,
+        endDate: string,
+        daysLeft: string,
+        registerVacation: string,
     },
 
     enum: {

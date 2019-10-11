@@ -11,6 +11,8 @@ namespace SistemaGinastica.Service.Dto
         public DateTimeOffset? paymentDate { get; set; }
         public float value { get; set; }
         public long idCustomer { get; set; }
+        public DateTime periodStartDate { get; set; }
+        public DateTime periodEndDate { get; set; }
         public List<VacationDto> vacationList { get; set; }
 
         public PaymentDto() { }
@@ -21,6 +23,10 @@ namespace SistemaGinastica.Service.Dto
             paymentDate = model.PaymentDate;
             value = model.Value;
             idCustomer = model.IdCustomer;
+
+            periodStartDate = model.PeriodStartDate;
+            periodEndDate = model.PeriodEndDate;
+
             vacationList = model.VacationList != null ? model.VacationList.Select(x => new VacationDto(x)).ToList() : null;
 
 

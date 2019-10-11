@@ -10,6 +10,9 @@ import { PaymentForm } from "src/app/models/forms/payment.form";
 import { CustomerService } from "src/app/services/customer.service";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
+import { Vacation } from "src/app/models/vacation";
+import { VacationForm } from "src/app/models/forms/vacation.form";
+import { Payment } from "src/app/models/payment";
 
 @Component({
     selector: 'app-customer',
@@ -21,6 +24,11 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     showAddPayment = false;
     paymentForm = new PaymentForm();
     customerOnEditPayment: Customer;
+    paymentOnEditVacation: Payment;
+
+    vacationForm = new VacationForm();
+    showVacation = false;
+    showAddVacation = false;
 
     constructor(
         deps: BasePageDeps,
@@ -50,7 +58,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Action(Icon.creditCard, model => this.editPayment(model))
             .Tooltip(this.i18n.t.customer.payment);
 
-        this.table.Action(Icon.plane, model => this.editPayment(model))
+        this.table.Action(Icon.plane, model => this.editVacation(model))
             .Tooltip(this.i18n.t.customer.vacation)
             .DisabledIf(model => model.planType != PlanType.ANNUALLY);
 
@@ -112,5 +120,21 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
             .then(() => this.block.stop())
 
         this.showAddPayment = false;
+    }
+
+    editVacation(customer: Customer) {
+        this.customerOnEditPayment = customer;
+        this.paymentOnEditVacation = customer.getCurrentPaymentPeriod();
+        this.showVacation = true;
+    }
+
+    addVacation() {
+        this.vacationForm.deps(this.paymentOnEditVacation);
+        this.vacationForm.configure();   
+        this.showAddVacation = true;     
+    }
+
+    saveVacation() {
+        this.showAddVacation = false;
     }
 }

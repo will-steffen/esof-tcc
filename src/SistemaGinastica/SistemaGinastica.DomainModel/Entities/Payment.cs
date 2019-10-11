@@ -14,6 +14,12 @@ namespace SistemaGinastica.DomainModel.Entities
         [Column("dt_payment")]
         public DateTimeOffset? PaymentDate { get; set; }
 
+        [Column("dt_period_start")]
+        public DateTime PeriodStartDate { get; set; }
+
+        [Column("dt_period_end")]
+        public DateTime PeriodEndDate { get; set; }
+
         [Column("num_value")]
         public float Value { get; set; }
 

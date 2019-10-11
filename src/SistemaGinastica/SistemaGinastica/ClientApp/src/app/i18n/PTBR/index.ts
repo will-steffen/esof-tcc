@@ -2,10 +2,11 @@ import { I18nTags } from "src/app/enums/i18n-tags";
 import { Language } from "src/app/enums/language";
 import { LocaleType } from "../locale-type";
 import { EnumLocale } from "./enum";
+import { CalendarLocale } from "./calendar";
 
 export let Locale: LocaleType = {
     code: Language.PTBR,
-    dateFormat: 'dd/mm/yyyy',
+    calendar: CalendarLocale,
     label: {
         cleanFilter: 'Limpar',
         searchFilter: 'Consultar',
@@ -23,7 +24,7 @@ export let Locale: LocaleType = {
         requiredField: 'Campo obrigatório não preenchido',
         cancel: 'Cancelar',
         save: 'Salvar',
-        delete: 'Excluir',
+        delete: 'Excluir', 
         logout: 'Sair',
         add: 'Incluir',
         showFilter: 'Expandir Filtros',
@@ -102,6 +103,13 @@ export let Locale: LocaleType = {
         message: {
             generalError: 'Falha para registrar o Pagamento',
         },
+    },
+
+    vacation: {
+        initDate: 'Data de Início',
+        endDate: 'Data de Retorno',
+        daysLeft: 'Dias Restantes',
+        registerVacation: 'Agendar Período de Férias',
     },
 
     enum: EnumLocale
