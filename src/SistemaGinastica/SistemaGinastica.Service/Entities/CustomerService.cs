@@ -3,6 +3,7 @@ using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.Service.Dto;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SistemaGinastica.Service.Entities
@@ -41,6 +42,37 @@ namespace SistemaGinastica.Service.Entities
         {           
             paymentService.RegisterPayment(FindById(payment.idCustomer), payment);
             return FindById(payment.idCustomer);
+        }
+
+        public Customer RegisterVacation(VacationDto vacation)
+        {
+            Tuple<Payment, int> registered = paymentService.RegisterVacation(vacation);
+            Payment payment = registered.Item1;
+            int newVacationDays = registered.Item2;
+            Customer customer = FindById(payment.IdCustomer);
+            customer.PaymentList.OrderBy(x => x.PeriodStartDate);
+            bool adjustDates = false;
+            customer.PaymentList.ForEach(pay =>
+            {
+                if (adjustDates)
+                {
+                    pay.PeriodStartDate = pay.PeriodStartDate.AddDays(newVacationDays);
+                    pay.ExpectedDate = pay.ExpectedDate.AddDays(newVacationDays);
+                }
+
+                if (pay.Id == payment.Id)
+                {
+                    adjustDates = true;
+                }
+
+                if (adjustDates)
+                {
+                    pay.PeriodEndDate = pay.PeriodEndDate.AddDays(newVacationDays);                    
+                }
+            });
+
+            Save(customer);
+            return customer;
         }
     }
 }

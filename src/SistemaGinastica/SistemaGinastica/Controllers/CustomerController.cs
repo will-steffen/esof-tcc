@@ -41,18 +41,18 @@ namespace SistemaGinastica.Controllers
             }
         }
 
-        //[HttpPost("vacation")]
-        //[Authorize]
-        //public ActionResult<CustomerDto> RegisterVacation([FromBody] VacationDto payment)
-        //{
-        //    try
-        //    {
-        //        return Ok(GetDto(Service.RegisterPayment(payment)));
-        //    }
-        //    catch (SgException e)
-        //    {
-        //        return HandleError(e);
-        //    }
-        //}
+        [HttpPost("vacation")]
+        [Authorize]
+        public ActionResult<CustomerDto> RegisterVacation([FromBody] VacationDto vacation)
+        {
+            try
+            {
+                return Ok(GetDto(Service.RegisterVacation(vacation)));
+            }
+            catch (SgException e)
+            {
+                return HandleError(e);
+            }
+        }
     }
 }

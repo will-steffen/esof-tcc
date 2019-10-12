@@ -21,5 +21,10 @@ namespace SistemaGinastica.DomainModel.Entities
         [ForeignKey("IdPayment")]
         [InverseProperty("VacationList")]
         public virtual Payment Payment { get; set; }
+
+        public TimeSpan GetDuration()
+        {
+            return EndDate.Subtract(InitDate);
+        }
     }
 }

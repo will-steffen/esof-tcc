@@ -10,7 +10,6 @@ import { PaymentForm } from "src/app/models/forms/payment.form";
 import { CustomerService } from "src/app/services/customer.service";
 import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
-import { Vacation } from "src/app/models/vacation";
 import { VacationForm } from "src/app/models/forms/vacation.form";
 import { Payment } from "src/app/models/payment";
 
@@ -29,6 +28,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     vacationForm = new VacationForm();
     showVacation = false;
     showAddVacation = false;
+    PlanType = PlanType;
 
     constructor(
         deps: BasePageDeps,
@@ -57,10 +57,6 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
 
         this.table.Action(Icon.creditCard, model => this.editPayment(model))
             .Tooltip(this.i18n.t.customer.payment);
-
-        this.table.Action(Icon.plane, model => this.editVacation(model))
-            .Tooltip(this.i18n.t.customer.vacation)
-            .DisabledIf(model => model.planType != PlanType.ANNUALLY);
 
         this.table.Action(Icon.delete, model => this.delete(model))
             .Tooltip(this.i18n.t.label.delete);
@@ -117,15 +113,18 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
                 this.showAddPayment = false;;
             })
             .catch(err => this.alert.error(this.i18n.t.payment.message.generalError))
-            .then(() => this.block.stop())
-
-        this.showAddPayment = false;
+            .then(() => this.block.stop())     
     }
 
-    editVacation(customer: Customer) {
-        this.customerOnEditPayment = customer;
-        this.paymentOnEditVacation = customer.getCurrentPaymentPeriod();
+    editVacation(payment: Payment) {
+        this.paymentOnEditVacation = payment;
+        this.showPayment = false;
         this.showVacation = true;
+    }
+
+    closeVacation() {
+        this.showVacation = false;
+        this.showPayment = true;
     }
 
     addVacation() {
@@ -135,6 +134,15 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     saveVacation() {
-        this.showAddVacation = false;
+        this.block.start();
+        this.customerService.registerVacation(this.vacationForm.getDTO())
+            .then(customer => {
+                this.customerOnEditPayment = Object.assign(this.customerOnEditPayment, customer);
+                let payment = this.customerOnEditPayment.paymentList.First(x => x.id == this.vacationForm.payment.id);
+                this.editVacation(payment);
+                this.showAddVacation = false;
+            })
+            .catch(err => this.alert.error(this.i18n.t.payment.message.generalError))
+            .then(() => this.block.stop());        
     }
 }

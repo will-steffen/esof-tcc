@@ -1,6 +1,7 @@
 ﻿using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.DomainModel.Enums;
+using SistemaGinastica.DomainModel.Exceptions;
 using SistemaGinastica.Service.Dto;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace SistemaGinastica.Service.Entities
     public class PaymentService : BaseModelService<Payment, PaymentDataAccess>
     {
         private VacationService vacationService;
+        private static int paymentDaysSpan = 2;
 
         public PaymentService(PaymentDataAccess da, VacationService vacationService) : base(da)
         {
@@ -22,7 +24,7 @@ namespace SistemaGinastica.Service.Entities
         {
             Payment payment = new Payment
             {
-                ExpectedDate = DateTime.Now.AddDays(2),
+                ExpectedDate = DateTime.Now.AddDays(paymentDaysSpan),
                 Customer = customer,
                 Value = customer.PlanValue,
                 PeriodStartDate = DateTime.Now,
@@ -37,31 +39,45 @@ namespace SistemaGinastica.Service.Entities
         public void RegisterPayment(Customer customer, PaymentDto paymentData)
         {
             Payment payment = customer.PaymentList.FirstOrDefault(x => x.PaymentDate == null);
-            payment.PaymentDate = DateTimeOffset.Now;            
+            payment.PaymentDate = paymentData.paymentDate;
             payment.Value = paymentData.value;
             Save(payment);
 
             Payment nextPayment = new Payment
             {
-                ExpectedDate = customer.PlanType == PlanType.Annually 
-                    ? payment.ExpectedDate.AddYears(1) 
-                    : payment.ExpectedDate.AddMonths(1),
-                PeriodStartDate = customer.PlanType == PlanType.Annually
-                    ? payment.PeriodStartDate.AddYears(1)
-                    : payment.PeriodStartDate.AddMonths(1),
-                PeriodEndDate = customer.PlanType == PlanType.Annually
-                    ? payment.PeriodStartDate.AddYears(2)
-                    : payment.PeriodStartDate.AddMonths(2),
+                PeriodStartDate = payment.PeriodEndDate.AddDays(1),
                 Customer = customer,
                 Value = customer.PlanValue
             };
+            nextPayment.ExpectedDate = nextPayment.PeriodStartDate.AddDays(paymentDaysSpan);
+            nextPayment.PeriodEndDate = customer.PlanType == PlanType.Annually
+                    ? nextPayment.PeriodStartDate.AddYears(1)
+                    : nextPayment.PeriodStartDate.AddMonths(1);
+            
             Save(nextPayment);
         }
 
-        //public Payment RegisterVacation(VacationDto vacation)
-        //{
-        //    paymentService.RegisterPayment(FindById(payment.idCustomer), payment);
-        //    return FindById(vacation.id);
-        //}
+        public Tuple<Payment, int> RegisterVacation(VacationDto vacationData)
+        {
+            Payment payment = FindById(vacationData.idPayment);
+
+            if (payment.VacationList.Count >= 3)
+            {
+                throw new SgException("VacationLimit");
+            }
+            Vacation vacation = new Vacation
+            {
+                Payment = payment,
+                InitDate = vacationData.initDate,
+                EndDate = vacationData.endDate,
+            };      
+            payment.VacationList.Add(vacation);
+            if(payment.GetVacationDays() > 30)
+            {
+                throw new SgException("VacationDaysLimit");
+            }           
+            Save(payment);
+            return Tuple.Create(payment, vacation.GetDuration().Days);
+        }
     }
 }

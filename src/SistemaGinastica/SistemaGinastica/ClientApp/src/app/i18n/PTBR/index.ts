@@ -32,7 +32,8 @@ export let Locale: LocaleType = {
         confirmDelete: 'Tem certeza que deseja excluir este registro?',
         confirmLogout: 'Tem certeza que deseja sair do sistema?',
         close: 'Fechar',
-        edit: 'Editar'
+        edit: 'Editar',
+        back: 'Voltar'
     },
 
     customer: {
@@ -109,6 +110,7 @@ export let Locale: LocaleType = {
         initDate: 'Data de Início',
         endDate: 'Data de Retorno',
         daysLeft: 'Dias Restantes',
+        periodsLeft: 'Períodos Restantes',
         registerVacation: 'Agendar Período de Férias',
     },
 

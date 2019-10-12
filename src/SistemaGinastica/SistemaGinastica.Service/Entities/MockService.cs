@@ -12,15 +12,18 @@ namespace SistemaGinastica.Service.Entities
         private UserService userService;
         private InstructorService instructorService;
         private GroupClassService groupClassService;
+        private CustomerService customerService;
 
         public MockService(
             UserService userService,
             InstructorService instructorService,
-            GroupClassService groupClassService)
+            GroupClassService groupClassService,
+            CustomerService customerService)
         {
             this.userService = userService;
             this.instructorService = instructorService;
             this.groupClassService = groupClassService;
+            this.customerService = customerService;
         }
 
         public void AdminUser()
@@ -56,6 +59,17 @@ namespace SistemaGinastica.Service.Entities
                 room = "Sala 3",
                 name = "Spnning",
                 idInstructor = instructor1.Id
+            });
+
+            Customer customer = customerService.Include(new CustomerDto
+            {
+                name = "Cliente número 1",
+                cpf = "00000000000",
+                rg = "000000003",
+                address = "Rua do Comercio",
+                birthDate = DateTime.Now.AddYears(-23),
+                planType = PlanType.Annually,
+                planValue = 900
             });
         }
 

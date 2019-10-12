@@ -3,6 +3,7 @@ import { ApiRoute } from "../enums/api-route";
 import { ServiceHandler } from "../handlers/service.handler";
 import { Customer } from "../models/customer";
 import { Payment } from "../models/payment";
+import { Vacation } from "../models/vacation";
 
 @Injectable()
 export class CustomerService {
@@ -21,6 +22,16 @@ export class CustomerService {
     registerPayment(paymentData: Payment): Promise<Customer> {
         return new Promise((resolve, reject) => {
             this.service.Post(ApiRoute.customer.payment, paymentData).then(data => {
+                resolve(Customer.fromData(data));
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+
+    registerVacation(vacationData: Vacation): Promise<Customer> {
+        return new Promise((resolve, reject) => {
+            this.service.Post(ApiRoute.customer.vacation, vacationData).then(data => {
                 resolve(Customer.fromData(data));
             }).catch(err => {
                 reject(err);

@@ -14,8 +14,10 @@ Date.Now = (): Date => {
 }
 
 Date.DaysBetween = function (date1, date2): number {
-    var one_day = 1000 * 60 * 60 * 24;
-    var difference_ms = date2.getTime() - date1.getTime();
+    let one_day = 1000 * 60 * 60 * 24;
+    let time1 = date1.getTime() - (date1.getTime() % one_day);
+    let time2 = date2.getTime() - (date2.getTime() % one_day);
+    var difference_ms = time2 - time1;
     return Math.round(difference_ms / one_day);
 }
 

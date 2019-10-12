@@ -54,30 +54,34 @@
             <p-table [value]="customerOnEditPayment.paymentList" [autoLayout]="true">
                 <ng-template pTemplate="header">
                     <tr *ngIf="table.data.length">
-                        <th [pSortableColumn]="'expectedDate'">
-                            <p-sortIcon [field]="'expectedDate'"></p-sortIcon>
-                            {{ i18n.t.payment.expectedDate }}
-                        </th>
-                        <th [pSortableColumn]="'paymentDate'">
-                            <p-sortIcon [field]="'paymentDate'"></p-sortIcon>
-                            {{ i18n.t.payment.date }}
-                        </th>
-                        <th [pSortableColumn]="'value'">
-                            <p-sortIcon [field]="'value'"></p-sortIcon>
-                            {{ i18n.t.payment.value }}
-                        </th>
-                        <th >
+                        <th>
                             <!-- {{ i18n.t.payment.value }} -->
                             Período de Uso
+                        </th>
+                        <th>{{ i18n.t.payment.value }}</th>
+                        <th>{{ i18n.t.payment.expectedDate }}</th>
+                        <th>{{ i18n.t.payment.date }}</th>
+                        <th *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
+                            <!-- {{ i18n.t.payment.value }} -->
+                            Dias de Férias
+                        </th>
+                        <th *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
+                            {{ i18n.t.customer.vacation }}
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
                     <tr>
+                        <td> {{ item.periodStartDate.toLocaleDateString() }} -
+                            {{ item.periodEndDate.toLocaleDateString() }} </td>
+                        <td> {{ item.value.toFixed(2) }} </td>
                         <td> {{ item.expectedDate.toLocaleDateString() }} </td>
                         <td> {{ item.paymentDate ? item.paymentDate.toLocaleDateString() : '-' }} </td>
-                        <td> {{ item.value.toFixed(2) }} </td>
-                        <td> {{ item.periodStartDate.toLocaleDateString() }} - {{ item.periodEndDate.toLocaleDateString() }} </td>
+                        <td *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY"> {{ item.getVacationDays() }}
+                        </td>
+                        <td class="action" *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
+                            <fa-icon [icon]="icon.plane" (click)="editVacation(item)"></fa-icon>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -135,9 +139,14 @@
                 <span>{{ customerOnEditPayment.registration }}</span>
             </div>
 
-            <div class="registration">
+            <div class="registration" [class.vacation-impeditive]="paymentOnEditVacation.getVacationDaysLeft() <= 0">
                 <label>{{ i18n.t.vacation.daysLeft }}</label>
-                <span>{{ paymentOnEditVacation.getMaxVacationDays() }}</span>
+                <span>{{ paymentOnEditVacation.getVacationDaysLeft() }}</span>
+            </div>
+
+            <div class="registration" [class.vacation-impeditive]="paymentOnEditVacation.getPeriodsLeft() <= 0">
+                <label>{{ i18n.t.vacation.periodsLeft }}</label>
+                <span>{{ paymentOnEditVacation.getPeriodsLeft() }}</span>
             </div>
 
             <div class="name">
@@ -154,16 +163,9 @@
             <p-table [value]="paymentOnEditVacation.vacationList" [autoLayout]="true">
                 <ng-template pTemplate="header">
                     <tr *ngIf="table.data.length">
-                        <th [pSortableColumn]="'initDate'">
-                            <p-sortIcon [field]="'initDate'"></p-sortIcon>
-                            {{ i18n.t.vacation.initDate }}
-                        </th>
-                        <th [pSortableColumn]="'endDate'">
-                            <p-sortIcon [field]="'endDate'"></p-sortIcon>
-                            {{ i18n.t.vacation.endDate }}
-                        </th>
-                        <th [pSortableColumn]="'value'">
-                            <p-sortIcon [field]="'value'"></p-sortIcon>
+                        <th>{{ i18n.t.vacation.initDate }}</th>
+                        <th>{{ i18n.t.vacation.endDate }}</th>
+                        <th>
                             <!-- {{ i18n.t.payment.value }} -->
                             Quantidade de Dias
                         </th>
@@ -173,21 +175,21 @@
                     <tr>
                         <td> {{ item.initDate.toLocaleDateString() }} </td>
                         <td> {{ item.endDate.toLocaleDateString() }} </td>
-                        <!-- <td> {{ item.value.toFixed(2) }} </td> -->
-                        <td> 6 </td>
+                        <td> {{ item.getVacationDays() }} </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
     </div>
-    <p-footer class="footer-modal">
+    <p-footer class="footer-modal" *ngIf="paymentOnEditVacation">
         <div class="button-modal">
-            <button class="btn left" (click)="showVacation = false">
-                <fa-icon [icon]="icon.no"></fa-icon>
-                {{ i18n.t.label.close }}
+            <button class="btn left" (click)="closeVacation()">
+                <fa-icon [icon]="icon.arrowLeft"></fa-icon>
+                {{ i18n.t.label.back }}
             </button>
 
-            <button class="btn" (click)="addVacation()">
+            <button class="btn" (click)="addVacation()"
+                [disabled]="paymentOnEditVacation.getVacationDaysLeft() <= 0 || paymentOnEditVacation.getPeriodsLeft() <= 0">
                 <fa-icon [icon]="icon.plane"></fa-icon>
                 {{ i18n.t.vacation.registerVacation }}
             </button>

@@ -39,7 +39,8 @@ export interface LocaleType {
         confirmDelete: string,
         confirmLogout: string,
         close: string,
-        edit: string
+        edit: string,
+        back: string,
     },
 
     customer: {
@@ -116,6 +117,7 @@ export interface LocaleType {
         initDate: string,
         endDate: string,
         daysLeft: string,
+        periodsLeft: string,
         registerVacation: string,
     },
 

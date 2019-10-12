@@ -45,7 +45,7 @@
                 [showIcon]="true" inputId="{{ input.guid }}"
                 placeholder="{{ getPlaceholder() }}" 
                 (onBlur)="input.onChangeEvent()" (onSelect)="input.onChangeEvent()"
-                [minDate]="input.minDate" [maxDate]="input.maxDate">
+                [minDate]="input.minDate" [maxDate]="input.maxDate" [defaultDate]="input.minDate">
             </p-calendar>
         </span>
     </div>

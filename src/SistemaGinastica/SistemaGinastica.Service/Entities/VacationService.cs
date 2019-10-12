@@ -1,8 +1,8 @@
 ﻿using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
+using SistemaGinastica.DomainModel.Exceptions;
+using SistemaGinastica.Service.Dto;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaGinastica.Service.Entities
 {

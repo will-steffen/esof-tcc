@@ -52,6 +52,13 @@ textarea {
         background-color: fade(@color-1, 50);
         color: @color-light;
     }
+
+    &:disabled{
+        border-color: @color-disabled;
+        background: none;
+        color: @color-disabled;
+        cursor: default;
+    }
 }
 
 .btn-light {

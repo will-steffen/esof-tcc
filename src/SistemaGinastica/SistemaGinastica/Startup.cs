@@ -40,6 +40,7 @@ namespace SistemaGinastica
             services.AddScoped<PhysicalEvaluationService>();
             services.AddScoped<PresenceService>();
             services.AddScoped<UserService>();
+            services.AddScoped<VacationService>();
             services.AddScoped<MockService>();
 
             services.AddScoped<CustomerDataAccess>();
@@ -49,6 +50,9 @@ namespace SistemaGinastica
             services.AddScoped<PhysicalEvaluationDataAccess>();
             services.AddScoped<PresenceDataAccess>();
             services.AddScoped<UserDataAccess>();
+            services.AddScoped<VacationDataAccess>();
+
+            
 
             AuthorizationProvider.Configure(services);
             ApplicationEnv.ServiceProvider = services.BuildServiceProvider();

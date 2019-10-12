@@ -17,17 +17,25 @@ export class VacationForm extends BaseForm<Vacation> {
     }
 
     configure() {
+        let minDate = this.payment.periodStartDate;
+        if(this.payment.vacationList.Any()){
+            minDate = this.payment.vacationList.Last().endDate;
+        }
+        if(minDate < Date.Now()){
+            minDate = Date.Now();
+        }
         this.initDate = this.Input<Date>(this.i18n.t.vacation.initDate)
             .Type(FormInputType.DATE)
             .OnChange(() => {
                 this.endDate.SetValue('');  
-                if (this.initDate.value) {                                 
-                    this.endDate.MinDate(this.initDate.value.Clone().AddDays(1));
-                    let maxEndDate = this.initDate.value.Clone().AddDays(this.payment.getMaxVacationDays());
+                if (this.initDate.value) {     
+                    let minEndDate =  this.initDate.value.Clone().AddDays(1);                          
+                    this.endDate.MinDate(minEndDate);
+                    let maxEndDate = this.initDate.value.Clone().AddDays(this.payment.getVacationDaysLeft());
                     this.endDate.MaxDate(maxEndDate);                 
                 }
             })            
-            .MinDate(this.payment.periodStartDate)
+            .MinDate(minDate)
             .MaxDate(this.payment.periodEndDate)
             .Required();
 
@@ -39,6 +47,7 @@ export class VacationForm extends BaseForm<Vacation> {
                     this.daysQuantity = Date.DaysBetween(this.initDate.value, this.endDate.value);
                 else this.daysQuantity = 0;
             })
+            .MinDate(minDate)
             .Required();
 
         if (this.model) {
@@ -51,6 +60,7 @@ export class VacationForm extends BaseForm<Vacation> {
         let dto = new Vacation();
         dto.initDate = this.initDate.value;
         dto.endDate = this.endDate.value;
+        dto.idPayment = this.payment.id;
         return dto;
     }
 }

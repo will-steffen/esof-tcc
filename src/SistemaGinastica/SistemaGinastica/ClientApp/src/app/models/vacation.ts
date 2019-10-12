@@ -5,6 +5,7 @@ export class Vacation extends BaseEntity {
     initDate: Date;
     endDate: Date;
     payment: Payment;
+    idPayment: number;
 
     static fromData(data) {
         let e: Vacation = super.fromData(data);

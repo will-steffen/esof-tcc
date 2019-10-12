@@ -34,7 +34,8 @@
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [],
+            "showCircularDependencies": false
           },
           "configurations": {
             "production": {

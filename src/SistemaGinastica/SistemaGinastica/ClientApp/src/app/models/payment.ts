@@ -19,15 +19,27 @@ export class Payment extends BaseEntity {
         e.periodStartDate = e.periodStartDate ? new Date(e.periodStartDate) : null;
         e.periodEndDate = e.periodEndDate ? new Date(e.periodEndDate) : null;
         e.vacationList = e.vacationList ? e.vacationList.map(x => Vacation.fromData(x)) : [];
+        e.vacationList.OrderBy(x => x.initDate);
         e.vacationList.forEach(x => x.payment = e);
         return e;
     }
 
-    getMaxVacationDays() {
+    getVacationDaysLeft() {
         let maxDays = 30;
         if(!this.vacationList || !this.vacationList.length)
             return maxDays;
-        let usedDays = this.vacationList.map(x => x.getVacationDays()).reduce((a, b) => a + b);
-        return usedDays < maxDays ? maxDays - usedDays : 0;
+        let usedDays = this.getVacationDays();
+        return maxDays - usedDays;
+    }
+
+    getVacationDays() {
+        if(!this.vacationList || !this.vacationList.length) return 0;
+        return this.vacationList.map(x => x.getVacationDays()).reduce((a, b) => a + b);
+    }
+
+    getPeriodsLeft() {
+        let maxPeriods = 3;
+        if(!this.vacationList) return maxPeriods;
+        return maxPeriods - this.vacationList.length
     }
 }

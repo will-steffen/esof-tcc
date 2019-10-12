@@ -8,6 +8,7 @@ export const ApiRoute = {
         default: '/api/customer',
         filter: '/api/customer/filter',
         payment: '/api/customer/payment',
+        vacation: '/api/customer/vacation',
     },
     instructor: {
         default: '/api/instructor',

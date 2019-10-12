@@ -7,6 +7,7 @@ namespace SistemaGinastica.Service.Dto
     {
         public DateTime initDate { get; set; }
         public DateTime endDate { get; set; }
+        public long idPayment { get; set; }
 
         public VacationDto() { }
 

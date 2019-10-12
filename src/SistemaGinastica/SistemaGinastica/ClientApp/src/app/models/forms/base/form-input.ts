@@ -25,6 +25,7 @@ export class FormInput<TValue> {
     onChangeList: Function[] = [];
     maxDate: Date;
     minDate: Date;
+    startPanelDate : Date = new Date().AddDays(50);
 
     validationList: FormInputValidation[] = [];
 
@@ -108,9 +109,6 @@ export class FormInput<TValue> {
         this.minDate = minDate;
         return this;
     }
-
-
-
 
     reset() {
         this.value = this.defaultValue;

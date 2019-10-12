@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace SistemaGinastica.DomainModel.Entities
@@ -31,5 +32,12 @@ namespace SistemaGinastica.DomainModel.Entities
         public virtual Customer Customer { get; set; }
 
         public virtual List<Vacation> VacationList { get; set; }
+
+        public int GetVacationDays()
+        {
+            if(VacationList == null || !VacationList.Any())
+                return 0;
+            return VacationList.Select(x => x.GetDuration().Days).Sum();
+        }
     }
 }
