@@ -72,6 +72,10 @@
                 <fa-icon [icon]="icon.calendarDay"></fa-icon>
                 <span class="title">{{ i18n.t.system.modalTitle }}</span>
             </div>
+            <div class="page-item" (click)="showSelectlanguage = true">
+                <fa-icon [icon]="icon.language"></fa-icon>
+                <span class="title">{{ i18n.t.label.language }}</span>
+            </div>
             <div class="page-item" (click)="logout()">
                 <fa-icon [icon]="icon.logout"></fa-icon>
                 <span class="title">{{ i18n.t.label.logout }}</span>
@@ -100,6 +104,30 @@
             </button>
 
             <button class="btn" (click)="saveSystemConfig()">
+                <fa-icon [icon]="icon.save"></fa-icon>
+                {{ i18n.t.label.save }}
+            </button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="showSelectlanguage" [modal]="true" [styleClass]="'modal-sm'" [resizable]="false"
+    [blockScroll]="true" [closeOnEscape]="true" [header]="i18n.t.label.language">
+    <div class="body-content">
+        <div class="form ui-g">
+            <div class="ui-g-12">
+                <g-form-input [input]="language"></g-form-input>
+            </div>
+        </div>
+    </div>
+    <p-footer class="footer-modal">
+        <div class="button-modal">
+            <button class="btn left" (click)="showSelectlanguage = false">
+                <fa-icon [icon]="icon.cancel"></fa-icon>
+                {{ i18n.t.label.cancel }}
+            </button>
+
+            <button class="btn" (click)="saveLanguage()">
                 <fa-icon [icon]="icon.save"></fa-icon>
                 {{ i18n.t.label.save }}
             </button>

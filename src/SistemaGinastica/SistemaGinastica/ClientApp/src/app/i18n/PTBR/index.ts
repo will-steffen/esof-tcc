@@ -33,7 +33,9 @@ export let Locale: LocaleType = {
         confirmLogout: 'Tem certeza que deseja sair do sistema?',
         close: 'Fechar',
         edit: 'Editar',
-        back: 'Voltar'
+        back: 'Voltar',
+        language: 'Idioma',
+        selectLanguage: 'Selecionar Idioma',
     },
 
     customer: {

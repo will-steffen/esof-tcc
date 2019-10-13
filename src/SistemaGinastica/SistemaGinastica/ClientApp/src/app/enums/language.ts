@@ -1,3 +1,4 @@
 export enum Language {
-    PTBR = 'PTBR'
+    PTBR = 'PTBR',
+    EN = 'EN'
 }

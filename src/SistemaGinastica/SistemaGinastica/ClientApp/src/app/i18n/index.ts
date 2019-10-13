@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-// import { Locale as Locale_EN } from './EN';
-// import { Locale as Locale_ES } from './ES';
+import { Locale as Locale_EN } from './EN';
 import { Language } from "../enums/language";
 import { StorageTable } from "../enums/storage-table";
 import { StorageHandler } from "../handlers/storage.handler";
@@ -13,7 +12,7 @@ export class I18n {
     static current: I18n;
 
     t: LocaleType;
-    options = [Locale_PTBR/*, Locale_EN, Locale_ES*/];
+    options = [Locale_PTBR, Locale_EN];
 
     constructor() {
         let locs = StorageHandler.List(StorageTable.i18n);
@@ -36,10 +35,8 @@ export class I18n {
     }
 
     getBrowserCode() {
-        return Locale_PTBR.code;
-        // return  window.navigator.language == 'en' ? Locale_EN.code :
-        //         window.navigator.language == 'es' ? Locale_ES.code :
-        //         Locale_PTBR.code;
+        return  window.navigator.language.Contains('pt') ? Locale_PTBR.code :
+                Locale_EN.code;
     }
 
     extend(moduleName: string, locale: any, code?: Language) {

@@ -6,6 +6,9 @@ import { BasePageDeps } from "../base-page-deps";
 import { User } from "src/app/models/user";
 import { SystemService } from "src/app/services/system.service";
 import { SystemConfigForm } from "src/app/models/forms/system-config.form";
+import { FormInput } from "src/app/models/forms/base/form-input";
+import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
+import { Language } from "src/app/enums/language";
 
 @Component({
     selector: 'app-layout',
@@ -17,6 +20,7 @@ export class LayoutPage extends BasePage {
     PageType = PageType;
     user: User;
     showSelectlanguage = false;
+    language: FormInput<Language>;
     showSystemConfig = false;
     systemForm = new SystemConfigForm();
 
@@ -24,9 +28,14 @@ export class LayoutPage extends BasePage {
         public pageRouteService: PageRouteService,
         private systemService: SystemService,
         deps: BasePageDeps
-    ) { 
+    ) {
         super(deps);
         this.user = this.userService.getUser();
+        this.language = new FormInput<Language>(this.i18n.t.label.selectLanguage, Language.PTBR)
+            .Options([
+                new FormInputOptions(Language.PTBR, 'Português'),
+                new FormInputOptions(Language.EN, 'English'),
+            ]);
     }
 
     logout() {
@@ -51,11 +60,17 @@ export class LayoutPage extends BasePage {
         this.block.start();
         this.systemService.setConfig(this.systemForm.getDTO())
             .then(() => {
-                window.location.reload();             
+                window.location.reload();
             }).catch(() => this.block.stop());
     }
 
     getSystemDate() {
         return Date.Now().toLocaleDateString();
+    }
+
+    saveLanguage() {
+        this.block.start();
+        this.i18n.changeLanguage(this.language.value);
+        window.location.reload();
     }
 }

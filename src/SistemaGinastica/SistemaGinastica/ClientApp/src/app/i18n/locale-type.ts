@@ -41,6 +41,8 @@ export interface LocaleType {
         close: string,
         edit: string,
         back: string,
+        language: string,
+        selectLanguage: string,
     },
 
     customer: {
