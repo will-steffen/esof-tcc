@@ -6,7 +6,7 @@ namespace SistemaGinastica.DomainModel.Utils
 {
     public static class DateUtils
     {
-        private static int DaysToAddOnNow = 0;
+        public static int DaysToAddOnNow { get; set; } = 0;
 
         public static DateTime Now()
         {            

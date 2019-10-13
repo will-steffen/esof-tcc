@@ -19,7 +19,7 @@ export class VacationForm extends BaseForm<Vacation> {
     configure() {
         let minDate = this.payment.periodStartDate;
         if(this.payment.vacationList.Any()){
-            minDate = this.payment.vacationList.Last().endDate;
+            minDate = this.payment.vacationList.Last().endDate.Clone().AddDays(1);
         }
         if(minDate < Date.Now()){
             minDate = Date.Now();

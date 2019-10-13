@@ -74,5 +74,10 @@ namespace SistemaGinastica.Service.Entities
             Save(customer);
             return customer;
         }
+
+        public int CountCustumers()
+        {
+            return DataAccess.Count();
+        }
     }
 }

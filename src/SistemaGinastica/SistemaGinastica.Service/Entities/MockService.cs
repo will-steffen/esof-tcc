@@ -1,5 +1,6 @@
 ﻿using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.DomainModel.Enums;
+using SistemaGinastica.DomainModel.Utils;
 using SistemaGinastica.Service.Dto;
 using System;
 using System.Collections.Generic;
@@ -54,8 +55,8 @@ namespace SistemaGinastica.Service.Entities
 
             GroupClass groupClass = groupClassService.Include(new GroupClassDto
             {
-                initHour = DateTime.Now.AddHours(-1),
-                endHour = DateTime.Now,
+                initHour = DateUtils.Now().AddHours(-1),
+                endHour = DateUtils.Now(),
                 room = "Sala 3",
                 name = "Spnning",
                 idInstructor = instructor1.Id
@@ -67,7 +68,7 @@ namespace SistemaGinastica.Service.Entities
                 cpf = "00000000000",
                 rg = "000000003",
                 address = "Rua do Comercio",
-                birthDate = DateTime.Now.AddYears(-23),
+                birthDate = DateUtils.Now().AddYears(-23),
                 planType = PlanType.Annually,
                 planValue = 900
             });

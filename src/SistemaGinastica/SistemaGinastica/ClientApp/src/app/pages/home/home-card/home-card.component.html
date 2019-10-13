@@ -1,0 +1,12 @@
+<div class="card-base">
+    <div class="card-item">
+        <div class="body">
+            <div class="info">{{ data.info }}</div>  
+            <div class="icon"><fa-icon [icon]="data.icon"></fa-icon></div> 
+        </div>
+        <div class="title">
+            {{ data.title }}
+            <fa-icon [icon]="Icon.help" pTooltip="{{ data.tooltip }}" tooltipPosition="top"></fa-icon>
+        </div>
+    </div>
+</div> 

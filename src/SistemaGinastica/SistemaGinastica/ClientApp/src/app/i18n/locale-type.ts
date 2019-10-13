@@ -54,6 +54,8 @@ export interface LocaleType {
         planValue: string,
         payment: string,
         vacation: string,
+        registerPayment: string,
+        registerVacation: string,
     },
 
     groupClass: {
@@ -69,6 +71,18 @@ export interface LocaleType {
 
     home: {
         title: string,
+        customers: {
+            title: string,
+            tooltip: string
+        },
+        exams: {
+            title: string,
+            tooltip: string
+        },
+        payments: {
+            title: string,
+            tooltip: string
+        },
     },
 
     instructor: {
@@ -108,8 +122,11 @@ export interface LocaleType {
         date: string,
         registerPayment: string,
         expectedDate: string,
+        usePeriod: string,
+        vacationDays: string,
         message: {
             generalError: string,
+            noVacationRegistered: string,
         },
     },
 
@@ -119,6 +136,12 @@ export interface LocaleType {
         daysLeft: string,
         periodsLeft: string,
         registerVacation: string,
+        daysQuantity: string,
+    },
+
+    system: {
+        modalTitle: string,
+        systemDate: string,
     },
 
     enum: {

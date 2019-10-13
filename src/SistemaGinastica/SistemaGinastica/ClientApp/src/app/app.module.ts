@@ -45,6 +45,8 @@ import { UserService } from './services/user.service';
 import './utils/array';
 import './utils/date';
 import './utils/string';
+import { HomeCardComponent } from './pages/home/home-card/home-card.component';
+import { SystemService } from './services/system.service';
 
 
 
@@ -62,6 +64,7 @@ import './utils/string';
     FormDialogComponent,
 
     HomePage,
+    HomeCardComponent,
     LoginPage,
     LayoutPage,
     UserPage,
@@ -97,6 +100,7 @@ import './utils/string';
     PageRouteService,
     InstructorService,
     CustomerService,
+    SystemService,
 
     I18n,
     ServiceHandler,

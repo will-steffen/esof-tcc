@@ -2,6 +2,7 @@
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.DomainModel.Enums;
 using SistemaGinastica.DomainModel.Exceptions;
+using SistemaGinastica.DomainModel.Utils;
 using SistemaGinastica.Service.Dto;
 using System;
 using System.Collections.Generic;
@@ -24,13 +25,13 @@ namespace SistemaGinastica.Service.Entities
         {
             Payment payment = new Payment
             {
-                ExpectedDate = DateTime.Now.AddDays(paymentDaysSpan),
+                ExpectedDate = DateUtils.Now().AddDays(paymentDaysSpan),
                 Customer = customer,
                 Value = customer.PlanValue,
-                PeriodStartDate = DateTime.Now,
+                PeriodStartDate = DateUtils.Now(),
                 PeriodEndDate = customer.PlanType == PlanType.Annually
-                    ? DateTime.Now.AddYears(1)
-                    : DateTime.Now.AddMonths(1)
+                    ? DateUtils.Now().AddYears(1)
+                    : DateUtils.Now().AddMonths(1)
             };
             Save(payment);
             return payment;
@@ -78,6 +79,11 @@ namespace SistemaGinastica.Service.Entities
             }           
             Save(payment);
             return Tuple.Create(payment, vacation.GetDuration().Days);
+        }
+
+        public int CountLatePayments()
+        {
+            return DataAccess.CountLatePayments();
         }
     }
 }

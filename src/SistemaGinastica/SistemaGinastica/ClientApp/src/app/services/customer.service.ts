@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { HomeDataDTO } from "../dto/home-data.dto";
 import { ApiRoute } from "../enums/api-route";
 import { ServiceHandler } from "../handlers/service.handler";
 import { Customer } from "../models/customer";
@@ -33,6 +34,16 @@ export class CustomerService {
         return new Promise((resolve, reject) => {
             this.service.Post(ApiRoute.customer.vacation, vacationData).then(data => {
                 resolve(Customer.fromData(data));
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+
+    getHomeData(): Promise<HomeDataDTO> {
+        return new Promise((resolve, reject) => {
+            this.service.Get(ApiRoute.customer.homeData).then(data => {
+                resolve(HomeDataDTO.fromData(data));
             }).catch(err => {
                 reject(err);
             });

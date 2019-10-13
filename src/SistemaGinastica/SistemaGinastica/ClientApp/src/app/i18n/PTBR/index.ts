@@ -47,6 +47,8 @@ export let Locale: LocaleType = {
         planValue: 'Valor do Plano',
         payment: 'Pagamentos',
         vacation: 'Férias',
+        registerPayment: 'Registrar Pagamento',
+        registerVacation: 'Registrar Férias',
     },
 
     groupClass: {
@@ -62,6 +64,18 @@ export let Locale: LocaleType = {
 
     home: {
         title: 'Início',
+        customers: {
+            title: 'Alunos',
+            tooltip: 'Clientes cadastrados no sistema'
+        },
+        exams: {
+            title: 'Exames Pendentes',
+            tooltip: 'Clientes que estão há mais de 6 meses sem fazer exames'
+        },
+        payments: {
+            title: 'Pagamentos Atrasados',
+            tooltip: 'Clientes com pagamentos que estão pendentes'
+        },
     },
 
     instructor: {
@@ -101,8 +115,11 @@ export let Locale: LocaleType = {
         date: 'Data de Pagamento',
         registerPayment: 'Registrar Novo Pagamento',
         expectedDate: 'Data Estimada',
+        usePeriod: 'Período de Uso',
+        vacationDays: 'Dias de Férias',
         message: {
             generalError: 'Falha para registrar o Pagamento',
+            noVacationRegistered: 'Nenhum período de férias registrado ainda',
         },
     },
 
@@ -112,6 +129,12 @@ export let Locale: LocaleType = {
         daysLeft: 'Dias Restantes',
         periodsLeft: 'Períodos Restantes',
         registerVacation: 'Agendar Período de Férias',
+        daysQuantity: 'Quantidade de dias'
+    },
+
+    system: {
+        modalTitle: 'Simular Data',
+        systemDate: 'Data do Sistema',       
     },
 
     enum: EnumLocale

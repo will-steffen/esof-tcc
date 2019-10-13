@@ -12,6 +12,12 @@
             {{ pageRouteService.getPageTitle() }}
         </div>
         <div class="right-icons">
+            <div class="user-identification">
+                <div class="info">
+                    <div class="name">{{ getSystemDate() }}</div>
+                    <div class="type">{{ i18n.t.system.systemDate }}</div>
+                </div>
+            </div>
             <div class="user-identification" *ngIf="user">
                 <div class="info">
                     <div class="name">{{ user.name }}</div>
@@ -62,6 +68,10 @@
             </div>
         </div>
         <div class="fixed-bottom">
+            <div class="page-item" (click)="openSystemConfig()">
+                <fa-icon [icon]="icon.calendarDay"></fa-icon>
+                <span class="title">{{ i18n.t.system.modalTitle }}</span>
+            </div>
             <div class="page-item" (click)="logout()">
                 <fa-icon [icon]="icon.logout"></fa-icon>
                 <span class="title">{{ i18n.t.label.logout }}</span>
@@ -72,3 +82,27 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+
+<p-dialog [(visible)]="showSystemConfig" [modal]="true" [styleClass]="'modal-sm'" [resizable]="false"
+    [blockScroll]="true" [closeOnEscape]="true" [header]="i18n.t.system.modalTitle">
+    <div class="body-content">
+        <div class="form ui-g">
+            <div class="ui-g-12">
+                <g-form-input [input]="systemForm.systemDate"></g-form-input>
+            </div>
+        </div>
+    </div>
+    <p-footer class="footer-modal">
+        <div class="button-modal">
+            <button class="btn left" (click)="showSystemConfig = false">
+                <fa-icon [icon]="icon.cancel"></fa-icon>
+                {{ i18n.t.label.cancel }}
+            </button>
+
+            <button class="btn" (click)="saveSystemConfig()">
+                <fa-icon [icon]="icon.save"></fa-icon>
+                {{ i18n.t.label.save }}
+            </button>
+        </div>
+    </p-footer>
+</p-dialog>

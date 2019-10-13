@@ -4,6 +4,7 @@ using SistemaGinastica.DataAccess.DataFilter;
 using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
 using SistemaGinastica.DomainModel.Exceptions;
+using SistemaGinastica.Dto;
 using SistemaGinastica.Service.Dto;
 using SistemaGinastica.Service.Entities;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ namespace SistemaGinastica.Controllers
 {
     public class CustomerController : BaseCrudDtoController<Customer, CustomerService, CustomerDataAccess, CustomerDto>
     {
-        public CustomerController(CustomerService service) : base(service)
+        PaymentService paymentService;
+
+        public CustomerController(CustomerService service, PaymentService paymentService) : base(service)
         {
             fieldFilterMap = new Dictionary<string, string>
             {
@@ -25,6 +28,7 @@ namespace SistemaGinastica.Controllers
                 {"RG", "Rg"},
                 {"CPF", "Cpf"},
             };
+            this.paymentService = paymentService;
         }
 
         [HttpPost("payment")]
@@ -54,5 +58,24 @@ namespace SistemaGinastica.Controllers
                 return HandleError(e);
             }
         }
+
+        [HttpGet("home-data")]
+        [Authorize]
+        public ActionResult<HomeDataResponseDto> GetHomeData()
+        {
+            try
+            {
+                var data = new HomeDataResponseDto
+                {
+                    countCustomer = Service.CountCustumers(),
+                    countLatePayment = paymentService.CountLatePayments()
+                };
+                return Ok(data);
+            }
+            catch (SgException e)
+            {
+                return HandleError(e);
+            }
+        }        
     }
 }

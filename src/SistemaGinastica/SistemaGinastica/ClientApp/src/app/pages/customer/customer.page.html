@@ -35,7 +35,7 @@
 
 
 <p-dialog [(visible)]="showPayment" [modal]="true" [styleClass]="'modal-lg'" [resizable]="false" [blockScroll]="true"
-    [closeOnEscape]="true" [header]="'Pagamentos'">
+    [closeOnEscape]="true" [header]="i18n.t.customer.payment">
     <div class="body-content" *ngIf="customerOnEditPayment">
 
         <div class="modal-head">
@@ -54,16 +54,12 @@
             <p-table [value]="customerOnEditPayment.paymentList" [autoLayout]="true">
                 <ng-template pTemplate="header">
                     <tr *ngIf="table.data.length">
-                        <th>
-                            <!-- {{ i18n.t.payment.value }} -->
-                            Período de Uso
-                        </th>
+                        <th>{{ i18n.t.payment.usePeriod }}</th>
                         <th>{{ i18n.t.payment.value }}</th>
                         <th>{{ i18n.t.payment.expectedDate }}</th>
                         <th>{{ i18n.t.payment.date }}</th>
                         <th *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
-                            <!-- {{ i18n.t.payment.value }} -->
-                            Dias de Férias
+                            {{ i18n.t.payment.vacationDays }}                            
                         </th>
                         <th *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
                             {{ i18n.t.customer.vacation }}
@@ -103,7 +99,7 @@
 </p-dialog>
 
 <p-dialog [(visible)]="showAddPayment" [modal]="true" [styleClass]="'modal-sm'" [resizable]="false" [blockScroll]="true"
-    [closeOnEscape]="true" [header]="'Registrar Pagamento'">
+    [closeOnEscape]="true" [header]="i18n.t.customer.registerPayment">
     <div class="body-content" *ngIf="customerOnEditPayment">
         <div class="form ui-g">
             <div class="ui-g-12">
@@ -130,7 +126,7 @@
 </p-dialog>
 
 <p-dialog [(visible)]="showVacation" [modal]="true" [styleClass]="'modal-lg'" [resizable]="false" [blockScroll]="true"
-    [closeOnEscape]="true" [header]="'Registrar Férias'">
+    [closeOnEscape]="true" [header]="i18n.t.customer.vacation">
     <div class="body-content" *ngIf="customerOnEditPayment && paymentOnEditVacation">
 
         <div class="modal-head">
@@ -156,7 +152,7 @@
         </div>
 
         <div *ngIf="!paymentOnEditVacation.vacationList.length">
-            Nenhum período de férias registrado ainda.
+            {{  i18n.t.payment.message.noVacationRegistered }}
         </div>
 
         <div class="table" *ngIf="paymentOnEditVacation.vacationList.length">
@@ -198,7 +194,7 @@
 </p-dialog>
 
 <p-dialog [(visible)]="showAddVacation" [modal]="true" [styleClass]="'modal-sm'" [resizable]="false"
-    [blockScroll]="true" [closeOnEscape]="true" [header]="'Registrar Férias'">
+    [blockScroll]="true" [closeOnEscape]="true" [header]="i18n.t.customer.registerVacation">
     <div class="body-content" *ngIf="customerOnEditPayment && paymentOnEditVacation">
         <div class="form ui-g">
             <div class="ui-g-12">
@@ -208,7 +204,7 @@
                 <g-form-input [input]="vacationForm.endDate"></g-form-input>
             </div>
             <div class="ui-g-12">
-                Quantidade de dias: {{ vacationForm.daysQuantity }}
+                {{ i18n.t.vacation.daysQuantity }}: {{ vacationForm.daysQuantity }}
             </div>
         </div>
     </div>

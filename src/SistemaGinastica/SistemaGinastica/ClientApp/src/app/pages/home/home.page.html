@@ -1,1 +1,7 @@
-<g-page-title [title]="i18n.t.home.title"></g-page-title>
+<div class="page-content">
+    <div class="card-list ui-g">
+        <app-home-card class="ui-lg-4 ui-md-6 ui-sm-12" [data]="customers"></app-home-card>
+        <app-home-card class="ui-lg-4 ui-md-6 ui-sm-12" [data]="exams"></app-home-card>
+        <app-home-card class="ui-lg-4 ui-md-6 ui-sm-12" [data]="payments"></app-home-card>
+    </div>
+</div>

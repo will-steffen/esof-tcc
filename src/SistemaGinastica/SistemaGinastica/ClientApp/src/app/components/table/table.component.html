@@ -27,7 +27,7 @@
         <ng-template pTemplate="body" let-item>
             <tr id="{{ item.guid }}">
 
-                <td *ngFor="let c of table.columnList" class="{{ getPriorityClass(c) }}">
+                <td *ngFor="let c of table.columnList" class="{{ getPriorityClass(c) }} {{ getClassName(c, item) }}">
                     {{ c.getValue(item) }}
                 </td>
 

@@ -18,5 +18,10 @@ namespace SistemaGinastica.DataAccess.Entities
                 .Include(x => x.PaymentList)
                    .ThenInclude(p => p.VacationList);
         }
+
+        public int Count()
+        {
+            return Set().Count();
+        }
     }
 }

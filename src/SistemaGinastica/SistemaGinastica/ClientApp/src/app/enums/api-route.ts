@@ -9,6 +9,7 @@ export const ApiRoute = {
         filter: '/api/customer/filter',
         payment: '/api/customer/payment',
         vacation: '/api/customer/vacation',
+        homeData: '/api/customer/home-data',
     },
     instructor: {
         default: '/api/instructor',
@@ -18,5 +19,8 @@ export const ApiRoute = {
     groupClass: {
         default: '/api/groupclass',
         filter: '/api/groupclass/filter',
+    },
+    system: {
+        default: '/api/system'
     }
 }

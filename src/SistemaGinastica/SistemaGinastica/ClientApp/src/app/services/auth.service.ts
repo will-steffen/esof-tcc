@@ -6,6 +6,7 @@ import { ApiRoute } from "../enums/api-route";
 import { RouteConfig } from "../enums/route-config";
 import { ServiceHandler } from "../handlers/service.handler";
 import { User } from "../models/user";
+import { SystemService } from "./system.service";
 import { UserService } from "./user.service";
 
 @Injectable()
@@ -15,9 +16,11 @@ export class AuthService implements CanActivate {
         private service: ServiceHandler,
         private userService: UserService,
         private router: Router,
+        private systemService: SystemService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+        this.systemService.getConfig();
         return new Promise(res => {
             let user = this.userService.getUser();
             if (route.routeConfig.path == RouteConfig.login) {

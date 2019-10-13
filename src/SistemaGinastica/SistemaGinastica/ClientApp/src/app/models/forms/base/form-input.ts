@@ -24,9 +24,7 @@ export class FormInput<TValue> {
     disabledIf: Function;
     onChangeList: Function[] = [];
     maxDate: Date;
-    minDate: Date;
-    startPanelDate : Date = new Date().AddDays(50);
-
+    minDate: Date; 
     validationList: FormInputValidation[] = [];
 
     requiredErrorMessage = I18n.current.t.label.requiredField;

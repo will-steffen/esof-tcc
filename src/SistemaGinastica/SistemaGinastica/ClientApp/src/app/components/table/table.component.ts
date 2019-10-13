@@ -37,6 +37,10 @@ export class TableComponent<T> implements AfterViewInit {
         return cl;
     }
 
+    getClassName(column: TableColumn<T>, item: T) {
+        return column.classNameCondition(item) ? column.className : '';
+    }
+
 
     ngAfterViewInit() {
         if (this.filter) {

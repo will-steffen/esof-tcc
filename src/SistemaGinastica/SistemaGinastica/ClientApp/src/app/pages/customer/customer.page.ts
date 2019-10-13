@@ -86,7 +86,8 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Column()
             .Label(this.i18n.t.customer.nextPayment)
             .OrderBy(CustomerField.NEXT_PAYMENT)
-            .Value(x => x.nextPayment.expectedDate.toLocaleDateString());
+            .Value(x => x.nextPayment.expectedDate.toLocaleDateString())
+            .StyleClass('late-payment', x => x.nextPayment.expectedDate.getTime() < Date.Now().getTime());
     }
 
     editPayment(customer: Customer) {

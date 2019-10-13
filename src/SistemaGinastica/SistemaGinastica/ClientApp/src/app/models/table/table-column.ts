@@ -4,6 +4,8 @@ export class TableColumn<T> {
     orderBy: string;
     width: string;
     priority: number;
+    className: string = '';
+    classNameCondition: (model: T) => boolean = () => true;
 
     getValue: (model: T) => string = () => null;
 
@@ -29,6 +31,12 @@ export class TableColumn<T> {
 
     Value(getValue: (model: T) => string) {
         this.getValue = getValue;
+        return this;
+    }
+
+    StyleClass(className, condition: (model: T) => boolean = null) {
+        this.className = className;
+        if(condition) this.classNameCondition = condition;
         return this;
     }
 
