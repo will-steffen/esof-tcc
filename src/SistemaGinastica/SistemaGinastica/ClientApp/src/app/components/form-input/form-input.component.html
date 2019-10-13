@@ -4,17 +4,17 @@
     <!-- TEXT, PASSWORD -->
     <input *ngIf="input.type == FormInputType.TEXT || input.type == FormInputType.PASSWORD" [(ngModel)]="input.value"
         type="{{ input.type == FormInputType.PASSWORD ? 'password' : '' }}" id="{{ input.guid }}" [disabled]="input.isDisabled()"
-        (change)="input.onChangeEvent()">
+        (change)="input.onChangeEvent()" (keydown.enter)="onEnterKey()">
 
     <!-- MASK -->
     <p-inputMask [(ngModel)]="input.value" mask="{{ input.mask }}"
         inputId="{{ input.guid }}" *ngIf="input.type == FormInputType.MASK"
         [disabled]="input.isDisabled()" (change)="input.onChangeEvent()"
-        slotChar="_"></p-inputMask>
+        slotChar="_" (keydown.enter)="onEnterKey()"></p-inputMask>
 
     <!-- NUMBER -->
     <input *ngIf="input.type == FormInputType.NUMBER" [(ngModel)]="input.value" 
-    type="number" id="{{ input.guid }}" [disabled]="input.isDisabled()" (change)="input.onChangeEvent()">
+    type="number" id="{{ input.guid }}" [disabled]="input.isDisabled()" (change)="input.onChangeEvent()" (keydown.enter)="onEnterKey()">
 
     <!-- SELECT -->
     <select *ngIf="input.type == FormInputType.SELECT" [(ngModel)]="input.value" id="{{ input.guid }}" 
@@ -27,7 +27,7 @@
 
     <!-- TEXTAREA -->
     <textarea *ngIf="input.type == FormInputType.TEXTAREA" [rows]="5" [(ngModel)]="input.value"
-        id="{{ input.guid }}" [disabled]="input.isDisabled()" (change)="input.onChangeEvent()"></textarea>
+        id="{{ input.guid }}" [disabled]="input.isDisabled()" (change)="input.onChangeEvent()" (keydown.enter)="onEnterKey()"></textarea>
 
     <!-- CHECKBOX -->
     <input *ngIf="input.type == FormInputType.CHECKBOX" [(ngModel)]="input.value" 

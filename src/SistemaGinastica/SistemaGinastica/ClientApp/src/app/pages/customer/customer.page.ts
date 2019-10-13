@@ -48,6 +48,10 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.filter.CreateField(this.i18n.t.personData.name, CustomerField.NAME);
         this.filter.CreateField(this.i18n.t.personData.rg, CustomerField.RG);
         this.filter.CreateField(this.i18n.t.personData.cpf, CustomerField.CPF);
+
+        this.filter.CreateField(this.i18n.t.label.active, CustomerField.ACTIVE)
+            .Options(FormInputOptions.boolean(), true)
+            .DefaultValue(true);
     }
 
     createTable() {
@@ -87,7 +91,12 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
             .Label(this.i18n.t.customer.nextPayment)
             .OrderBy(CustomerField.NEXT_PAYMENT)
             .Value(x => x.nextPayment.expectedDate.toLocaleDateString())
-            .StyleClass('late-payment', x => x.nextPayment.expectedDate.getTime() < Date.Now().getTime());
+            .StyleClass('late-payment', x => x.nextPayment.isDelayed);
+
+        this.table.Column()
+            .Label(this.i18n.t.label.active)
+            .OrderBy(CustomerField.ACTIVE)
+            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no)
     }
 
     editPayment(customer: Customer) {

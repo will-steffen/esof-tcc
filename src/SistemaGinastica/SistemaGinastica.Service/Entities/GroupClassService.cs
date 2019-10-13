@@ -12,6 +12,7 @@ namespace SistemaGinastica.Service.Entities
 
         protected override GroupClass Map(GroupClass model, GroupClassDto dto)
         {
+            model.Active = dto.active;
             model.InitHour = dto.initHour;
             model.EndHour = dto.endHour;
             model.Room = dto.room;

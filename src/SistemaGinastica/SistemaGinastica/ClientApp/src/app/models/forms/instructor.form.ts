@@ -7,6 +7,7 @@ import { PersonDataModelForm } from "./person-data.form";
 export class InstructorForm extends BaseForm<Instructor> {
     authorizedMuscle: FormInput<boolean>;
     authorizedGroupClass: FormInput<boolean>;
+    active: FormInput<boolean>;
     personData: PersonDataModelForm = new PersonDataModelForm();
 
     configure() {
@@ -18,11 +19,16 @@ export class InstructorForm extends BaseForm<Instructor> {
             .Options(FormInputOptions.boolean(), true)
             .Required();
 
+        this.active = this.Input<boolean>(this.i18n.t.label.active)
+            .Options(FormInputOptions.boolean())
+            .Required();
+
         this.SubForm(this.personData).Model(this.model);
 
         if (this.model) {
             this.authorizedMuscle.SetValue(this.model.authorizedMuscle);
             this.authorizedGroupClass.SetValue(this.model.authorizedGroupClass);
+            this.active.SetValue(this.model.active);
         }
     }
 
@@ -30,6 +36,7 @@ export class InstructorForm extends BaseForm<Instructor> {
         let dto = this.personData.getDTO(new Instructor());
         dto.authorizedMuscle = this.authorizedMuscle.value;
         dto.authorizedGroupClass = this.authorizedGroupClass.value;
+        dto.active = this.active.value;
         return dto;
     }
 }

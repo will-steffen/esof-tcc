@@ -36,6 +36,7 @@ export let Locale: LocaleType = {
         back: 'Back',
         language: 'Idiom',
         selectLanguage: 'Select Idiom',
+        active: 'Active',
     },
 
     customer: {

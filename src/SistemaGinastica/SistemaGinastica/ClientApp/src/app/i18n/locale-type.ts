@@ -43,6 +43,7 @@ export interface LocaleType {
         back: string,
         language: string,
         selectLanguage: string,
+        active: string,
     },
 
     customer: {

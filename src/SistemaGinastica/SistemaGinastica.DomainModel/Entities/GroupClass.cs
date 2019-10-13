@@ -25,6 +25,9 @@ namespace SistemaGinastica.DomainModel.Entities
         [Required]
         public string Name { get; set; }
 
+        [Column("fl_active")]
+        public bool Active { get; set; } = true;
+
 
 
         [Column("id_instructor")]

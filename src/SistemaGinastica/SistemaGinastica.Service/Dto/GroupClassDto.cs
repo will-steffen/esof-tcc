@@ -13,6 +13,7 @@ namespace SistemaGinastica.Service.Dto
         public string room { get; set; }
         public string name { get; set; }
         public long? idInstructor { get; set; }
+        public bool active { get; set; }
         public InstructorDto instructor { get; set; }
         public List<WeekDay> weekDayList { get; set; } = new List<WeekDay>();
 
@@ -25,6 +26,7 @@ namespace SistemaGinastica.Service.Dto
             room = model.Room;
             name = model.Name;
             idInstructor = model.IdInstructor;
+            active = model.Active;
             if (model.Instructor != null) instructor = new InstructorDto(model.Instructor);
             if (model.WeekDayList != null) weekDayList = model.WeekDayList.Select(x => x.WeekDay).ToList();
         }

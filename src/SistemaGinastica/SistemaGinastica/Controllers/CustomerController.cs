@@ -27,6 +27,7 @@ namespace SistemaGinastica.Controllers
                 {"Name", "Name"},
                 {"RG", "Rg"},
                 {"CPF", "Cpf"},
+                {"Active", "Active"},
             };
             this.paymentService = paymentService;
         }
@@ -67,7 +68,7 @@ namespace SistemaGinastica.Controllers
             {
                 var data = new HomeDataResponseDto
                 {
-                    countCustomer = Service.CountCustumers(),
+                    countCustomer = Service.CountActiveCustumers(),
                     countLatePayment = paymentService.CountLatePayments()
                 };
                 return Ok(data);

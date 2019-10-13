@@ -30,6 +30,9 @@
         <div class="ui-g-6 ui-sm-12">
             <g-form-input [input]="form.registration"></g-form-input>
         </div>
+        <div class="ui-g-6 ui-sm-12">
+            <g-form-input [input]="form.active"></g-form-input>
+        </div>
     </div>
 </g-form-dialog>
 
@@ -59,7 +62,7 @@
                         <th>{{ i18n.t.payment.expectedDate }}</th>
                         <th>{{ i18n.t.payment.date }}</th>
                         <th *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
-                            {{ i18n.t.payment.vacationDays }}                            
+                            {{ i18n.t.payment.vacationDays }}
                         </th>
                         <th *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY">
                             {{ i18n.t.customer.vacation }}
@@ -71,7 +74,9 @@
                         <td> {{ item.periodStartDate.toLocaleDateString() }} -
                             {{ item.periodEndDate.toLocaleDateString() }} </td>
                         <td> {{ item.value.toFixed(2) }} </td>
-                        <td> {{ item.expectedDate.toLocaleDateString() }} </td>
+                        <td [class.late-payment]="item.isDelayed">
+                            {{ item.expectedDate.toLocaleDateString() }}
+                        </td>
                         <td> {{ item.paymentDate ? item.paymentDate.toLocaleDateString() : '-' }} </td>
                         <td *ngIf="customerOnEditPayment.planType == PlanType.ANNUALLY"> {{ item.getVacationDays() }}
                         </td>

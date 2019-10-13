@@ -50,7 +50,8 @@ namespace SistemaGinastica.Service.Entities
                 cpf = "00000000000",
                 rg = "000000003",
                 authorizedMuscle = true,
-                authorizedGroupClass = true
+                authorizedGroupClass = true,
+                active = true
             });
 
             GroupClass groupClass = groupClassService.Include(new GroupClassDto
@@ -59,7 +60,8 @@ namespace SistemaGinastica.Service.Entities
                 endHour = DateUtils.Now(),
                 room = "Sala 3",
                 name = "Spnning",
-                idInstructor = instructor1.Id
+                idInstructor = instructor1.Id,
+                active = true
             });
 
             Customer customer = customerService.Include(new CustomerDto
@@ -70,7 +72,8 @@ namespace SistemaGinastica.Service.Entities
                 address = "Rua do Comercio",
                 birthDate = DateUtils.Now().AddYears(-23),
                 planType = PlanType.Annually,
-                planValue = 900
+                planValue = 900,
+                active = true
             });
         }
 

@@ -23,6 +23,7 @@ namespace SistemaGinastica.Service.Entities
 
         protected override Instructor Map(Instructor model, InstructorDto dto)
         {
+            model.Active = dto.active;
             model.Name = dto.name;
             model.Cpf = dto.cpf;
             model.Rg = dto.rg;

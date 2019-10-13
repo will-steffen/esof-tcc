@@ -15,6 +15,9 @@ namespace SistemaGinastica.DomainModel.Entities
         [Column("fl_authorized_group_class")]
         public bool AuthorizedGroupClass { get; set; }
 
+        [Column("fl_active")]
+        public bool Active { get; set; } = true;
+
         public virtual List<GroupClass> GroupClassList { get; set; }
     }
 }

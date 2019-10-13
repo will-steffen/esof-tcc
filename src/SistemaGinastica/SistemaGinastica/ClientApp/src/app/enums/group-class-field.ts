@@ -4,5 +4,6 @@ export enum GroupClassField {
     ROOM = 'Room',
     INSTRUCTOR = 'Instructor',
     NAME = 'Name',
-    WEEK_DAY = 'WeekDay'
+    WEEK_DAY = 'WeekDay',
+    ACTIVE = 'Active',
 }

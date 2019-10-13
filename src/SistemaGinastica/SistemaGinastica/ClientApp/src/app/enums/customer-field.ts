@@ -4,6 +4,7 @@ export enum CustomerField {
     PLAN_TYPE = 'PlanType',
     REGISTRATION = 'Registration',
     NEXT_PAYMENT = 'NextPayment',
+    ACTIVE = 'Active',
 
     NAME = 'Name',
     RG = 'RG',

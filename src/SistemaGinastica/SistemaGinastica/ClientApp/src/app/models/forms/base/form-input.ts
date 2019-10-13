@@ -108,6 +108,11 @@ export class FormInput<TValue> {
         return this;
     }
 
+    DefaultValue(defaultValue) {
+        this.defaultValue = defaultValue;
+        return this;
+    }
+
     reset() {
         this.value = this.defaultValue;
     }

@@ -30,6 +30,9 @@ namespace SistemaGinastica.DomainModel.Entities
         [StringLength(150)]
         public string Registration { get; set; }
 
+        [Column("fl_active")]
+        public bool Active { get; set; } = true;
+
         public virtual List<Payment> PaymentList { get; set; }
         public virtual List<Presence> PresenceList { get; set; }
         public virtual List<PhysicalEvaluation> PhysicalEvaluationList { get; set; }

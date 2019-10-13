@@ -19,9 +19,9 @@ namespace SistemaGinastica.DataAccess.Entities
                    .ThenInclude(p => p.VacationList);
         }
 
-        public int Count()
+        public int CountActives()
         {
-            return Set().Count();
+            return Set().Where(x => x.Active).Count();
         }
     }
 }

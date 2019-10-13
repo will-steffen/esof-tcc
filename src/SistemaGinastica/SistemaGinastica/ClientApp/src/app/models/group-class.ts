@@ -10,6 +10,7 @@ export class GroupClass extends BaseEntity {
     instructor: Instructor;
     name: string;
     weekDayList: WeekDay[];
+    active: boolean;
 
     static fromData(data) {
         let e: GroupClass = super.fromData(data);

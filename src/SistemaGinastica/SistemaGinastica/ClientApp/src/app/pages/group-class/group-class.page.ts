@@ -40,6 +40,9 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.filter.CreateField(this.i18n.t.groupClass.room, GroupClassField.ROOM);
         this.filter.CreateField(this.i18n.t.groupClass.weekDay, GroupClassField.WEEK_DAY)
             .Options(FormInputOptions.fromEnum(WeekDay, this.i18n.t.enum.WeekDay), true);
+        this.filter.CreateField(this.i18n.t.label.active, GroupClassField.ACTIVE)
+            .Options(FormInputOptions.boolean(), true)
+            .DefaultValue(true);
     }
 
 
@@ -75,5 +78,10 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.table.Column()
             .Label(this.i18n.t.groupClass.weekDay)
             .Value(x => x.weekDayList.map(x => this.i18n.t.enum.WeekDay[x]).join(', '));
+
+        this.table.Column()
+            .Label(this.i18n.t.label.active)
+            .OrderBy(GroupClassField.ACTIVE)
+            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no);
     }
 }

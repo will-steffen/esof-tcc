@@ -13,6 +13,7 @@ export class CustomerForm extends BaseForm<Customer> {
     registration: FormInput<string>;
     planValue: FormInput<string>;
     personData: PersonDataModelForm = new PersonDataModelForm();
+    active: FormInput<boolean>;
 
     configure() {
         this.address = this.Input<string>(this.i18n.t.customer.address).Required();
@@ -29,6 +30,10 @@ export class CustomerForm extends BaseForm<Customer> {
             .Type(FormInputType.NUMBER)
             .Required();
 
+        this.active = this.Input<boolean>(this.i18n.t.label.active)
+            .Options(FormInputOptions.boolean())
+            .Required();
+
         this.SubForm(this.personData).Model(this.model);
 
         if (this.model) {
@@ -37,6 +42,7 @@ export class CustomerForm extends BaseForm<Customer> {
             this.planType.SetValue(this.model.planType);
             this.registration.SetValue(this.model.registration);
             this.planValue.SetValue(this.model.planValue);
+            this.active.SetValue(this.model.active);
         }
     }
 
@@ -46,7 +52,8 @@ export class CustomerForm extends BaseForm<Customer> {
         dto.birthDate = this.birthDate.value;
         dto.planType = this.planType.value;
         dto.registration = this.registration.value;
-        dto.planValue = Number(this.planValue.value);        
+        dto.planValue = Number(this.planValue.value);    
+        dto.active = this.active.value;    
         return dto;
     }
 }

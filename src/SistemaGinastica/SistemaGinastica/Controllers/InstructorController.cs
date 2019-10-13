@@ -21,6 +21,7 @@ namespace SistemaGinastica.Controllers
                 {"Name", "Name"},
                 {"RG", "Rg"},
                 {"CPF", "Cpf"},
+                {"Active", "Active"},
             };
         }
 

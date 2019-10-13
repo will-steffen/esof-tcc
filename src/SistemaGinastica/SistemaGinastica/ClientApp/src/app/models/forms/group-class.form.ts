@@ -15,6 +15,7 @@ export class GroupClassForm extends BaseForm<GroupClass> {
     name: FormInput<string>;
     weekDay: FormInput<WeekDay[]>;
     instructorList: Instructor[] = [];
+    active: FormInput<boolean>;
 
     deps(instructorList: Instructor[]) {
         this.instructorList = instructorList;
@@ -38,6 +39,10 @@ export class GroupClassForm extends BaseForm<GroupClass> {
             .Options(FormInputOptions.fromEnum(WeekDay, this.i18n.t.enum.WeekDay), true)
             .Type(FormInputType.MULTI_SELECT);
 
+        this.active = this.Input<boolean>(this.i18n.t.label.active)
+            .Options(FormInputOptions.boolean())
+            .Required();
+
         if (this.model) {
             this.initHour.SetValue(this.model.initHour);
             this.endHour.SetValue(this.model.endHour);
@@ -45,6 +50,7 @@ export class GroupClassForm extends BaseForm<GroupClass> {
             this.name.SetValue(this.model.name);
             this.instructor.SetValue(this.model.idInstructor);
             this.weekDay.SetValue(this.model.weekDayList);
+            this.active.SetValue(this.model.active);
         }
     }
 
@@ -57,6 +63,7 @@ export class GroupClassForm extends BaseForm<GroupClass> {
         dto.name = this.name.value;
         dto.idInstructor = Number(this.instructor.value);
         dto.weekDayList = this.weekDay.value;
+        dto.active = this.active.value;
         return dto;
     }
 }

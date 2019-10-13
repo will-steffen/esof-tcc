@@ -13,6 +13,7 @@ namespace SistemaGinastica.Service.Dto
         public PlanType planType { get; set; }
         public string registration { get; set; }
         public float planValue { get; set; }
+        public bool active { get; set; }
         public virtual List<PaymentDto> paymentList { get; set; }
 
         public CustomerDto() { }
@@ -24,6 +25,7 @@ namespace SistemaGinastica.Service.Dto
             planType = model.PlanType;
             registration = model.Registration;
             planValue = model.PlanValue;
+            active = model.Active;
             if (model.PaymentList != null) paymentList = model.PaymentList.Select(x => new PaymentDto(x)).ToList();
         }
     }

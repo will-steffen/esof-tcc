@@ -26,11 +26,15 @@ export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
             .Options(FormInputOptions.boolean(), true);
 
         this.filter.CreateField(this.i18n.t.instructor.authorizedMuscle, InstructorField.AUTHORIZED_MUSCLE)
-            .Options(FormInputOptions.boolean(), true);
+            .Options(FormInputOptions.boolean(), true);        
 
         this.filter.CreateField(this.i18n.t.personData.name, InstructorField.NAME);
         this.filter.CreateField(this.i18n.t.personData.rg, InstructorField.RG);
         this.filter.CreateField(this.i18n.t.personData.cpf, InstructorField.CPF);
+
+        this.filter.CreateField(this.i18n.t.label.active, InstructorField.ACTIVE)
+            .Options(FormInputOptions.boolean(), true)
+            .DefaultValue(true);
     }
 
     createTable() {
@@ -61,5 +65,10 @@ export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
             .Label(this.i18n.t.personData.cpf)
             .OrderBy(InstructorField.CPF)
             .Value(x => x.cpf);
+
+        this.table.Column()
+            .Label(this.i18n.t.label.active)
+            .OrderBy(InstructorField.ACTIVE)
+            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no);
     }
 }

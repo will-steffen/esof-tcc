@@ -10,6 +10,7 @@ export class Customer extends PersonDataModel {
     paymentList: Payment[];
     nextPayment: Payment;
     planValue: number;
+    active: boolean;
 
     static fromData(data) {
         let e: Customer = super.fromData(data);

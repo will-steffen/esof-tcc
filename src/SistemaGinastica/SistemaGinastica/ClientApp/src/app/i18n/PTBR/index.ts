@@ -36,6 +36,7 @@ export let Locale: LocaleType = {
         back: 'Voltar',
         language: 'Idioma',
         selectLanguage: 'Selecionar Idioma',
+        active: 'Ativo',
     },
 
     customer: {

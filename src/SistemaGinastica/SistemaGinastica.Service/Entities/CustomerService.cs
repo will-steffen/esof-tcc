@@ -28,6 +28,7 @@ namespace SistemaGinastica.Service.Entities
 
         protected override Customer Map(Customer model, CustomerDto dto)
         {
+            model.Active = dto.active;
             model.Name = dto.name;
             model.Cpf = dto.cpf;
             model.Rg = dto.rg;
@@ -75,9 +76,9 @@ namespace SistemaGinastica.Service.Entities
             return customer;
         }
 
-        public int CountCustumers()
+        public int CountActiveCustumers()
         {
-            return DataAccess.Count();
+            return DataAccess.CountActives();
         }
     }
 }

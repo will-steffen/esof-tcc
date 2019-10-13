@@ -11,6 +11,7 @@ export class Payment extends BaseEntity {
     periodEndDate: Date;
 
     vacationList: Vacation[];
+    isDelayed = false;
 
     static fromData(data) {
         let e: Payment = super.fromData(data);
@@ -21,6 +22,7 @@ export class Payment extends BaseEntity {
         e.vacationList = e.vacationList ? e.vacationList.map(x => Vacation.fromData(x)) : [];
         e.vacationList.OrderBy(x => x.initDate);
         e.vacationList.forEach(x => x.payment = e);
+        e.isDelayed = e.paymentDate == null && e.expectedDate.getTime() < Date.Now().getTime();
         return e;
     }
 
@@ -42,4 +44,5 @@ export class Payment extends BaseEntity {
         if(!this.vacationList) return maxPeriods;
         return maxPeriods - this.vacationList.length
     }
+ 
 }

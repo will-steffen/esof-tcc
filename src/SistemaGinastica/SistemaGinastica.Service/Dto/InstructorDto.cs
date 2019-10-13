@@ -6,6 +6,7 @@ namespace SistemaGinastica.Service.Dto
     {
         public bool authorizedMuscle { get; set; }
         public bool authorizedGroupClass { get; set; }
+        public bool active { get; set; }
 
         public InstructorDto() { }
 
@@ -13,6 +14,7 @@ namespace SistemaGinastica.Service.Dto
         {
             authorizedMuscle = model.AuthorizedMuscle;
             authorizedGroupClass = model.AuthorizedGroupClass;
+            active = model.Active;
         }
     }
 }
