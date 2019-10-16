@@ -36,7 +36,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         private customerService: CustomerService
     ) {
         super(deps, Customer, CustomerForm, ApiRoute.customer.filter, ApiRoute.customer.default);
-        this.title = this.i18n.t.customer.title;
+        this.title = this.i18n.t.customer.title;       
         this.errorMessageMap[HttpStatus.CONFLICT] = {
             Cpf: this.i18n.t.customer.message.cpfNotUnique,
             Rg: this.i18n.t.customer.message.rgNotUnique
@@ -62,8 +62,8 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Action(Icon.creditCard, model => this.editPayment(model))
             .Tooltip(this.i18n.t.customer.payment);
 
-        this.table.Action(Icon.delete, model => this.delete(model))
-            .Tooltip(this.i18n.t.label.delete);
+        // this.table.Action(Icon.delete, model => this.delete(model))
+        //     .Tooltip(this.i18n.t.label.delete);
 
 
             
