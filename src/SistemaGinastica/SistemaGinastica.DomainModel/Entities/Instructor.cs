@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SistemaGinastica.DomainModel.Entities
 {
-    [Table("instrutor")]
+    [Table("instructor")]
     public class Instructor : PersonDataModel
     {
         [Column("fl_authorized_muscle")]       

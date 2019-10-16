@@ -70,10 +70,13 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
     }
 
     protected handleRequestError(error) {
-        let message = this.errorMessageMap[error.status]
-            ? this.errorMessageMap[error.status]
-            : this.i18n.t.label.saveError;
-        this.alert.error(message);
+        let message = !this.errorMessageMap[error.status]
+            ? this.i18n.t.label.saveError
+            : !this.errorMessageMap[error.status][error.error]
+                ? this.errorMessageMap[error.status]
+                : this.errorMessageMap[error.status][error.error];
+                
+        return this.alert.error(message);
     }
 
     delete(model: TModel) {

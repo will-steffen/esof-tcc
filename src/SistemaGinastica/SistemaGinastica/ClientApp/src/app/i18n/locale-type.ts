@@ -59,6 +59,10 @@ export interface LocaleType {
         vacation: string,
         registerPayment: string,
         registerVacation: string,
+        message: {
+            cpfNotUnique: string,
+            rgNotUnique: string
+        }
     },
 
     groupClass: {

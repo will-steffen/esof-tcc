@@ -1,5 +1,6 @@
 ﻿using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel.Entities;
+using SistemaGinastica.DomainModel.Exceptions;
 using SistemaGinastica.Service.Dto;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,19 @@ namespace SistemaGinastica.Service.Entities
             model.PlanType = dto.planType;            
             model.PlanValue = dto.planValue;
             return base.Map(model, dto);
+        }
+
+        protected override void ValidateSave(Customer model)
+        {
+            if (DataAccess.ExistsByCpfIgnoreId(model.Cpf, model.Id))
+            {
+                throw new NotUniqueException("Cpf");
+            }
+
+            if (DataAccess.ExistsByRgIgnoreId(model.Rg, model.Id))
+            {
+                throw new NotUniqueException("Rg");
+            }
         }
 
         public Customer RegisterPayment(PaymentDto payment)

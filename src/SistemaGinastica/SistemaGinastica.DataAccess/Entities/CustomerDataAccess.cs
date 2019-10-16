@@ -23,5 +23,15 @@ namespace SistemaGinastica.DataAccess.Entities
         {
             return Set().Where(x => x.Active).Count();
         }
+
+        public bool ExistsByCpfIgnoreId(string cpf, long ignoreId = -1)
+        {
+            return Set().Any(x => x.Cpf == cpf && x.Id != ignoreId);
+        }
+
+        public bool ExistsByRgIgnoreId(string rg, long ignoreId = -1)
+        {
+            return Set().Any(x => x.Rg == rg && x.Id != ignoreId);
+        }
     }
 }

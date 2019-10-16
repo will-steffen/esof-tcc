@@ -52,6 +52,10 @@ export let Locale: LocaleType = {
         vacation: 'Férias',
         registerPayment: 'Registrar Pagamento',
         registerVacation: 'Registrar Férias',
+        message: {
+            cpfNotUnique: 'CPF informado já está sendo utilizado.',
+            rgNotUnique: 'RG informado já está sendo utilizado.'
+        },
     },
 
     groupClass: {
