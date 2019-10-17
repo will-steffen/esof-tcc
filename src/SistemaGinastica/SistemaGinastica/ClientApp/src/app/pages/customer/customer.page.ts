@@ -112,6 +112,10 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     savePayment() {
+        this.paymentForm.ShowValidation(true);
+        if (!this.paymentForm.isValid()) {
+            return
+        }
         let paymentData = this.paymentForm.getDTO();
         paymentData.id = this.customerOnEditPayment.nextPayment.id;
         paymentData.idCustomer = this.customerOnEditPayment.id;
@@ -144,6 +148,10 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     saveVacation() {
+        this.vacationForm.ShowValidation(true);
+        if (!this.vacationForm.isValid()) {
+            return
+        }
         this.block.start();
         this.customerService.registerVacation(this.vacationForm.getDTO())
             .then(customer => {

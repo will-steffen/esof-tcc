@@ -51,7 +51,7 @@ export let Locale: LocaleType = {
         payment: 'Payments',
         vacation: 'Vacation',
         registerPayment: 'Register Payment',
-        registerVacation: 'Register Vacation',
+        registerVacation: 'Schedule Vacation',
         message: {
             cpfNotUnique: 'Informed CPF already in use.',
             rgNotUnique: 'Informed RG already in use.'
@@ -127,6 +127,7 @@ export let Locale: LocaleType = {
         message: {
             generalError: 'Failed to register Payment',
             noVacationRegistered: 'No vacation periods registered yet',
+            mustValuePositive: 'The informed value must be bigger than zero',
         },
     },
 

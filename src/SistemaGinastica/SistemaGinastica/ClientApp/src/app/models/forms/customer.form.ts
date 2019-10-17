@@ -27,6 +27,8 @@ export class CustomerForm extends BaseForm<Customer> {
 
         this.registration = this.Input<string>(this.i18n.t.customer.registration).Disabled();
         this.planValue = this.Input<string>(this.i18n.t.customer.planValue)
+            .Validation(this.i18n.t.payment.message.mustValuePositive, 
+                () => this.planValue.value && Number(this.planValue.value) > 0)
             .Type(FormInputType.NUMBER)
             .Required();
 

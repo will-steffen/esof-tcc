@@ -134,6 +134,7 @@ export interface LocaleType {
         message: {
             generalError: string,
             noVacationRegistered: string,
+            mustValuePositive: string,
         },
     },
 

@@ -14,6 +14,8 @@ export class PaymentForm extends BaseForm<Payment> {
 
         this.value = this.Input<string>(this.i18n.t.payment.value)
             .Type(FormInputType.NUMBER)
+            .Validation(this.i18n.t.payment.message.mustValuePositive, 
+                () => this.value.value && Number(this.value.value) > 0)
             .Required(); 
     }
 
