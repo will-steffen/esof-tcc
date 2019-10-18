@@ -43,38 +43,38 @@ namespace SistemaGinastica.Service.Entities
         public void Mock()
         {
             AdminUser();
-            CreateUserTypes();
-            Instructor instructor1 = instructorService.Include(new InstructorDto
-            {
-                name = "Administrador do Sistema",
-                cpf = "00000000000",
-                rg = "000000003",
-                authorizedMuscle = true,
-                authorizedGroupClass = true,
-                active = true
-            });
+            //CreateUserTypes();
+            //Instructor instructor1 = instructorService.Include(new InstructorDto
+            //{
+            //    name = "Administrador do Sistema",
+            //    cpf = "00000000000",
+            //    rg = "000000003",
+            //    authorizedMuscle = true,
+            //    authorizedGroupClass = true,
+            //    active = true
+            //});
 
-            GroupClass groupClass = groupClassService.Include(new GroupClassDto
-            {
-                initHour = DateUtils.Now().AddHours(-1),
-                endHour = DateUtils.Now(),
-                room = "Sala 3",
-                name = "Spnning",
-                idInstructor = instructor1.Id,
-                active = true
-            });
+            //GroupClass groupClass = groupClassService.Include(new GroupClassDto
+            //{
+            //    initHour = DateUtils.Now().AddHours(-1),
+            //    endHour = DateUtils.Now(),
+            //    room = "Sala 3",
+            //    name = "Spnning",
+            //    idInstructor = instructor1.Id,
+            //    active = true
+            //});
 
-            Customer customer = customerService.Include(new CustomerDto
-            {
-                name = "Cliente número 1",
-                cpf = "00000000000",
-                rg = "000000003",
-                address = "Rua do Comercio",
-                birthDate = DateUtils.Now().AddYears(-23),
-                planType = PlanType.Annually,
-                planValue = 900,
-                active = true
-            });
+            //Customer customer = customerService.Include(new CustomerDto
+            //{
+            //    name = "Cliente número 1",
+            //    cpf = "00000000000",
+            //    rg = "000000003",
+            //    address = "Rua do Comercio",
+            //    birthDate = DateUtils.Now().AddYears(-23),
+            //    planType = PlanType.Annually,
+            //    planValue = 900,
+            //    active = true
+            //});
         }
 
         private void CreateUserTypes()
