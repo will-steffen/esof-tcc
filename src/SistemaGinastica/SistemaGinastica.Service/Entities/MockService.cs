@@ -174,15 +174,93 @@ namespace SistemaGinastica.Service.Entities
             string str = "Aulas em Grupo: ";
             try
             {
+                DateTime startDate = DateUtils.Now().AddHours(-3).AddMinutes(-DateUtils.Now().Minute);
                 groupClassService.Include(new GroupClassDto
                 {
-                    initHour = DateUtils.Now().AddHours(-1),
-                    endHour = DateUtils.Now(),
-                    room = "Sala 3",
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 1",
                     name = "Spnning",
                     idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Monday, WeekDay.Wednesday, WeekDay.Friday },
                     active = true
                 });
+
+                startDate = DateUtils.Now().AddHours(-8).AddMinutes(-DateUtils.Now().Minute);
+                groupClassService.Include(new GroupClassDto
+                {
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 1",
+                    name = "Boxe Fitness",
+                    idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Tuesday, WeekDay.Thursday },
+                    active = true
+                });
+
+                startDate = DateUtils.Now().AddHours(-10).AddMinutes(-DateUtils.Now().Minute);
+                groupClassService.Include(new GroupClassDto
+                {
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 2",
+                    name = "Low Pressure Fitness",
+                    idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Saturday, WeekDay.Sunday },
+                    active = true
+                });
+
+                startDate = DateUtils.Now().AddMinutes(-DateUtils.Now().Minute);
+                groupClassService.Include(new GroupClassDto
+                {
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 2",
+                    name = "Piloxing",
+                    idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Tuesday, WeekDay.Wednesday, WeekDay.Thursday },
+                    active = true
+                });
+
+
+                startDate = DateUtils.Now().AddHours(-5).AddMinutes(-DateUtils.Now().Minute);
+                groupClassService.Include(new GroupClassDto
+                {
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 2",
+                    name = "Running Class",
+                    idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Saturday, WeekDay.Tuesday, WeekDay.Friday },
+                    active = true
+                });
+
+                startDate = DateUtils.Now().AddHours(2).AddMinutes(-DateUtils.Now().Minute);
+                groupClassService.Include(new GroupClassDto
+                {
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 3",
+                    name = "Pump",
+                    idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Monday, WeekDay.Friday },
+                    active = true
+                });
+
+                startDate = DateUtils.Now().AddHours(3).AddMinutes(-DateUtils.Now().Minute);
+                groupClassService.Include(new GroupClassDto
+                {
+                    initHour = startDate,
+                    endHour = startDate.AddHours(1),
+                    room = "Sala 3",
+                    name = "Step",
+                    idInstructor = GetInstructor().Id,
+                    weekDayList = new List<WeekDay> { WeekDay.Monday, WeekDay.Wednesday },
+                    active = true
+                });
+
+
+
                 str += "Ok";
             }
             catch (Exception e)
