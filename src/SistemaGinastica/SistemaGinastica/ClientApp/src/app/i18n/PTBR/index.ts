@@ -52,7 +52,11 @@ export let Locale: LocaleType = {
         payment: 'Pagamentos',
         vacation: 'Férias',
         registerPayment: 'Registrar Pagamento',
-        registerVacation: 'Registrar Férias',
+        registerVacation: 'Agendar Férias',
+        message: {
+            cpfNotUnique: 'CPF informado já está sendo utilizado.',
+            rgNotUnique: 'RG informado já está sendo utilizado.'
+        },
     },
 
     groupClass: {
@@ -124,6 +128,7 @@ export let Locale: LocaleType = {
         message: {
             generalError: 'Falha para registrar o Pagamento',
             noVacationRegistered: 'Nenhum período de férias registrado ainda',
+            mustValuePositive: 'O valor informado deve ser maior que zero',
         },
     },
 

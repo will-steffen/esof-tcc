@@ -12,6 +12,7 @@ import { BaseFilterPage } from "../base-filter-page";
 import { BasePageDeps } from "../base-page-deps";
 import { VacationForm } from "src/app/models/forms/vacation.form";
 import { Payment } from "src/app/models/payment";
+import { HttpStatus } from "src/app/enums/http-status";
 
 @Component({
     selector: 'app-customer',
@@ -35,19 +36,19 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         private customerService: CustomerService
     ) {
         super(deps, Customer, CustomerForm, ApiRoute.customer.filter, ApiRoute.customer.default);
-        this.title = this.i18n.t.customer.title;
+        this.title = this.i18n.t.customer.title;       
+        this.errorMessageMap[HttpStatus.CONFLICT] = {
+            Cpf: this.i18n.t.customer.message.cpfNotUnique,
+            Rg: this.i18n.t.customer.message.rgNotUnique
+        }
     }
 
     createFilter() {
-        this.filter.CreateField(this.i18n.t.customer.planType, CustomerField.PLAN_TYPE)
-            .Options(FormInputOptions.fromEnum(PlanType, this.i18n.t.enum.PlanType), true);
-        this.filter.CreateField(this.i18n.t.customer.address, CustomerField.ADDRESS);
-        this.filter.CreateField(this.i18n.t.customer.birthDate, CustomerField.BIRTH_DATE);
         this.filter.CreateField(this.i18n.t.customer.registration, CustomerField.REGISTRATION);
-
         this.filter.CreateField(this.i18n.t.personData.name, CustomerField.NAME);
-        this.filter.CreateField(this.i18n.t.personData.rg, CustomerField.RG);
-        this.filter.CreateField(this.i18n.t.personData.cpf, CustomerField.CPF);
+        this.filter.CreateField(this.i18n.t.personData.cpf, CustomerField.CPF);        
+        this.filter.CreateField(this.i18n.t.customer.planType, CustomerField.PLAN_TYPE)
+            .Options(FormInputOptions.fromEnum(PlanType, this.i18n.t.enum.PlanType), true);          
 
         this.filter.CreateField(this.i18n.t.label.active, CustomerField.ACTIVE)
             .Options(FormInputOptions.boolean(), true)
@@ -55,15 +56,14 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     createTable() {
-
         this.table.Action(Icon.edit, model => this.edit(model))
             .Tooltip(this.i18n.t.label.edit);
 
         this.table.Action(Icon.creditCard, model => this.editPayment(model))
             .Tooltip(this.i18n.t.customer.payment);
 
-        this.table.Action(Icon.delete, model => this.delete(model))
-            .Tooltip(this.i18n.t.label.delete);
+        // this.table.Action(Icon.delete, model => this.delete(model))
+        //     .Tooltip(this.i18n.t.label.delete);
 
 
             
@@ -112,6 +112,10 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     savePayment() {
+        this.paymentForm.ShowValidation(true);
+        if (!this.paymentForm.isValid()) {
+            return
+        }
         let paymentData = this.paymentForm.getDTO();
         paymentData.id = this.customerOnEditPayment.nextPayment.id;
         paymentData.idCustomer = this.customerOnEditPayment.id;
@@ -144,6 +148,10 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     saveVacation() {
+        this.vacationForm.ShowValidation(true);
+        if (!this.vacationForm.isValid()) {
+            return
+        }
         this.block.start();
         this.customerService.registerVacation(this.vacationForm.getDTO())
             .then(customer => {
