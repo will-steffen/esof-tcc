@@ -37,6 +37,7 @@ export let Locale: LocaleType = {
         language: 'Idioma',
         selectLanguage: 'Selecionar Idioma',
         active: 'Ativo',
+        exec: 'Executar',
     },
 
     customer: {
@@ -137,7 +138,11 @@ export let Locale: LocaleType = {
 
     system: {
         modalTitle: 'Simular Data',
-        systemDate: 'Data do Sistema',       
+        systemDate: 'Data do Sistema',  
+        mock: {
+            title: 'Dados de Amostra',    
+            warning: 'Executar essa rotina criará vários registros de amostra no banco de dados, deseja continuar?',
+        }
     },
 
     enum: EnumLocale

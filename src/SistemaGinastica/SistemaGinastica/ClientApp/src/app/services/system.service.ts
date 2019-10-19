@@ -7,16 +7,22 @@ import { SystemConfigRequestDTO } from "../dto/system-config-request.dto";
 @Injectable()
 export class SystemService {
     constructor(private service: ServiceHandler) { }
+    mocked: boolean = false;
 
     getConfig() {
         this.service.Get(ApiRoute.system.default)
             .then((data: SystemConfigResponseDTO) => {
-                window['daysToAdd'] = data.daysToAddOnNow;
+                window['daysToAdd'] = data.daysToAddOnNow;  
+                this.mocked = data.mocked;             
             })
             .catch(() => { })
     }
 
     setConfig(data: SystemConfigRequestDTO) {
         return this.service.Post(ApiRoute.system.default, data);
+    }
+
+    runMock() : Promise<{result: string}> {
+        return this.service.Get(ApiRoute.system.mock);
     }
 }

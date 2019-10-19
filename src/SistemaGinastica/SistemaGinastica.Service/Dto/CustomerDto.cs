@@ -16,6 +16,9 @@ namespace SistemaGinastica.Service.Dto
         public bool active { get; set; }
         public virtual List<PaymentDto> paymentList { get; set; }
 
+
+        public DateTime? startMockUse { get; set; }
+
         public CustomerDto() { }
 
         public CustomerDto(Customer model) : base(model)

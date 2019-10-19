@@ -37,6 +37,9 @@ namespace SistemaGinastica.DomainModel.Entities
         public virtual List<Presence> PresenceList { get; set; }
         public virtual List<PhysicalEvaluation> PhysicalEvaluationList { get; set; }
 
-        
+        [NotMapped]
+        public DateTime? StartMockUse { get; set; }
+
+
     }
 }

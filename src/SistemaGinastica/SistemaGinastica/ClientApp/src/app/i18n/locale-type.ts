@@ -44,6 +44,7 @@ export interface LocaleType {
         language: string,
         selectLanguage: string,
         active: string,
+        exec: string
     },
 
     customer: {
@@ -145,6 +146,10 @@ export interface LocaleType {
     system: {
         modalTitle: string,
         systemDate: string,
+        mock: {
+            title: string,    
+            warning: string,
+        }
     },
 
     enum: {

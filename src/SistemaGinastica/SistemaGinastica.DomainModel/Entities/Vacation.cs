@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SistemaGinastica.DomainModel.Entities
 {
-    [Table("ferias")]
+    [Table("vacation")]
     public class Vacation : BaseModel
     {
         [Column("dt_init")]

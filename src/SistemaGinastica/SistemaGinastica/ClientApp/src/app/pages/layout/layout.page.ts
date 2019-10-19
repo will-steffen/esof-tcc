@@ -23,10 +23,12 @@ export class LayoutPage extends BasePage {
     language: FormInput<Language>;
     showSystemConfig = false;
     systemForm = new SystemConfigForm();
+    showMock = false;
+    mockResult: string;
 
     constructor(
         public pageRouteService: PageRouteService,
-        private systemService: SystemService,
+        public systemService: SystemService,
         deps: BasePageDeps
     ) {
         super(deps);
@@ -54,7 +56,7 @@ export class LayoutPage extends BasePage {
     openSystemConfig() {
         this.systemForm.configure();
         this.showSystemConfig = true;
-    }
+    }    
 
     saveSystemConfig() {
         this.block.start();
@@ -72,5 +74,22 @@ export class LayoutPage extends BasePage {
         this.block.start();
         this.i18n.changeLanguage(this.language.value);
         window.location.reload();
+    }
+    
+    openMock() {
+        this.showMock = true;
+    }
+
+    execMock() {
+        this.block.start()
+        this.systemService.runMock()
+            .then(data => {
+                this.systemService.mocked = true;
+                this.mockResult = data.result;
+                this.showMock = false;
+                setTimeout(() => this.showMock = true, 100);
+            })
+            .catch(err => this.alert.error('Erro no Mock'))
+            .then(() => this.block.stop());
     }
 }

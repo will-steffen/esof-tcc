@@ -8,6 +8,8 @@ using SistemaGinastica.DomainModel.Authorization;
 using SistemaGinastica.DataAccess.Entities;
 using SistemaGinastica.DomainModel;
 using SistemaGinastica.Service.Entities;
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaGinastica
 {
@@ -57,9 +59,18 @@ namespace SistemaGinastica
             AuthorizationProvider.Configure(services);
             ApplicationEnv.ServiceProvider = services.BuildServiceProvider();
 
+            if (ApplicationEnv.GetBoolConfiguration(Constants.RUN_MIGRATIONS) 
+                && !ApplicationEnv.GetBoolConfiguration(Constants.USE_MEMORY_DB))
+            {
+                ((ApplicationContext)Activator.CreateInstance(typeof(ApplicationContext))).Database.Migrate();  
+            }
+
+            MockService mockService = ApplicationEnv.ServiceProvider.GetService<MockService>();
+            mockService.AdminUser();
+
             if (ApplicationEnv.GetBoolConfiguration(Constants.RUN_START_TASK))
             {
-                ApplicationEnv.ServiceProvider.GetService<MockService>().Mock();
+                mockService.Mock();
             }
         }
 

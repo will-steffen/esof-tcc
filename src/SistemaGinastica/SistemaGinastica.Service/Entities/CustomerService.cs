@@ -20,6 +20,7 @@ namespace SistemaGinastica.Service.Entities
         public override Customer Include(CustomerDto dto)
         {
             Customer customer = MapAndSave(new Customer(), dto);
+            customer.StartMockUse = dto.startMockUse;
             paymentService.GenerateFirstPayment(customer);
             customer.Registration = customer.Id.ToString().PadLeft(5, '0');
             Save(customer);

@@ -25,7 +25,6 @@ namespace SistemaGinastica.DomainModel
             else
             {
                 optionsBuilder.UseMySql(ConnectionString);
-
             }
         }
     }

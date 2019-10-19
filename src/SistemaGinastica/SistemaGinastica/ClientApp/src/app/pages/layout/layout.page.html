@@ -68,6 +68,10 @@
             </div>
         </div>
         <div class="fixed-bottom">
+            <div class="page-item" (click)="openMock()">
+                <fa-icon [icon]="icon.database"></fa-icon>
+                <span class="title">{{ i18n.t.system.mock.title }}</span>
+            </div>
             <div class="page-item" (click)="openSystemConfig()">
                 <fa-icon [icon]="icon.calendarDay"></fa-icon>
                 <span class="title">{{ i18n.t.system.modalTitle }}</span>
@@ -131,6 +135,31 @@
                 <fa-icon [icon]="icon.save"></fa-icon>
                 {{ i18n.t.label.save }}
             </button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+
+<p-dialog [(visible)]="showMock" [modal]="true" [styleClass]="'modal-md'" [resizable]="false" [blockScroll]="true"
+    [closeOnEscape]="true" [header]="i18n.t.system.mock.title">
+    <div class="body-content">
+        <span *ngIf="!mockResult">
+            {{ i18n.t.system.mock.warning }}
+        </span>
+        <textarea *ngIf="mockResult" rows="12" disabled>{{ mockResult }}</textarea>
+    </div>
+    <p-footer class="footer-modal">
+        <div class="button-modal">
+            <button class="btn left" (click)="showMock = false">
+                <fa-icon [icon]="icon.cancel"></fa-icon>
+                {{ mockResult ? i18n.t.label.close : i18n.t.label.cancel }}
+            </button>
+
+            <button class="btn" (click)="execMock()" *ngIf="!mockResult">
+                <fa-icon [icon]="icon.save"></fa-icon>
+                {{ i18n.t.label.exec }}
+            </button>
+            <div style="clear: both"></div>
         </div>
     </p-footer>
 </p-dialog>

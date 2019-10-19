@@ -65,6 +65,10 @@ namespace SistemaGinastica.Service.Entities
             return base.Map(model, dto);
         }
 
+        public User GetByUsername(string username)
+        {
+            return DataAccess.GetByUsername(username);
+        }
 
     }
 }

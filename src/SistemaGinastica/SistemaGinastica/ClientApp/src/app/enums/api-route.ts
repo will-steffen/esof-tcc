@@ -21,6 +21,7 @@ export const ApiRoute = {
         filter: '/api/groupclass/filter',
     },
     system: {
-        default: '/api/system'
+        default: '/api/system',
+        mock: '/api/system/mock'
     }
 }

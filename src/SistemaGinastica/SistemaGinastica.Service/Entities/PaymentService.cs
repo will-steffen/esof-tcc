@@ -23,15 +23,16 @@ namespace SistemaGinastica.Service.Entities
 
         public Payment GenerateFirstPayment(Customer customer)
         {
+            DateTime startUse = customer.StartMockUse ?? DateUtils.Now();
             Payment payment = new Payment
             {
-                ExpectedDate = DateUtils.Now().AddDays(paymentDaysSpan),
+                ExpectedDate = startUse.AddDays(paymentDaysSpan),
                 Customer = customer,
                 Value = customer.PlanValue,
-                PeriodStartDate = DateUtils.Now(),
+                PeriodStartDate = startUse,
                 PeriodEndDate = customer.PlanType == PlanType.Annually
-                    ? DateUtils.Now().AddYears(1)
-                    : DateUtils.Now().AddMonths(1)
+                    ? startUse.AddYears(1)
+                    : startUse.AddMonths(1)
             };
             Save(payment);
             return payment;

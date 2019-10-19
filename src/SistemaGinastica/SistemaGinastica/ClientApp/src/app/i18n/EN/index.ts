@@ -37,6 +37,7 @@ export let Locale: LocaleType = {
         language: 'Idiom',
         selectLanguage: 'Select Idiom',
         active: 'Active',
+        exec: 'Execute',
     },
 
     customer: {
@@ -137,7 +138,11 @@ export let Locale: LocaleType = {
 
     system: {
         modalTitle: 'Simulate Date',
-        systemDate: 'System Date',       
+        systemDate: 'System Date',    
+        mock: {
+            title: 'Sample Data',   
+            warning: 'Running this routine will create multiple sample records in the database, do you want to continue?', 
+        }
     },
 
     enum: EnumLocale

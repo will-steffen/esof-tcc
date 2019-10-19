@@ -7,7 +7,7 @@ namespace SistemaGinastica.DomainModel.Entities
     [Table("group_class_week_day")]
     public class GroupClassWeekDay : BaseModel
     {
-        [Column("hr_init")]
+        [Column("cd_week_day")]
         public WeekDay WeekDay { get; set; }
 
         [Column("id_group_class")]

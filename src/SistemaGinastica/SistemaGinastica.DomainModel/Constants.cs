@@ -12,6 +12,7 @@ namespace SistemaGinastica.DomainModel
         public static string CONFIG_FILE_NAME = "appsettings.json";
         public static string USE_MEMORY_DB = "UseMemoryDB";
         public static string RUN_START_TASK = "RunStartTask";
+        public static string RUN_MIGRATIONS = "RunMigrations";
         public static string MEMORY_DB_NAME = "MEMORY_DB_NAME";
         public static string DEFAULT_CONNECTION = "DefaultConnection";
         public static string CORS_POLICY_NAME = "CORS_POLICY_NAME";
