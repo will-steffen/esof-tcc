@@ -45,4 +45,4 @@ Dentro do sistema existem alguns botões com funções de ajuda para demonstraç
 O sistema possui indicadores de pagamentos atrasados e alunos ativos matriculados. Para testar a identificação de pagamentos atrasados do sistema, o usuário pode utilizar esta ferramenta para registrar uma data fictícia no sistema.
 
 ###### Idioma
-Exemplo de utilização e internacionalização. O sistema está disponível  em Português e Inglês.
+Exemplo de utilização de internacionalização. O sistema está disponível  em Português e Inglês.
