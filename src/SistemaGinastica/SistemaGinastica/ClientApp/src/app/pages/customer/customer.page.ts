@@ -13,6 +13,7 @@ import { BasePageDeps } from "../base-page-deps";
 import { VacationForm } from "src/app/models/forms/vacation.form";
 import { Payment } from "src/app/models/payment";
 import { HttpStatus } from "src/app/enums/http-status";
+import { UserType } from "src/app/enums/user-type";
 
 @Component({
     selector: 'app-customer',
@@ -37,7 +38,7 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     ) {
         super(deps, Customer, CustomerForm, ApiRoute.customer.filter, ApiRoute.customer.default);
         this.title = this.i18n.t.customer.title;    
-        this.hideDelete = true;   
+        this.hideDelete = true;            
         this.errorMessageMap[HttpStatus.CONFLICT] = {
             Cpf: this.i18n.t.customer.message.cpfNotUnique,
             Rg: this.i18n.t.customer.message.rgNotUnique
@@ -57,16 +58,15 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
     }
 
     createTable() {
-        this.table.Action(Icon.edit, model => this.edit(model))
-            .Tooltip(this.i18n.t.label.edit);
+        if(this.userService.getUser().type != UserType.PHYSIOTHERAPIST){
+            this.table.Action(Icon.edit, model => this.edit(model))
+                .Tooltip(this.i18n.t.label.edit);
 
-        this.table.Action(Icon.creditCard, model => this.editPayment(model))
-            .Tooltip(this.i18n.t.customer.payment);
-
-        // this.table.Action(Icon.delete, model => this.delete(model))
-        //     .Tooltip(this.i18n.t.label.delete);
-
-
+            this.table.Action(Icon.creditCard, model => this.editPayment(model))
+                .Tooltip(this.i18n.t.customer.payment);
+        }else{
+            this.hideInclude = true; 
+        }
             
         this.table.Column()
             .Label(this.i18n.t.customer.registration)

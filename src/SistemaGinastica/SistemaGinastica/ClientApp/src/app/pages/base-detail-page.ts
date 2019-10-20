@@ -14,6 +14,7 @@ export class BaseDetailPage<TModel extends BaseEntity, TForm extends BaseForm<TM
     deleteSuccess;
     errorMessageMap: any;
     hideDelete = false;
+    hideInclude = false;
 
     constructor(
         deps: BasePageDeps,
