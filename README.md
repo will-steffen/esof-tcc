@@ -14,10 +14,10 @@ O sistema está desenvolvido em .NET Core e Angular.
 
 ###### Execução
 No terminal abrir o caminho:
-```sh ../esof-tcc/src/SistemaGinastica/SistemaGinastica ```
+```../esof-tcc/src/SistemaGinastica/SistemaGinastica ```
 
 Executar o comando:
-```sh dotnet run ```
+```dotnet run ```
 
 No navegador, abrir a URL:
 http://localhost:5000
