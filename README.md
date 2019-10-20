@@ -37,9 +37,9 @@ Dentro do sistema existem alguns botões com funções de ajuda para demonstraç
 ###### Dados de amostra
 - Registra uma coleção de Instrutores, Aulas em Grupo, Clientes (sem registro de pagamentos);
 - Registra um usuário para cada Tipo de Usuário
--- Recepcionista `Usuário: recepcionista` - `Senha: recepcionista`
--- Fisioterapeuta `Usuário: fisio` - `Senha: fisio`
--- Gerente `Usuário: gerente` - `Senha: gerente`
+ - Recepcionista `Usuário: recepcionista` - `Senha: recepcionista`
+ - Fisioterapeuta `Usuário: fisio` - `Senha: fisio`
+ - Gerente `Usuário: gerente` - `Senha: gerente`
 
 ###### Simular Data
 O sistema possui indicadores de pagamentos atrasados e alunos ativos matriculados. Para testar a identificação de pagamentos atrasados do sistema, o usuário pode utilizar esta ferramenta para registrar uma data fictícia no sistema.
