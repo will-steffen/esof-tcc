@@ -9,6 +9,7 @@ import { SystemConfigForm } from "src/app/models/forms/system-config.form";
 import { FormInput } from "src/app/models/forms/base/form-input";
 import { FormInputOptions } from "src/app/models/forms/base/form-input-options";
 import { Language } from "src/app/enums/language";
+import { PageRoute } from "src/app/models/page-route";
 
 @Component({
     selector: 'app-layout',
@@ -38,6 +39,13 @@ export class LayoutPage extends BasePage {
                 new FormInputOptions(Language.PTBR, 'Português'),
                 new FormInputOptions(Language.EN, 'English'),
             ]);
+    }
+
+    openPage(page: PageRoute) {
+        if(document.body.offsetWidth <= 650){
+            this.showMenu = false;
+        }
+        this.pageRouteService.open(page)
     }
 
     logout() {
@@ -75,7 +83,7 @@ export class LayoutPage extends BasePage {
         this.i18n.changeLanguage(this.language.value);
         window.location.reload();
     }
-    
+
     openMock() {
         this.showMock = true;
     }

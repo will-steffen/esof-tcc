@@ -44,12 +44,14 @@ export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
         this.table.Column()
             .Label(this.i18n.t.instructor.authorizedGroupClass)
             .OrderBy(InstructorField.AUTHORIZED_GROUP_CLASS)
-            .Value(x => x.authorizedGroupClass ? this.i18n.t.label.yes : this.i18n.t.label.no);
+            .Value(x => x.authorizedGroupClass ? this.i18n.t.label.yes : this.i18n.t.label.no)
+            .Priority(3);
 
         this.table.Column()
             .Label(this.i18n.t.instructor.authorizedMuscle)
             .OrderBy(InstructorField.AUTHORIZED_MUSCLE)
-            .Value(x => x.authorizedMuscle ? this.i18n.t.label.yes : this.i18n.t.label.no);
+            .Value(x => x.authorizedMuscle ? this.i18n.t.label.yes : this.i18n.t.label.no)
+            .Priority(4);
 
         this.table.Column()
             .Label(this.i18n.t.personData.name)
@@ -59,16 +61,19 @@ export class InstructorPage extends BaseFilterPage<Instructor, InstructorForm> {
         this.table.Column()
             .Label(this.i18n.t.personData.rg)
             .OrderBy(InstructorField.RG)
-            .Value(x => x.rg);
+            .Value(x => x.rg)
+            .Priority(6);
 
         this.table.Column()
             .Label(this.i18n.t.personData.cpf)
             .OrderBy(InstructorField.CPF)
-            .Value(x => x.cpf);
+            .Value(x => x.cpf) 
+            .Priority(5);
 
         this.table.Column()
             .Label(this.i18n.t.label.active)
             .OrderBy(InstructorField.ACTIVE)
-            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no);
+            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no)
+            .Priority(3);
     }
 }

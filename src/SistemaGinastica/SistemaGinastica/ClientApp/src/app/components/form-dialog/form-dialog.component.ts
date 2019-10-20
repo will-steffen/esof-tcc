@@ -19,7 +19,7 @@ export class FormDialogComponent {
     constructor(public i18n: I18n) { }
 
     showDelete() {
-        return this.page.form.model && this.page.form.model.id;
+        return !this.page.hideDelete && this.page.form.model && this.page.form.model.id;
     }
 
     closeDetails() {

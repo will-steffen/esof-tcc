@@ -9,10 +9,10 @@
             </button>
         </div>
         <div class="page-title">
-            {{ pageRouteService.getPageTitle() }}
+            <span>{{ pageRouteService.getPageTitle() }}</span>            
         </div>
         <div class="right-icons">
-            <div class="user-identification">
+            <div class="user-identification system-date">
                 <div class="info">
                     <div class="name">{{ getSystemDate() }}</div>
                     <div class="type">{{ i18n.t.system.systemDate }}</div>
@@ -62,7 +62,7 @@
 <div class="body">
     <div class="menu" [class.opened]="showMenu">
         <div class="page-list">
-            <div *ngFor="let page of pageRouteService.pageList" (click)="pageRouteService.open(page)" class="page-item">
+            <div *ngFor="let page of pageRouteService.pageList" (click)="openPage(page)" class="page-item">
                 <fa-icon [icon]="page.icon"></fa-icon>
                 <span class="title">{{ page.title }}</span>
             </div>

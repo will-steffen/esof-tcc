@@ -41,26 +41,30 @@ export class UserPage extends BaseFilterPage<User, UserForm> {
         this.table.Column()
             .Label(this.i18n.t.user.username)
             .OrderBy(UserField.USERNAME)
-            .Value(x => x.username);
+            .Value(x => x.username);            
 
         this.table.Column()
             .Label(this.i18n.t.user.type)
             .OrderBy(UserField.TYPE)
-            .Value(x => this.i18n.t.enum.UserType[x.type]);
+            .Value(x => this.i18n.t.enum.UserType[x.type])
+            .Priority(4);
 
         this.table.Column()
             .Label(this.i18n.t.personData.name)
             .OrderBy(UserField.NAME)
-            .Value(x => x.name);
+            .Value(x => x.name)
+            .Priority(2);
 
         this.table.Column()
             .Label(this.i18n.t.personData.rg)
             .OrderBy(UserField.RG)
-            .Value(x => x.rg);
+            .Value(x => x.rg)
+            .Priority(6);
 
         this.table.Column()
             .Label(this.i18n.t.personData.cpf)
             .OrderBy(UserField.CPF)
-            .Value(x => x.cpf);
+            .Value(x => x.cpf)
+            .Priority(5);
     }
 }

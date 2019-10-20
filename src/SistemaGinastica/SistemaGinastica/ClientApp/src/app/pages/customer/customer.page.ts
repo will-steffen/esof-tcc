@@ -36,7 +36,8 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         private customerService: CustomerService
     ) {
         super(deps, Customer, CustomerForm, ApiRoute.customer.filter, ApiRoute.customer.default);
-        this.title = this.i18n.t.customer.title;       
+        this.title = this.i18n.t.customer.title;    
+        this.hideDelete = true;   
         this.errorMessageMap[HttpStatus.CONFLICT] = {
             Cpf: this.i18n.t.customer.message.cpfNotUnique,
             Rg: this.i18n.t.customer.message.rgNotUnique
@@ -70,7 +71,8 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Column()
             .Label(this.i18n.t.customer.registration)
             .OrderBy(CustomerField.REGISTRATION)
-            .Value(x => x.registration);
+            .Value(x => x.registration)
+            .Priority(2);
 
         this.table.Column()
             .Label(this.i18n.t.personData.name)
@@ -80,23 +82,27 @@ export class CustomerPage extends BaseFilterPage<Customer, CustomerForm> {
         this.table.Column()
             .Label(this.i18n.t.personData.cpf)
             .OrderBy(CustomerField.CPF)
-            .Value(x => x.cpf);
+            .Value(x => x.cpf)
+            .Priority(6);
 
         this.table.Column()
             .Label(this.i18n.t.customer.planType)
             .OrderBy(CustomerField.PLAN_TYPE)
-            .Value(x => this.i18n.t.enum.PlanType[x.planType]);
+            .Value(x => this.i18n.t.enum.PlanType[x.planType])
+            .Priority(6);
 
         this.table.Column()
             .Label(this.i18n.t.customer.nextPayment)
             .OrderBy(CustomerField.NEXT_PAYMENT)
             .Value(x => x.nextPayment.expectedDate.toLocaleDateString())
-            .StyleClass('late-payment', x => x.nextPayment.isDelayed);
+            .StyleClass('late-payment', x => x.nextPayment.isDelayed)
+            .Priority(4);
 
         this.table.Column()
             .Label(this.i18n.t.label.active)
             .OrderBy(CustomerField.ACTIVE)
             .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no)
+            .Priority(3)
     }
 
     editPayment(customer: Customer) {

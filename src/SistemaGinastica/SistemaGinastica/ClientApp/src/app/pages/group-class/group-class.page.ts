@@ -58,30 +58,36 @@ export class GroupClassPage extends BaseFilterPage<GroupClass, GroupClassForm> {
         this.table.Column()
             .Label(this.i18n.t.groupClass.instructor)
             .OrderBy(GroupClassField.INSTRUCTOR)
-            .Value(x => x.instructor ? x.instructor.name : '-');
+            .Value(x => x.instructor ? x.instructor.name : '-')
+            .Priority(6);
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.room)
             .OrderBy(GroupClassField.ROOM)
-            .Value(x => x.room);
+            .Value(x => x.room)
+            .Priority(5);
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.initHour)
             .OrderBy(GroupClassField.INIT_HOUR)
-            .Value(x => x.initHour.ToOnlyTimeString());
+            .Value(x => x.initHour.ToOnlyTimeString())
+            .Priority(2);
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.endHour)
             .OrderBy(GroupClassField.END_HOUR)
-            .Value(x => x.endHour.ToOnlyTimeString());
+            .Value(x => x.endHour.ToOnlyTimeString())
+            .Priority(3);
 
         this.table.Column()
             .Label(this.i18n.t.groupClass.weekDay)
-            .Value(x => x.weekDayList.map(x => this.i18n.t.enum.WeekDay[x]).join(', '));
+            .Value(x => x.weekDayList.map(x => this.i18n.t.enum.WeekDay[x]).join(', '))
+            .Priority(4);
 
         this.table.Column()
             .Label(this.i18n.t.label.active)
             .OrderBy(GroupClassField.ACTIVE)
-            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no);
+            .Value(x => x.active ? this.i18n.t.label.yes : this.i18n.t.label.no)
+            .Priority(5);
     }
 }
